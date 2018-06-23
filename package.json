@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "frontend",
   "version": "1.0.0",
   "description": "frontend for movie review app",
   "main": "src/index.js",
