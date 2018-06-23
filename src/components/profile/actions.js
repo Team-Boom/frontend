@@ -1,16 +1,55 @@
-import { WATCHLIST_REMOVE, WATCHLIST_ADD} from './reducers';
-import { fetchWatchlist, fetchAddAlbum, fetchAlbum } from '../../services/db';
+import { USER_AUTH, LOGOUT, CHECKED_AUTH, USER_UPDATE } from './reducers';
+import { verifyUser, sendUpdateUser } from '../../services/api';
+import { getStoredUser, clearStoredUser } from '../../services/request';
 
-export function addToWatchList(id) {
-  return {
-    type: WATCHLIST_ADD,
-    payload: id
-  };
-}
+import { 
+  signup as signupApi, 
+  signin as signinApi
+} from '../../services/api';
 
-export function removeFromWatchList(id) {
+const makeAuth = api => credentials => ({
+  type: USER_AUTH,
+  payload: api(credentials)
+});
+
+export const signup = makeAuth(signupApi);
+export const signin = makeAuth(signinApi); 
+export const logout = () => ({ type: LOGOUT });
+
+const authChecked = () => ({ type: CHECKED_AUTH });
+
+export const tryLoadUser = () => dispatch => {
+  const user = getStoredUser();
+  if(!user || !user.token) {
+    return dispatch(authChecked());
+  }
+
+  verifyUser(user.token)
+    .then(() => dispatch({
+      type: USER_AUTH,
+      payload: user
+    }))
+    .catch(() => {
+      clearStoredUser();
+    })
+    .then(() => {
+      dispatch(authChecked());
+    });
+};
+
+export const addToWatchList = (user, id) => {
+  user.watchlist.push(id);
+  updateUser(user);
+};
+
+export const removeFromWatchList = (user, id) => {
+  user.watchlist.filter(m => m._id !== id);
+  updateUser(user);
+};
+
+export function updateUser(data) {
   return {
-    type: WATCHLIST_REMOVE,
-    payload: id
+    type: USER_UPDATE,
+    payload: sendUpdateUser(data)
   };
 }

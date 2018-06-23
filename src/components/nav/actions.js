@@ -4,6 +4,9 @@ import { fetchSearch } from '../../services/api';
 export function newSearch(query) {
   return {
     type: NEW_SEARCH,
-    payload: fetchSearch(query) 
+    payload: {
+      query: query,
+      results: fetchSearch(query)
+    }
   };
 }
