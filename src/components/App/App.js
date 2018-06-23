@@ -2,8 +2,6 @@ import React, { PureComponent } from 'react';
 // import PropTypes from 'prop-types';
 // import connect from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-// import { tryLoadUser } from '../auth/actions';
-// import { getCheckedAuth } from '../auth/reducers';
 import Home from '../Home/Home';
 import Auth from '../auth/Auth';
 import Nav from '../Nav/Nav';
