@@ -21,7 +21,6 @@ describe('loading reducer', () => {
     
   it('returns false on LOAD_END', () => {
     const state = loading(true, { type: LOAD_END });
-    console.log('test', state);
     expect(state).toBeFalsy();
   });
 });
