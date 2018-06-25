@@ -23,5 +23,6 @@ export function reviewsById(state = [], { type, payload }) {
       return state.filter(r => r._id !== payload);
     default:
       return state;
+      
   }
 }
