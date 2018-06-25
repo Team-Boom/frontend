@@ -3,8 +3,6 @@ import {
   LOAD_END,
   ERROR,
   ERROR_CLEAR,
-  getLoading,
-  getError,
   loading,
   error } from './reducers';
     
@@ -23,37 +21,25 @@ describe.only('loading reducer', () => {
     
   it('returns false on LOAD_END', () => {
     const state = loading(true, { type: LOAD_END });
-    expect(state).toBeFalse();
+    console.log('test', state);
+    expect(state).toBeFalsy();
   });
 });
     
-describe('albumList reducer', () => {
-  it('has a default value of an empty array', () => {
-    const state = albumList(undefined, []);
-    expect(state).toEqual([]);
+describe.only('error reducer', () => {
+  it('has a default value of null', () => {
+    const state = error(undefined, {});
+    expect(state).toBeFalsy();
   });
     
-  it('loads all albums', () => {
-    const state = albumList(null, { type: ALBUMS_LOAD, payload: [album1] });
-    expect(state).toEqual([album1]);
+  it('returns error on error', () => {
+    const state = error(null, { type: ERROR, payload: 'I am an error' });
+    expect(state).toEqual('I am an error');
   });
-    
-  it('adds an album', () => {
-    const state = albumList(album1, { type: ALBUM_ADD, payload: album2 });
-    expect(state).toEqual([album1, album2]);
+
+  it('clears error', () => {
+    const state = error('I am an error', { type: ERROR_CLEAR });
+    expect(state).toBeFalsy();
   });
 });
-    
-describe('album selectors', () => {
-  it('gets album by Id', () => {
-    const albumById = album1;
-    const got = getAlbumById({ albumById });
-    expect(got).toEqual(albumById);
-  });
-    
-  it('gets album list', () => {
-    const albumList = [album1, album2];
-    const got = getAlbumsList({ albumList });
-    expect(got).toEqual(albumList);
-  });
-});
+  

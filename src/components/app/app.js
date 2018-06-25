@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 // import connect from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import Home from '../home/Home';
-import Auth from '../auth/Auth';
+import Auth from '../profile/Auth';
 import Nav from '../nav/Nav';
 
 class App extends PureComponent {
