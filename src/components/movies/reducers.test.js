@@ -39,7 +39,7 @@ const sound = {
 const top10State = obj =>({ [obj.category]: obj.movies });
 
     
-describe.only('movie reducer', () => {
+describe('movie reducer', () => {
     
   it('has a default value of an empty object', () => {
     const state = movie(undefined, {});
@@ -57,7 +57,7 @@ describe.only('movie reducer', () => {
   });
 });
     
-describe.only('top10s reducer', () => {
+describe('top10s reducer', () => {
   it('has a default value of an empty object', () => {
     const state = top10s(undefined, {});
     expect(state).toEqual({});
@@ -80,7 +80,7 @@ describe.only('top10s reducer', () => {
   });
 });
     
-describe.only('movies selectors', () => {
+describe('movies selectors', () => {
   it('gets movie', () => {
     const movie = testMovie;
     const got = getMovie({ movie: movie });
