@@ -7,7 +7,7 @@ export const REVIEW_REMOVE = 'REVIEW_REMOVE';
 export const getReviewsByMovie = state => state.reviewsByMovie;
 export const getReviewsByUser = state => state.reviewsByUser;
 export const getCatReviewsByMovie = (category, state) => {
-  const movieId= Object.keys(state.reviewsByMovie)[0];
+  const movieId = Object.keys(state.reviewsByMovie)[0];
   return state.reviewsByMovie[movieId].filter(r => r.category == category);
 };
 export const getCatReviewsByUser = (category, state) => state.reviewsByUser.filter(r => r.category == category);
