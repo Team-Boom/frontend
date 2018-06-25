@@ -16,7 +16,7 @@ import WatchList from '../profile/Watchlist';
 import Reviews from '../review/Reviews';
 
 class App extends PureComponent {
-  
+
   static propTypes = {
     tryLoadUser: PropTypes.func.isRequired,
     checkedAuth: PropTypes.bool.isRequired

@@ -1,5 +1,5 @@
 import { 
-  user, getUser,
+  user, getUsers,
   USER_AUTH, LOGOUT } from './reducers';
   
 describe('User Reducer', () => {
@@ -22,7 +22,7 @@ describe('User Reducer', () => {
   
   it('gets user from state', () => {
     const user = {};
-    expect(getUser({ user })).toBe(user);
+    expect(getUsers({ user })).toBe(user);
   });
   
 });
