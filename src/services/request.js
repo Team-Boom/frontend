@@ -1,5 +1,5 @@
 import store from '../store/store';
-import { getUser } from '../components/auth/reducers';
+import { getUser } from '../components/profile/reducers';
 
 let token = '';
 
