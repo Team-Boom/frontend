@@ -7,6 +7,8 @@ import thunk from 'redux-thunk';
 import promiseMiddleware from './promise-middleware';
 
 const rootReducer = combineReducers({
+  error,
+  loading,
   user,
   checkedAuth,
   reviewsById,
