@@ -6,6 +6,7 @@ import { tryLoadUser } from '../auth/actions';
 import { getCheckedAuth } from '../auth/reducers';
 import Auth from '../auth/Auth';
 import PrivateRoute from './PrivateRoutes';
+import Landing from '../home/Landing';
 import Home from '../home/Home';
 import Nav from '../nav/Nav';
 import Browse from '../browse/Browse';
@@ -36,13 +37,14 @@ class App extends PureComponent {
           <div>
             { checkedAuth &&
             <Switch>
-              <Route exact path="/" component={Home}/>
+              <Route exact path="/" component={Landing}/>
+              <Route path="/home" component={Home}/>
               <Route path="/auth" component={Auth}/>
               <Route path="/browse" component={Browse}/>
               <Route path="/movies" component={Movies}/>
+              <Route path="/reviews" component={Reviews}/>
               <PrivateRoute path="/profile" component={Profile}/>
               <PrivateRoute path="/watchlist" component={WatchList}/>
-              <Route path="/reviews" component={Reviews}/>
               <Redirect to="/"/>
             </Switch>
             }

@@ -8,15 +8,17 @@ export default class Nav extends Component {
     return (
       <footer>
         <nav>
-          <a>
-            <Link to="/">Home</Link>
-          </a>
-          <a>
-            <Link to="/profile">Profile</Link>
-          </a>
-          <a>
-            <Link to="/watchlist">Watchlist</Link>
-          </a>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/profile">Profile</Link>
+            </li>
+            <li>
+              <Link to="/watchlist">Watchlist</Link>
+            </li>
+          </ul>
         </nav>
       </footer>
     );
