@@ -7,7 +7,7 @@ import {
   error } from './reducers';
     
     
-describe.only('loading reducer', () => {
+describe('loading reducer', () => {
     
   it('has a default value of an false boolean', () => {
     const state = loading(undefined, {});
@@ -26,7 +26,7 @@ describe.only('loading reducer', () => {
   });
 });
     
-describe.only('error reducer', () => {
+describe('error reducer', () => {
   it('has a default value of null', () => {
     const state = error(undefined, {});
     expect(state).toBeFalsy();
