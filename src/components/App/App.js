@@ -2,9 +2,14 @@ import React, { PureComponent } from 'react';
 // import PropTypes from 'prop-types';
 // import connect from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import Home from '../home/Home';
 import Auth from '../auth/Auth';
+import Home from '../home/Home';
 import Nav from '../nav/Nav';
+import Browse from '../browse/Browse';
+import Movies from '../movie/Movies';
+import Profile from '../profile/Profile';
+import WatchList from '../profile/Watchlist';
+import Reviews from '../review/Reviews';
 
 class App extends PureComponent {
   
