@@ -45,7 +45,7 @@ class App extends PureComponent {
               <Route path="/reviews" component={Reviews}/>
               <PrivateRoute path="/profile" component={Profile}/>
               <PrivateRoute path="/watchlist" component={WatchList}/>
-              <Redirect to="/"/>
+              <Redirect to="/home"/>
             </Switch>
             }
           </div>
