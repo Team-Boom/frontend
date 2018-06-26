@@ -18,6 +18,11 @@ describe('sorted reducer', () => {
     const state = sorted([], { type: SORT_LOAD, payload: testSort });
     expect(state).toEqual(testSort);
   });
+
+  it('clears sorted', () => {
+    const state = sorted(testSort, { type: SORT_CLEAR });
+    expect(state).toEqual([]);
+  });
 });
         
 describe('sort selector', () => {
