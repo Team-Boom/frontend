@@ -20,7 +20,7 @@ describe('sorted reducer', () => {
   });
 
   it('clears sorted', () => {
-    const state = sorted(testSort, { type: SORT_CLEAR });
+    const state = sorted(testSort, { type: SORT_CLEAR, payload: [] });
     expect(state).toEqual([]);
   });
 });
