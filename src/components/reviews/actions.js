@@ -1,27 +1,31 @@
 import { REVIEWS_LOAD, REVIEW_ADD, REVIEW_UPDATE, REVIEW_REMOVE, ID_REVIEWS_LOAD  } from './reducers';
 import { fetchMovieReviews, fetchUserReviews, sendNewReview, sendUpdateReview, sendRemoveReview } from '../../services/api';
 
-export function loadReviewsByMovie(id) {
+export function loadReviewsByMovie(movieId) {
   return {
     type: ID_REVIEWS_LOAD,
     payload: {
-      [id]: fetchMovieReviews(id)
+      [movieId]: fetchMovieReviews(movieId)
     } 
   };
 }
 
-export function loadReviewsByUser(id) {
+export function loadReviewsByUser(userId) {
   return {
     type: REVIEWS_LOAD,
-    payload: fetchUserReviews(id)
+    payload: fetchUserReviews(userId)
   };
 }
 
-export function newReview(data) {
-  const user = data.user;
+export function newReview(review, userId, movie) {
+  const data = {
+    ...review,
+    ...movie
+  };
+  
   return {
     type: REVIEW_ADD,
-    payload: sendNewReview(data, user)
+    payload: sendNewReview(data, userId)
   };
 }
 
