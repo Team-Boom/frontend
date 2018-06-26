@@ -1,4 +1,3 @@
-
 jest.mock('../../services/api', () => ({ 
   fetchMovieReviews: jest.fn(),
   fetchUserReviews: jest.fn(),
@@ -14,7 +13,7 @@ import { ID_REVIEWS_LOAD, REVIEW_ADD, REVIEW_REMOVE,
 import { fetchMovieReviews, fetchUserReviews, sendNewReview, 
   sendRemoveReview, sendUpdateReview } from '../../services/api';
            
-describe('Move review actions', () => {  
+describe('Movie review actions', () => {  
 
   it('loads all reviews by movie', () => {
     const promise = Promise.resolve();
