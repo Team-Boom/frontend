@@ -5,7 +5,7 @@ export function loadReviewsByMovie(id) {
   return {
     type: ID_REVIEWS_LOAD,
     payload: {
-      id: fetchMovieReviews(id)
+      [id]: fetchMovieReviews(id)
     } 
   };
 }

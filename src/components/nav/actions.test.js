@@ -7,16 +7,16 @@ import { fetchSearch } from '../../services/api';
            
 describe('Nav actions', () => {  
             
-    it('loads new search', () => {
-        const promise = Promise.resolve();
-        fetchSearch.mockReturnValueOnce(promise);
+  it('loads new search', () => {
+    const promise = Promise.resolve();
+    fetchSearch.mockReturnValueOnce(promise);
     
-        const { type, payload } = newSearch('query');
-        const { query, results } = payload;
+    const { type, payload } = newSearch('query');
+    const { query, results } = payload;
 
-        expect(type).toBe(NEW_SEARCH);
-        expect(fetchSearch.mock.calls.length).toBe(1);
-        expect(query).toBe('query');
-        expect(results).toBe(promise);
-      });
+    expect(type).toBe(NEW_SEARCH);
+    expect(fetchSearch.mock.calls.length).toBe(1);
+    expect(query).toBe('query');
+    expect(results).toBe(promise);
+  });
 });
