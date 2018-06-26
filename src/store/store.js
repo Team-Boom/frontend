@@ -1,5 +1,5 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import { reviewsById } from '../components/reviews/reducers';
+import { reviewsByMovie, reviewsByUser } from '../components/reviews/reducers';
 import { user, checkedAuth } from '../components/profile/reducers';
 import { search, results } from '../components/nav/reducers';
 import { error, loading } from '../components/app/reducers';
@@ -12,7 +12,8 @@ const rootReducer = combineReducers({
   loading,
   user,
   checkedAuth,
-  reviewsById,
+  reviewsByMovie,
+  reviewsByUser,
   search,
   results,
   movie,

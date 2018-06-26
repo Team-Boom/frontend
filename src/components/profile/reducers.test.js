@@ -1,6 +1,7 @@
 import { 
   user, getUser,
-  USER_AUTH, LOGOUT } from './reducers';
+  USER_AUTH, LOGOUT,
+  USER_UPDATE } from './reducers';
   
 describe('user reducer', () => {
   
@@ -12,6 +13,12 @@ describe('user reducer', () => {
   it('loads user', () => {
     const data = { name: 'user' };
     const state = user(null, { type: USER_AUTH, payload: data });
+    expect(state).toEqual(data);
+  });
+
+  it('updates user', () => {
+    const data = { name: 'different user' };
+    const state = user({ name: 'user' }, { type: USER_UPDATE, payload: data });
     expect(state).toEqual(data);
   });
   

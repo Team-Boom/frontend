@@ -1,5 +1,5 @@
-import { TOP10_LOAD, MOVIE_LOAD } from './reducers';
-import { fetchTopTen, fetchMovie } from '../../services/db';
+import { TOP10_LOAD, MOVIE_LOAD, MOVIEAVGS_LOAD } from './reducers';
+import { fetchTopTen, fetchMovie, fetchMovieAvgs } from '../../services/db';
 
 export function loadTop10(category) {
   return {
@@ -12,8 +12,20 @@ export function loadTop10(category) {
 }
 
 export function loadDetail(id) {
-  return {
+  const loadOmdb = {
     type: MOVIE_LOAD,
     payload: fetchMovie(id)
+  };
+  const loadRatings = {
+    type: MOVIEAVGS_LOAD,
+    payload: fetchMovieAvgs(id)
+  };
+  Promise.all([loadOmdb, loadRatings]);
+}
+
+export function reloadAvgs(id) {
+  return {
+    type: MOVIEAVGS_LOAD,
+    payload: fetchMovieAvgs(id)
   };
 }
