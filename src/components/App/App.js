@@ -2,18 +2,18 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import { tryLoadUser } from '../profile/actions';
-import { getCheckedAuth } from '../profile/reducers';
-import Auth from '../profile/Auth';
+import { tryLoadUser } from '../auth/actions';
+import { getCheckedAuth } from '../auth/reducers';
+import Auth from '../auth/Auth';
 import PrivateRoute from './PrivateRoutes';
 import Landing from '../home/Landing';
 import Home from '../home/Home';
 import Nav from '../nav/Nav';
 import Browse from '../browse/Browse';
-import Movies from '../movies/Movies';
+import Movies from '../movie/Movies';
 import Profile from '../profile/Profile';
 import WatchList from '../profile/Watchlist';
-import Reviews from '../reviews/Reviews';
+import Reviews from '../review/Reviews';
 
 class App extends PureComponent {
 
