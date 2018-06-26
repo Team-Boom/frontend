@@ -10,10 +10,10 @@ import Landing from '../home/Landing';
 import Home from '../home/Home';
 import Nav from '../nav/Nav';
 import Browse from '../browse/Browse';
-import Movies from '../movies/Movies';
+import Movies from '../movie/Movies';
 import Profile from '../profile/Profile';
 import WatchList from '../profile/Watchlist';
-import Reviews from '../reviews/Reviews';
+import Reviews from '../review/Reviews';
 
 class App extends PureComponent {
 
