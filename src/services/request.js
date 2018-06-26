@@ -1,5 +1,5 @@
 import store from '../store/store';
-import { getUsers } from '../components/auth/reducers';
+import { getUser } from '../components/profile/reducers';
 
 let token = '';
 
@@ -7,7 +7,7 @@ const key = 'user';
 const storage = window.localStorage;
 
 store.subscribe(() => {
-  const user = getUsers(store.getState());
+  const user = getUser(store.getState());
   const nextToken = user ? (user.token || '') : '';
   if(nextToken === token) return;
 
@@ -46,7 +46,7 @@ const headers = {
   'content-type': 'application/json'
 };
 
-export const get = url => request(url, { method: 'GET' });
+export const get = (url, options = {}) => request(url, { method: 'GET', ...options });
 export const post = (url, data) => request(url, { method: 'POST', headers }, data);
 export const put = (url, data) => request(url, { method: 'PUT', headers }, data);
 export const del = (url, data) => request(url, { method: 'DELETE' }, data);

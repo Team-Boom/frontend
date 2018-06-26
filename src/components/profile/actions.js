@@ -1,5 +1,5 @@
-import { USER_AUTH, LOGOUT, CHECKED_AUTH } from './reducers';
-import { verifyUser } from '../../services/api';
+import { USER_AUTH, LOGOUT, CHECKED_AUTH, USER_UPDATE } from './reducers';
+import { verifyUser, sendUpdateUser } from '../../services/api';
 import { getStoredUser, clearStoredUser } from '../../services/request';
 
 import { 
@@ -7,9 +7,9 @@ import {
   signin as signinApi
 } from '../../services/api';
 
-const makeAuth = api => certification => ({
+const makeAuth = api => credentials => ({
   type: USER_AUTH,
-  payload: api(certification)
+  payload: api(credentials)
 });
 
 export const signup = makeAuth(signupApi);
@@ -36,3 +36,20 @@ export const tryLoadUser = () => dispatch => {
       dispatch(authChecked());
     });
 };
+
+export const addToWatchList = (user, id) => {
+  user.watchlist.push(id);
+  updateUser(user);
+};
+
+export const removeFromWatchList = (user, id) => {
+  user.watchlist.filter(m => m._id !== id);
+  updateUser(user);
+};
+
+export function updateUser(data) {
+  return {
+    type: USER_UPDATE,
+    payload: sendUpdateUser(data)
+  };
+}
