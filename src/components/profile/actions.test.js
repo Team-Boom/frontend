@@ -1,7 +1,7 @@
 jest.mock('../../services/api', () => ({
-  signin: jest.fn(),
-  signup: jest.fn(),
-  verify: jest.fn()
+  fetchSignin: jest.fn(),
+  fetchSignup: jest.fn(),
+  fetchVerify: jest.fn()
 }));
   
 import { signup, signin, logout, 
@@ -9,8 +9,8 @@ import { signup, signin, logout,
   updateUser } from './actions';
 import { USER_AUTH, LOGOUT, USER_UPDATE } from './reducers';
 import { 
-  signup as signupSvc, 
-  signin as signinSvc } from '../../services/api'; 
+  fetchSignup as signupSvc, 
+  fetchSignin as signinSvc } from '../../services/api'; 
   
 describe('auth action creators', () => {
   
