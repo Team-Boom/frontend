@@ -25,11 +25,12 @@ class SearchBar extends PureComponent {
     const { search } = this.props;
 
     return (
-      <div className="search-bar">
-        <FormControl label="search" onSubmit={e => this.handleSearch(e)}>
+      <form className="search-bar" onSubmit={e => this.handleSearch(e)}>
+        <FormControl label="search">
           <input type="search" value={search} onChange={this.handleChange}/>
         </FormControl> 
-      </div>
+        <button type="submit"> Search </button>
+      </form>
     );
   }
 }
