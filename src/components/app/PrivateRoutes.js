@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getUsers } from '../auth/reducers';
+import { getUsers } from '../profile/reducers';
 import { Route, Redirect } from 'react-router-dom';
 
 const PrivateRoute = ({ user, component: Component, render, ...rest }) => {

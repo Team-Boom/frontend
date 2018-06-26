@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import logo from '../shared/images/DeepFocus.png';
+import logo from '../../assets/images/DeepFocus.png';
 import styles from './Landing.scss';
 
 export default class Landing extends PureComponent {

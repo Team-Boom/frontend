@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Nav.scss';
+import SearchBar from '../shared/SearchBar';
 
 export default class Nav extends Component {
 
@@ -9,6 +10,7 @@ export default class Nav extends Component {
     return (
       <footer>
         <nav className={styles.nav}>
+          <SearchBar/>
           <ul>
             <li>
               <Link to="/home">Home</Link>
