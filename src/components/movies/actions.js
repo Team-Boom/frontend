@@ -1,13 +1,10 @@
 import { TOP10_LOAD, MOVIE_LOAD, MOVIEAVGS_LOAD } from './reducers';
-import { fetchTopTen, fetchMovie, fetchMovieAvgs } from '../../services/db';
+import { fetchTopTens, fetchMovie, fetchMovieAvgs } from '../../services/db';
 
-export function loadTop10(category) {
+export function loadTop10s() {
   return {
     type: TOP10_LOAD,
-    payload: {
-      category: category,
-      movies: fetchTopTen(category)
-    }
+    payload: fetchTopTens()
   };
 }
 

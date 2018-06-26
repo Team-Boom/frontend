@@ -1,19 +1,15 @@
 import { USER_AUTH, LOGOUT, CHECKED_AUTH, USER_UPDATE } from './reducers';
 import { verifyUser, sendUpdateUser } from '../../services/api';
 import { getStoredUser, clearStoredUser } from '../../services/request';
-
-import { 
-  signup as signupApi, 
-  signin as signinApi
-} from '../../services/api';
+import { fetchSignin, fetchSignup } from '../../services/api';
 
 const makeAuth = api => credentials => ({
   type: USER_AUTH,
   payload: api(credentials)
 });
 
-export const signup = makeAuth(signupApi);
-export const signin = makeAuth(signinApi); 
+export const signup = makeAuth(fetchSignup);
+export const signin = makeAuth(fetchSignin); 
 export const logout = () => ({ type: LOGOUT });
 
 const authChecked = () => ({ type: CHECKED_AUTH });
