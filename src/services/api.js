@@ -1,11 +1,8 @@
-require('dotenv').config();
 import { get, post, put, del } from './request';
-import { API_KEY } from '../../.env';
 const URL = 'localhost:3000/api';
 const AUTH_URL = `${URL}/auth`;
 const REVIEW_URL = `${URL}/reviews`;
-const OMDB_KEY = API_KEY;
-const OMDB_URL = `http://www.omdbapi.com/?apikey=${OMDB_KEY}`;
+const OMDB_URL = `http://www.omdbapi.com/?apikey=${process.env.API_KEY}`; //eslint-disable-line
 
 
 export const fetchSignin = certification => post(`${AUTH_URL}/signin`, certification);
@@ -17,7 +14,7 @@ export const sendNewReview = (data, userId) => post(`${REVIEW_URL}/user/${userId
 export const sendUpdateReview = (data, reviewId) => put(`${REVIEW_URL}/user/${reviewId}`, data);
 export const sendRemoveReview = reviewId => del(`${REVIEW_URL}/user/${reviewId}`);
 
-export const fetchSearch = query => get(`${OMDB_URL}&t=${query}`);
+export const fetchSearch = query => get(`${OMDB_URL}&s=${query}`);
 export const fetchMovie = id => get(`${OMDB_URL}&i=${id}`);
 
 export const fetchVerifyUser = token => get(`${AUTH_URL}/verify`, { 
