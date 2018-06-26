@@ -32,7 +32,7 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         use: [
           {
             loader: 'style-loader',
@@ -44,6 +44,9 @@ module.exports = {
               sourceMap: true,
               importLoaders: 1 
             }
+          },
+          {
+            loader: 'sass-loader'
           },
           {
             loader: 'postcss-loader',
