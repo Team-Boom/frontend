@@ -1,7 +1,6 @@
 import { USER_AUTH, LOGOUT, CHECKED_AUTH, USER_UPDATE } from './reducers';
-import { verifyUser, sendUpdateUser } from '../../services/api';
+import { verifyUser, sendUpdateUser, fetchSignin, fetchSignup } from '../../services/api';
 import { getStoredUser, clearStoredUser } from '../../services/request';
-import { fetchSignin, fetchSignup } from '../../services/api';
 
 const makeAuth = api => credentials => ({
   type: USER_AUTH,
@@ -33,14 +32,14 @@ export const tryLoadUser = () => dispatch => {
     });
 };
 
-export const addToWatchList = (user, id) => {
-  user.watchlist.push(id);
-  updateUser(user);
+export const addToWatchList = (user, movieId) => {
+  user.watchlist.push(movieId);
+  return updateUser(user);
 };
 
-export const removeFromWatchList = (user, id) => {
-  user.watchlist.filter(m => m._id !== id);
-  updateUser(user);
+export const removeFromWatchList = (user, movieId) => {
+  user.watchlist.filter(m => m._id !== movieId);
+  return updateUser(user);
 };
 
 export function updateUser(data) {
