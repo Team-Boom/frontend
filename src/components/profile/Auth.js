@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Switch, Route, Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signin, signup } from './actions';
-import { getUsers } from './reducers';
+import { getUser } from './reducers';
 import Certification from './Certification';
 
 class Auth extends PureComponent {
@@ -45,7 +45,7 @@ class Auth extends PureComponent {
 
 export default connect(
   state => ({
-    user: getUsers(state)
+    user: getUser(state)
   }),
   { signin, signup }
 )(Auth);

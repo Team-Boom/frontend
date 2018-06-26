@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getUsers } from '../profile/reducers';
+import { getUser } from '../profile/reducers';
 import { Route, Redirect } from 'react-router-dom';
 
 const PrivateRoute = ({ user, component: Component, render, ...rest }) => {
@@ -28,6 +28,6 @@ PrivateRoute.propTypes = {
 };
   
 export default connect(
-  state => ({ user: getUsers(state) }),
+  state => ({ user: getUser(state) }),
   null
 )(PrivateRoute);

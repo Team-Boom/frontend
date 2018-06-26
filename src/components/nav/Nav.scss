@@ -1,11 +1,39 @@
+@import 'normalize.css';
+
 :local(.nav) {
     position: fixed;
     bottom: 0;
     left: 0;
+    z-index: 9999;
     width: 100vw;
+    height: 7%;
     background-color: #DEDEDE;
 
-    ul, li {
-        
+    ul {
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;   
+    }
+
+    li {
+    display: flex;
+    flex-direction: column;
+    list-style: none; 
+    }
+
+    a {
+        text-decoration: none;
+        align-self: center;
+        color:#082127;
+    }
+    
+    a:focus {
+        color: #98B2A6;
+    }
+
+    img {
+        align-self: center;
+        max-width: 15px;
+        max-height: 15px;
     }
 }
