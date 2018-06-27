@@ -42,9 +42,9 @@ export const removeFromWatchList = (user, movieId) => {
   return updateUser(user);
 };
 
-export function updateUser(data) {
+export function updateUser(data, userId) {
   return {
     type: USER_UPDATE,
-    payload: sendUpdateUser(data)
+    payload: sendUpdateUser(data, userId)
   };
 }

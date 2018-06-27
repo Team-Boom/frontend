@@ -18,10 +18,6 @@ export function loadDetail(id) {
     payload: fetchMovieAvgs(id)
   };
   return Promise.all([loadOmdb, loadRatings]);
-  // return {
-  //   type: MOVIE_LOAD,
-  //   payload: fetchMovie(id)
-  // };
 }
 
 export function reloadAvgs(id) {

@@ -4,6 +4,7 @@ import { user, checkedAuth } from '../components/profile/reducers';
 import { results } from '../components/nav/reducers';
 import { error, loading } from '../components/app/reducers';
 import { movie, top10s } from '../components/movies/reducers';
+import { sorted } from '../components/browse/reducers';
 import thunk from 'redux-thunk';
 import promiseMiddleware from './promise-middleware';
 
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   reviewsByUser,
   results,
   movie,
-  top10s
+  top10s,
+  sorted
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

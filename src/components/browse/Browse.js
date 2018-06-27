@@ -53,7 +53,7 @@ class Browse extends Component {
           </FormControl>
           {category ? categoryBlurbs[category] : null }
         </div>
-        {/* {category ? sorted.map((movie, i) => <MovieCard key={i} movie={movie} rating="view" />) : null} */}
+        {sorted ? sorted.map((movie, i) => <MovieCard key={i} movie={movie} rating="view" />) : null}
       </section>
     );
   }
