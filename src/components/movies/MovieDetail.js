@@ -1,9 +1,14 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { loadDetail } from '../movies/actions';
 import { getMovie } from '../movies/reducers';
+import { loadReviewsByMovie } from '../reviews/actions';
+import { getReviewsByMovie } from '../reviews/reducers';
+import { categories } from '../shared/constants';
+import FormControl from '../shared/FormControl';
 import queryString from 'query-string';
 
 class MovieDetail extends PureComponent {
@@ -12,29 +17,80 @@ class MovieDetail extends PureComponent {
     movie: PropTypes.object,
     location: PropTypes.object.isRequired,
     loadDetail: PropTypes.func.isRequired,
+    loadReviewsByMovie: PropTypes.func.isRequired,
+    reviews: PropTypes.object,
   };
+
+  state = {
+    id: null,
+    reviewsCat: 'All',
+  }
 
   componentDidMount() {
     const search = this.props.location.search;
     const { id } = queryString.parse(search);
+    this.setState({ id: id });
     this.props.loadDetail(id);
+    this.props.loadReviewsByMovie(id);
   }
 
+  handleCat = ({ target }) => {
+    this.setState({ reviewsCat: target.value }, () => {
+      // this.props.loadReviewsByMovie(id, cat);
+    });
+  }
 
   render() {
-    const { movie } = this.props;
+    const { movie, reviews } = this.props;
+    const { id } = this.state;
+    const reviewLink = `movies/${id}/write`;
+    let reviewsExist = reviews[id] ? true : false;
+
     if(!movie) return null;
     return (
-      <div>
-        <img src={movie.Poster}/>
-        <h2>{movie.Title}</h2>
-      </div>
+      <section className="movie-page">
+        <div id="movie-page-top">
+          <img src={movie.Poster}/>
+          <h2>{movie.Title}</h2>
+        </div>
+        <div id="movie-page-content">
+          <h3>Released: {movie.Released}</h3>
+          <h3>Director: {movie.Director}</h3>
+          <h3>Cast: {movie.Actors}</h3>
+          <p> {movie.Plot}</p>
+          {/* {movie.Ratings ? (<div className="ex-ratings">
+            <span className="ex-rating"> IMDB: {movie.Ratings[0].Value || 'N/A' }</span>
+            <span className="ex-rating"> Rotten: {movie.Ratings[1].Value || 'N/A' }</span>
+            <span className="ex-rating"> Meta: {movie.Ratings[2].Value || 'N/A' }</span>
+          </div>) : null } */}
+        </div>
+        <div id="movie-page-reviews">
+          {/* averages star ratings here */}
+          <h2>View Reviews by Category: </h2>
+          <Link to={reviewLink}> Write a review! </Link>
+          <div id="reviews-category">
+            <FormControl label="select a category">
+              <select name="category" onChange={this.handleCat}>
+                {categories.map((cat, i) => <option key={i} value={cat}>{cat}</option>)}
+              </select>
+            </FormControl>
+          </div>
+          <div id="reviews-container">
+            {/* {reviewsExist ? reviews[id].map((rev, i) => <div key={i}></div> ) : <p> There aren't any reviews for this movie, yet!  Go ahead and add your own! </p>} */}
+          </div>
+
+        </div>
+
+      </section>
     );
   }
 }
 
 export default withRouter(connect(
-  state => ({ movie: getMovie(state) }),
-  { loadDetail }
+  state => ({ 
+    movie: getMovie(state),
+    reviews: getReviewsByMovie(state)
+  }),
+  { loadDetail, loadReviewsByMovie }
 )(MovieDetail));
 

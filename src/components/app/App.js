@@ -14,6 +14,7 @@ import Browse from '../browse/Browse';
 import MovieDetail from '../movies/MovieDetail';
 import Profile from '../profile/Profile';
 import WatchList from '../profile/Watchlist';
+import ReviewForm from '../shared/ReviewForm';
 import Reviews from '../reviews/Reviews';
 import Search from '../nav/Search';
 
@@ -43,6 +44,7 @@ class App extends PureComponent {
               <Route path="/home" component={Home}/>
               <Route path="/auth" component={Auth}/>
               <Route path="/browse" component={Browse}/>
+              <PrivateRoute path="/movies/:id/write" component={ReviewForm}/>
               <Route path="/movies" component={MovieDetail}/>
               <Route path="/reviews" component={Reviews}/>
               <Route path="/search" component={Search}/>

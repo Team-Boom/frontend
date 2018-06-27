@@ -17,6 +17,7 @@ export function loadDetail(id) {
         response => response.json())
       .then(
         movie => {
+          console.log(movie);
           dispatch({
             type: MOVIE_LOAD,
             payload: movie

@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { categories, categoryBlurbs } from '../shared/constants';
 import FormControl from './FormControl';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { newReview, updateReview } from '../reviews/actions';
 import { getMovie } from '../movies/reducers';
 import { getUser } from '../profile/reducers';
+import { loadDetail } from '../movies/actions';
 
 class ReviewForm extends Component {
 
@@ -15,18 +17,23 @@ class ReviewForm extends Component {
     user: PropTypes.object.isRequired,
     newReview: PropTypes.func.isRequired,
     updateReview: PropTypes.func.isRequired,
+    loadDetail: PropTypes.func.isRequired,
+    location: PropTypes.object.isRequired,
     review: PropTypes.object,
   };
 
   state = {
     review: {
-      category: null,
+      category: 'Cinematography',
       rating: null,
       text: '',
     }
   }
 
   componentDidMount = () => {
+    const path = this.props.location.pathname.split('/');
+    const id = path[2];
+    this.props.movie.Title ? null : this.props.loadDetail(id);
     if(this.props.type === 'update'){
       const oldReview = this.props.review;
       const review = {
@@ -39,19 +46,20 @@ class ReviewForm extends Component {
   }
 
   handleChange = ({ target }) => {
-    const review = this.props.review;
+    const review = this.state.review;
     review[target.name] = target.value;
     this.setState({ review: review });
   }
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
+    e.preventDefault();
     const movie = {
-      _id: this.props.movie._id,
-      poster: this.props.movie.poster,
-      title: this.props.movie.title,
-      description: this.props.movie.description,
+      imdbID: this.props.movie.imdbID,
+      poster: this.props.movie.Poster,
+      title: this.props.movie.Title,
+      description: this.props.movie.Plot,
     };
-    this.props.type === 'update' ? updateReview(this.state.review) : newReview(this.state.review, movie, this.props.user._id);
+    this.props.type === 'update' ? updateReview(this.state.review) : newReview(this.state.review, this.props.user._id, movie);
   }
 
   render() {
@@ -85,10 +93,10 @@ class ReviewForm extends Component {
   }
 }
 
-export default connect(
+export default withRouter(connect(
   state => ({ 
     movie: getMovie(state),
     user: getUser(state),
   }),
-  { newReview, updateReview }
-)(ReviewForm);
+  { newReview, updateReview, loadDetail }
+)(ReviewForm));

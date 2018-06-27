@@ -5,6 +5,7 @@ import { newSearch } from '../nav/actions';
 import { withRouter } from 'react-router';
 import { getResults } from '../nav/reducers';
 import MovieCard from '../shared/MovieCard';
+import queryString from 'query-string';
 class Search extends PureComponent {
 
   static propTypes = {
@@ -14,7 +15,9 @@ class Search extends PureComponent {
   };
 
   componentDidMount() {
-    this.props.newSearch(this.props.location);
+    const string = this.props.location.search;
+    const { q } = queryString.parse(string);
+    this.props.newSearch(q);
   }
 
 

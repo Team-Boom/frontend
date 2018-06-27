@@ -1,4 +1,4 @@
-import { get, post, put, del } from './request';
+import { get, post, put, del, exGet } from './request';
 const URL = 'http://localhost:3000/api';
 const AUTH_URL = `${URL}/auth`;
 const REVIEW_URL = `${URL}/reviews`;
@@ -25,6 +25,6 @@ export const sendNewReview = (data, userId) => post(`${REVIEW_URL}/user/${userId
 export const sendUpdateReview = (data, reviewId) => put(`${REVIEW_URL}/user/${reviewId}`, data);
 export const sendRemoveReview = reviewId => del(`${REVIEW_URL}/user/${reviewId}`);
 
-export const fetchSearch = query => get(`${OMDB_URL}&s=${query}`);
-export const fetchMovie = imdbID => get(`${OMDB_URL}&i=${imdbID}`);
+export const fetchSearch = query => exGet(`${OMDB_URL}&s=${query}`);
+export const fetchMovie = imdbID => exGet(`${OMDB_URL}&i=${imdbID}`);
 
