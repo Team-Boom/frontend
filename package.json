@@ -53,6 +53,7 @@
   },
   "dependencies": {
     "dotenv": "^6.0.0",
+    "dotenv-webpack": "^1.5.7",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",

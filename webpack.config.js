@@ -1,7 +1,7 @@
 /* eslint-env node */
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 
 const buildDir = 'docs';
 const path = `${__dirname}/${buildDir}`;
@@ -20,9 +20,12 @@ module.exports = {
       '/api': 'http://localhost:3000' 
     },
   },
+  node: {
+    fs: 'empty'
+  },
   devtool: 'inline-source-map',
   plugins: [
-    new webpack.EnvironmentPlugin(['API_KEY']),
+    new Dotenv(),
     new CleanWebpackPlugin(`${path}/bundle.*.js`), 
     new HtmlPlugin({ template: './src/index.html' })
   ],

@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import FormControl from './FormControl';
 import { connect } from 'react-redux';
 import { getQuery } from '../nav/reducers';
-import { newSearch } from '../nav/actions';
+import { withRouter } from 'react-router';
 
 class SearchBar extends PureComponent {
 
   static propTypes = {
     search: PropTypes.string,
-    newSearch: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired,
   };
 
   handleChange = ({ target }) => {
@@ -18,7 +18,8 @@ class SearchBar extends PureComponent {
 
   handleSearch = e => {
     e.preventDefault();
-    this.props.newSearch(this.state.search);
+    // this.props.newSearch(this.state.search);
+    this.props.history.push(`/search?q=${this.state.search}`);
   }
 
   render() {
@@ -35,7 +36,8 @@ class SearchBar extends PureComponent {
   }
 }
 
-export default connect(
+export default withRouter(connect(
   state => ({ search: getQuery(state) }),
-  { newSearch }
-)(SearchBar);
+  null
+)(SearchBar));
+

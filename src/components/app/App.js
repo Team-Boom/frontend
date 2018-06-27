@@ -6,6 +6,7 @@ import { tryLoadUser } from '../profile/actions';
 import { getCheckedAuth } from '../profile/reducers';
 import Auth from '../profile/Auth';
 import PrivateRoute from './PrivateRoutes';
+import SearchBar from '../shared/SearchBar';
 import Landing from '../home/Landing';
 import Home from '../home/Home';
 import Nav from '../nav/Nav';
@@ -14,6 +15,7 @@ import Movies from '../movies/Movies';
 import Profile from '../profile/Profile';
 import WatchList from '../profile/Watchlist';
 import Reviews from '../reviews/Reviews';
+import Search from '../nav/Search';
 
 class App extends PureComponent {
 
@@ -27,12 +29,12 @@ class App extends PureComponent {
   }
 
   render() {
-
     const { checkedAuth } = this.props;
 
     return (
       <Router>
         <main>
+          <SearchBar history={ history }/>
           <Nav/>
           <div>
             { checkedAuth &&
@@ -43,6 +45,7 @@ class App extends PureComponent {
               <Route path="/browse" component={Browse}/>
               <Route path="/movies" component={Movies}/>
               <Route path="/reviews" component={Reviews}/>
+              <Route path="/search" component={Search}/>
               <PrivateRoute path="/profile" component={Profile}/>
               <PrivateRoute path="/watchlist" component={WatchList}/>
               <Redirect to="/home"/>
