@@ -1,13 +1,18 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import Carousel from '../shared/Carousel';
+import MovieItem from '../movies/MovieItem';
 
-class Browse extends Component {
+export default class Browse extends PureComponent {
+  
+  
+  
   render() {
     return (
       <div>
+        <Carousel />
         <p>I am Browse</p>      
       </div>
     );
   }
 }
 
-export default Browse;
