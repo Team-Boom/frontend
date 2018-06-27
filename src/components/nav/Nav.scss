@@ -1,4 +1,4 @@
-@import 'normalize.css';
+
 
 :local(.nav) {
     position: fixed;
@@ -12,23 +12,21 @@
     ul {
     padding: 0;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;   
+    grid-template-columns: 1fr 1fr 1fr 1fr; 
+
     }
 
     li {
     display: flex;
     flex-direction: column;
-    list-style: none; 
+    list-style: none;
     }
 
     a {
         text-decoration: none;
         align-self: center;
         color:#082127;
-    }
-    
-    a:focus {
-        color: #98B2A6;
+        font-size: 1.2em;
     }
 
     img {
