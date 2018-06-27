@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import FormControl from './FormControl';
 import { connect } from 'react-redux';
 import { getQuery } from '../nav/reducers';
 import { withRouter } from 'react-router';
+import FormControl from './FormControl';
+import styles from './SearchBar.scss';
 
 class SearchBar extends PureComponent {
 
@@ -26,11 +27,11 @@ class SearchBar extends PureComponent {
     const { search } = this.props;
 
     return (
-      <form className="search-bar" onSubmit={e => this.handleSearch(e)}>
-        <FormControl label="search">
-          <input type="search" value={search} onChange={this.handleChange}/>
+      <form className={styles.search} onSubmit={e => this.handleSearch(e)}>
+        <FormControl>
+          <input type="search" placeholder="Search here..." value={search} onChange={this.handleChange} required/>
+          <button type="submit" className="searchButton"> Search </button>
         </FormControl> 
-        <button type="submit"> Search </button>
       </form>
     );
   }

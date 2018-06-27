@@ -1,4 +1,32 @@
 :local(.landing) {
+    min-height: 100vh;
     display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    background: linear-gradient(
+        rgba(216, 211, 203, 0.548), 
+        rgba(216, 211, 203, 0.548)
+        ), 
+        url('../../assets/images/film1.jpg');
+
+    #container {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        align-self: end;
+    }
     
+    #blurb {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        font-size: 1.5em;
+        text-align: center;
+    }
+    #search {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        justify-self: center;
+    }
+
+
+
 }
