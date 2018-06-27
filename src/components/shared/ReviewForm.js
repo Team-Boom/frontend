@@ -23,49 +23,42 @@ class ReviewForm extends Component {
   };
 
   state = {
-    review: {
-      category: 'Cinematography',
-      rating: null,
-      text: '',
-    }
+    userName: null,
+    category: 'Cinematography',
+    rating: 5,
+    text: '',
   }
 
   componentDidMount = () => {
     const path = this.props.location.pathname.split('/');
     const id = path[2];
     this.props.movie.Title ? null : this.props.loadDetail(id);
+    this.setState({ userName: this.props.user.name });
+
     if(this.props.type === 'update'){
-      const oldReview = this.props.review;
-      const review = {
-        category: oldReview.category,
-        rating: oldReview.rating,
-        text: oldReview.text
-      };
-      this.setState({ review: review });
+      const old = this.props.review;
+      this.setState({ category: old.category, rating: old.rating, text: old.text });
     }
   }
 
   handleChange = ({ target }) => {
-    const review = this.state.review;
-    review[target.name] = target.value;
-    this.setState({ review: review });
+    this.setState({ [target.name]: target.value });
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
     const movie = {
-      imdbID: this.props.movie.imdbID,
+      movieId: this.props.movie.imdbID,
       poster: this.props.movie.Poster,
       title: this.props.movie.Title,
       description: this.props.movie.Plot,
     };
-    this.props.type === 'update' ? updateReview(this.state.review) : newReview(this.state.review, this.props.user._id, movie);
+    this.props.type === 'update' ? updateReview(this.state.review) : newReview(this.state, this.props.user._id, movie);
   }
 
   render() {
     const { movie } = this.props;
-    const { review } = this.state;
-    const { category, rating, text } = review;
+    const { category, rating, text } = this.state;
 
     return (
       <form className="review-form" onSubmit={this.handleSubmit}>

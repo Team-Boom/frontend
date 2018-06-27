@@ -1,13 +1,12 @@
 import { REVIEWS_LOAD, REVIEW_ADD, REVIEW_UPDATE, REVIEW_REMOVE, ID_REVIEWS_LOAD  } from './reducers';
-import { fetchMovieReviews, fetchUserReviews, sendNewReview, sendUpdateReview, sendRemoveReview } from '../../services/api';
+import { fetchMovieReviews, fetchUserReviews, sendNewReview, 
+  sendUpdateReview, sendRemoveReview, fetchMovieReviewsCat } from '../../services/api';
 
-export function loadReviewsByMovie(movieId) {
-  return {
-    type: ID_REVIEWS_LOAD,
-    payload: {
-      [movieId]: fetchMovieReviews(movieId)
-    } 
-  };
+export function loadReviewsByMovie(movieId, cat) {
+  const wCat = () => ({ type: ID_REVIEWS_LOAD, payload: fetchMovieReviewsCat(movieId, cat) });
+  const woCat = () => ({ type: ID_REVIEWS_LOAD, payload: fetchMovieReviews(movieId) });
+  
+  return cat ? wCat() : woCat();
 }
 
 export function loadReviewsByUser(userId) {

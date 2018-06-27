@@ -7,9 +7,10 @@ import { loadDetail } from '../movies/actions';
 import { getMovie } from '../movies/reducers';
 import { loadReviewsByMovie } from '../reviews/actions';
 import { getReviewsByMovie } from '../reviews/reducers';
-import { categories } from '../shared/constants';
+import { categoriesAll } from '../shared/constants';
 import FormControl from '../shared/FormControl';
 import queryString from 'query-string';
+import ReviewItem from '../reviews/ReviewItem';
 
 class MovieDetail extends PureComponent {
 
@@ -18,7 +19,7 @@ class MovieDetail extends PureComponent {
     location: PropTypes.object.isRequired,
     loadDetail: PropTypes.func.isRequired,
     loadReviewsByMovie: PropTypes.func.isRequired,
-    reviews: PropTypes.object,
+    reviews: PropTypes.array,
   };
 
   state = {
@@ -36,7 +37,8 @@ class MovieDetail extends PureComponent {
 
   handleCat = ({ target }) => {
     this.setState({ reviewsCat: target.value }, () => {
-      // this.props.loadReviewsByMovie(id, cat);
+      let cat = this.state.reviewsCat === 'All' ? null : this.state.reviewsCat;
+      this.props.loadReviewsByMovie(this.state.id, cat);
     });
   }
 
@@ -44,7 +46,7 @@ class MovieDetail extends PureComponent {
     const { movie, reviews } = this.props;
     const { id } = this.state;
     const reviewLink = `movies/${id}/write`;
-    let reviewsExist = reviews[id] ? true : false;
+    let reviewsExist = reviews ? true : false;
 
     if(!movie) return null;
     return (
@@ -69,14 +71,14 @@ class MovieDetail extends PureComponent {
           <h2>View Reviews by Category: </h2>
           <Link to={reviewLink}> Write a review! </Link>
           <div id="reviews-category">
-            <FormControl label="select a category">
+            <FormControl label="View by Category">
               <select name="category" onChange={this.handleCat}>
-                {categories.map((cat, i) => <option key={i} value={cat}>{cat}</option>)}
+                {categoriesAll.map((cat, i) => <option key={i} value={cat}>{cat}</option>)}
               </select>
             </FormControl>
           </div>
           <div id="reviews-container">
-            {/* {reviewsExist ? reviews[id].map((rev, i) => <div key={i}></div> ) : <p> There aren't any reviews for this movie, yet!  Go ahead and add your own! </p>} */}
+            {reviewsExist ? reviews.map((rev, i) => <ReviewItem key={i} review={rev} type='view' />) : <p> There aren't any reviews for this movie, yet!  Go ahead and add your own! </p>}
           </div>
 
         </div>

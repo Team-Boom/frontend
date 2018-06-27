@@ -19,12 +19,13 @@ export const fetchTopTens = () => get(`${REVIEW_URL}/top10`);
 
 export const fetchMovieAvgs = movieId => get(`${REVIEW_URL}/${movieId}`);
 export const fetchMovieReviews = movieId => get(`${REVIEW_URL}/movie/${movieId}`);
+export const fetchMovieReviewsCat = (movieId, cat) => get(`${REVIEW_URL}/movie/${movieId}/${cat}`);
 export const fetchUserReviews = userId => get(`${REVIEW_URL}/user/${userId}`);
 
 export const sendNewReview = (data, userId) => post(`${REVIEW_URL}/user/${userId}`, data);
 export const sendUpdateReview = (data, reviewId) => put(`${REVIEW_URL}/user/${reviewId}`, data);
 export const sendRemoveReview = reviewId => del(`${REVIEW_URL}/user/${reviewId}`);
 
-export const fetchSearch = query => exGet(`${OMDB_URL}&s=${query}`);
+export const fetchSearch = query => exGet(`${OMDB_URL}&type=movie&s=${query}`);
 export const fetchMovie = imdbID => exGet(`${OMDB_URL}&i=${imdbID}`);
 

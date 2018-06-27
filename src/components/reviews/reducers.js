@@ -12,7 +12,7 @@ export const getCatReviewsByMovie = (category, state) => {
 };
 export const getCatReviewsByUser = (category, state) => state.reviewsByUser.filter(r => r.category == category);
 
-export function reviewsByMovie(state = {}, { type, payload }) {
+export function reviewsByMovie(state = [], { type, payload }) {
 
   switch(type) {
     case ID_REVIEWS_LOAD: 
