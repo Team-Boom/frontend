@@ -27,6 +27,7 @@
     "babel-preset-react": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.11",
+    "dotenv-webpack": "^1.5.7",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.4",
@@ -53,8 +54,6 @@
   },
   "dependencies": {
     "dotenv": "^6.0.0",
-    "dotenv-webpack": "^1.5.7",
-    "normalize.scss": "^0.1.0",
     "prop-types": "^15.6.1",
     "query-string": "^6.1.0",
     "react": "^16.4.0",

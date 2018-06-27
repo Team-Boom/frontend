@@ -55,6 +55,7 @@ class Browse extends Component {
         </div>
         {sorted ? sorted.map((movie, i) => <MovieCard key={i} movie={movie} rating="view" />) : null}
       </section>
+
     );
   }
 }

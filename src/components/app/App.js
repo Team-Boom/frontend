@@ -6,7 +6,7 @@ import { tryLoadUser } from '../profile/actions';
 import { getCheckedAuth } from '../profile/reducers';
 import Auth from '../profile/Auth';
 import PrivateRoute from './PrivateRoutes';
-import SearchBar from '../shared/SearchBar';
+// import SearchBar from '../shared/SearchBar';
 import Landing from '../home/Landing';
 import Home from '../home/Home';
 import Nav from '../nav/Nav';
@@ -35,7 +35,7 @@ class App extends PureComponent {
     return (
       <Router>
         <main>
-          <SearchBar history={ history }/>
+          {/* <SearchBar history={ history }/> */}
           <Nav/>
           <div>
             { checkedAuth &&
