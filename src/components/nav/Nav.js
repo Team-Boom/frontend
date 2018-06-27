@@ -15,20 +15,28 @@ export default class Nav extends Component {
         <nav className={styles.nav}>
           <ul>
             <li>
-              <img src={home} />
-              <Link to="/home" id="home">Home</Link>
+              <Link to="/home" id="home">
+                <img src={home} />
+                Home
+              </Link>
             </li>
             <li>
-              <img src={profile} />
-              <Link to="/profile" id="profile">Profile</Link>
+              <Link to="/profile" id="profile">
+                <img src={profile} />
+                Profile
+              </Link>
             </li>
             <li>
-              <img src={browse} />
-              <Link to="/browse" id="browse">Browse</Link>
+              <Link to="/browse" id="browse">
+                <img src={browse} />
+                Browse
+              </Link>
             </li>
             <li>
-              <img src={watchlist} />
-              <Link to="/watchlist">Watchlist</Link>
+              <Link to="/watchlist">
+                <img src={watchlist} />
+                Watchlist
+              </Link>
             </li>
           </ul>
         </nav>

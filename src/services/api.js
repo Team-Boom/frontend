@@ -1,5 +1,5 @@
 import { get, post, put, del } from './request';
-const URL = 'localhost:3000/api';
+const URL = 'http://localhost:3000/api';
 const AUTH_URL = `${URL}/auth`;
 const REVIEW_URL = `${URL}/reviews`;
 const OMDB_KEY = process.env.API_KEY; //eslint-disable-line
@@ -16,7 +16,7 @@ export const sendUpdateReview = (data, reviewId) => put(`${REVIEW_URL}/user/${re
 export const sendRemoveReview = reviewId => del(`${REVIEW_URL}/user/${reviewId}`);
 
 export const fetchSearch = query => get(`${OMDB_URL}&s=${query}`);
-export const fetchMovie = id => get(`${OMDB_URL}&i=${id}`);
+export const fetchMovie = imdbID => get(`${OMDB_URL}&i=${imdbID}`);
 
 export const fetchVerifyUser = token => get(`${AUTH_URL}/verify`, { 
   headers: {

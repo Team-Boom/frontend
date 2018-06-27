@@ -5,7 +5,7 @@ class FormControl extends PureComponent {
 
   static propTypes = {
     label: PropTypes.string,
-    children: PropTypes.element
+    children: PropTypes.any
   };
 
   render() {

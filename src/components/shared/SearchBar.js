@@ -19,7 +19,6 @@ class SearchBar extends PureComponent {
 
   handleSearch = e => {
     e.preventDefault();
-    // this.props.newSearch(this.state.search);
     this.props.history.push(`/search?q=${this.state.search}`);
   }
 

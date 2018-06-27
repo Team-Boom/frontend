@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { newSearch } from '../nav/actions';
 import { withRouter } from 'react-router';
 import { getResults } from '../nav/reducers';
-
+import MovieCard from '../shared/MovieCard';
 class Search extends PureComponent {
 
   static propTypes = {
@@ -20,12 +20,11 @@ class Search extends PureComponent {
 
   render() {
     const { results } = this.props;
-    console.log(results);
     if(!results.Search) return null;
     return (
-      <div>
-        {results.totalResults}
-      </div>
+      <section className="search-page">
+        {results.Search.map((movie, i) => <MovieCard key={i} movie={movie} reviewed={true}/>)}
+      </section>
     );
   }
 }

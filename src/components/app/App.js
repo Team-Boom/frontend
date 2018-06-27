@@ -11,7 +11,7 @@ import Landing from '../home/Landing';
 import Home from '../home/Home';
 import Nav from '../nav/Nav';
 import Browse from '../browse/Browse';
-import Movies from '../movies/Movies';
+import MovieDetail from '../movies/MovieDetail';
 import Profile from '../profile/Profile';
 import WatchList from '../profile/Watchlist';
 import Reviews from '../reviews/Reviews';
@@ -43,7 +43,7 @@ class App extends PureComponent {
               <Route path="/home" component={Home}/>
               <Route path="/auth" component={Auth}/>
               <Route path="/browse" component={Browse}/>
-              <Route path="/movies" component={Movies}/>
+              <Route path="/movies" component={MovieDetail}/>
               <Route path="/reviews" component={Reviews}/>
               <Route path="/search" component={Search}/>
               <PrivateRoute path="/profile" component={Profile}/>

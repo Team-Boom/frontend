@@ -1,5 +1,5 @@
 import { USER_AUTH, LOGOUT, CHECKED_AUTH, USER_UPDATE } from './reducers';
-import { verifyUser, sendUpdateUser, fetchSignin, fetchSignup } from '../../services/api';
+import { fetchVerifyUser, sendUpdateUser, fetchSignin, fetchSignup } from '../../services/api';
 import { getStoredUser, clearStoredUser } from '../../services/request';
 
 const makeAuth = api => credentials => ({
@@ -19,7 +19,7 @@ export const tryLoadUser = () => dispatch => {
     return dispatch(authChecked());
   }
 
-  verifyUser(user.token)
+  fetchVerifyUser(user.token)
     .then(() => dispatch({
       type: USER_AUTH,
       payload: user

@@ -1,10 +1,10 @@
 import { SORT_LOAD, SORT_CLEAR } from './reducers';
 import { fetchSorted } from '../../services/api';
 
-export function loadSort(query, page) {
+export function loadSort(category, page) {
   return {
     type: SORT_LOAD,
-    payload: fetchSorted(query, page)
+    payload: fetchSorted(category, page)
   };
 }
 

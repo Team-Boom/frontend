@@ -41,7 +41,7 @@ export default class Certification extends PureComponent {
           </FormControl>
 
           <FormControl label="password">
-            <input name="password" value={password} onChange={this.handleChange}/>
+            <input name="password" type="password" value={password} onChange={this.handleChange}/>
           </FormControl>
 
           <FormControl>
