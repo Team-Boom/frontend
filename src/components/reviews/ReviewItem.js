@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 class ReviewItem extends PureComponent {
 
   static propTypes = {
@@ -9,6 +10,7 @@ class ReviewItem extends PureComponent {
 
   render() {
     const { review, type } = this.props;
+    const editLink = `/movies/${review.movieId}/write`;
 
     return (
       <div className="review-card">
@@ -16,7 +18,8 @@ class ReviewItem extends PureComponent {
         <h3>{review.category}</h3>
         {/* add rating */}
         <p>{review.text}</p>
-        {type === 'edit' ? 'edit button here' : null }
+        {type === 'edit' ? (<Link to={editLink} type='edit'> Edit </Link>) : null }
+        {type === 'edit' ? 'delete button here' : null }
         <p className="review-signed">-{review.userName}</p>
       </div>
     );

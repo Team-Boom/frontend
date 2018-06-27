@@ -21,6 +21,7 @@ export const fetchMovieAvgs = movieId => get(`${REVIEW_URL}/${movieId}`);
 export const fetchMovieReviews = movieId => get(`${REVIEW_URL}/movie/${movieId}`);
 export const fetchMovieReviewsCat = (movieId, cat) => get(`${REVIEW_URL}/movie/${movieId}/${cat}`);
 export const fetchUserReviews = userId => get(`${REVIEW_URL}/user/${userId}`);
+export const fetchUserAvg = userId => get(`${REVIEW_URL}/user/avg/${userId}`);
 
 export const sendNewReview = (data, userId) => post(`${REVIEW_URL}/user/${userId}`, data);
 export const sendUpdateReview = (data, reviewId) => put(`${REVIEW_URL}/user/${reviewId}`, data);
