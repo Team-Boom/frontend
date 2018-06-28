@@ -15,7 +15,7 @@ class MovieCard extends PureComponent {
   static propTypes = {
     addToWatchList: PropTypes.func.isRequired,
     removeFromWatchList: PropTypes.func.isRequired,
-    user: PropTypes.object.isRequired,
+    user: PropTypes.object,
     movie: PropTypes.object.isRequired,
     ticRating: PropTypes.number,
     watchAdd: PropTypes.bool,
@@ -25,7 +25,8 @@ class MovieCard extends PureComponent {
   };
 
   handleWLAdd = () => {
-    this.props.addToWatchList(this.props.user, this.props.movie.imdbID); //send movie as well
+    const id = this.props.movie.imdbID || this.props.movie._id;
+    this.props.addToWatchList(this.props.user, id); //send movie as well
   };
 
   handleWLRemove = () => {
@@ -38,18 +39,18 @@ class MovieCard extends PureComponent {
   }
 
   render() {
-    const { movie, ticRating, reviewType } = this.props;
-    const detailLink = `/movies?id=${movie.imdbID}`;
+    const { movie, ticRating, reviewType, user } = this.props;
+    const detailLink = `/movies?id=${movie.imdbID || movie._id}`;
 
     return (
       <div className="movie-card">
-        <span> <img src={movie.Poster}/> </span>
+        <span> <img src={movie.Poster || movie.poster }/> </span>
         <span> 
-          <h2> {movie.Title} </h2>
+          <h2> {movie.Title || movie.title} </h2>
           <p> {movie.Plot || movie.description || movie.Year} </p>
         </span>
         {this.props.ticRating ? <Tickets type='view' current={ticRating}/> : null}
-        {this.props.watchAdd ? <img className="clickable" src={watchlist} onClick={this.handleWLAdd} alt="add to your watchlist"/> : null}
+        {user && this.props.watchAdd ? <img className="clickable" src={watchlist} onClick={this.handleWLAdd} alt="add to your watchlist"/> : null}
         {this.props.watchRemove ? <img className="clickable" src={remove} onClick={this.handleWLRemove} alt="remove from watchlist"/> : null}
         {this.props.reviewType ? <img className="clickable" src={toReview} onClick={this.handleReview} alt={`${reviewType} review`}/> : null}
         <Link to={detailLink}>

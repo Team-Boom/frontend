@@ -65,7 +65,7 @@ class Browse extends Component {
           </FormControl>
           {category ? categoryBlurbs[category] : null }
         </div>
-        {sorted ? sorted.map((movie, i) => <MovieCard key={i} movie={movie} ticRating={movie.rating} />) : null}
+        {sorted.length ? sorted.map((movie, i) => <MovieCard key={i} movie={movie} ticRating={movie.avgRating} poster={true} />) : null}
       </section>
 
     );
