@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getQuery } from '../nav/reducers';
 import { withRouter } from 'react-router';
 import styles from './SearchBar.scss';
+import icon from '../../assets/icons/search.png';
 
 class SearchBar extends PureComponent {
 
@@ -30,12 +31,14 @@ class SearchBar extends PureComponent {
         <input 
           type="search"
           id="searchBar" 
-          placeholder="Search here..." 
+          placeholder="   Search movies here..." 
           value={search} 
           onChange={this.handleChange} 
           required
         />
-        <button type="submit" id="searchButton"> Search </button>
+        <button type="submit" id="searchButton">
+          <img src={icon} />
+        </button>
       </form>
     );
   }
