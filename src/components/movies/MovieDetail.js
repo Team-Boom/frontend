@@ -7,10 +7,11 @@ import { loadDetail } from '../movies/actions';
 import { getMovie } from '../movies/reducers';
 import { loadReviewsByMovie } from '../reviews/actions';
 import { getReviewsByMovie } from '../reviews/reducers';
-import { categoriesAll } from '../shared/constants';
+import { categories, categoriesAll } from '../shared/constants';
 import FormControl from '../shared/FormControl';
 import queryString from 'query-string';
 import ReviewItem from '../reviews/ReviewItem';
+import Tickets from '../shared/Tickets';
 
 class MovieDetail extends PureComponent {
 
@@ -44,9 +45,12 @@ class MovieDetail extends PureComponent {
 
   render() {
     const { movie, reviews } = this.props;
+    const { focusAvgs } = movie;
     const { id } = this.state;
     const reviewLink = `movies/${id}/write`;
     let reviewsExist = reviews ? true : false;
+
+    const renderAvg = (cat, i) => (<span key={i}>{cat} <Tickets type='view' current={focusAvgs[cat]}/></span>);
 
     if(!movie) return null;
     return (
@@ -67,7 +71,10 @@ class MovieDetail extends PureComponent {
           </div>) : null } */}
         </div>
         <div id="movie-page-reviews">
-          {/* averages star ratings here */}
+          <div id="movie-averages">
+            <h3>DeepFocus averages:</h3>
+            {focusAvgs && categories.map((cat, i) => renderAvg(cat, i))}
+          </div>
           <h2>View Reviews by Category: </h2>
           <Link to={reviewLink}> Write a review! </Link>
           <div id="reviews-category">

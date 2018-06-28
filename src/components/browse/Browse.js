@@ -6,6 +6,7 @@ import { getSorted } from './reducers';
 import { loadSort, clearSort } from './actions';
 import { categories, categoryBlurbs } from '../shared/constants';
 import MovieCard from '../shared/MovieCard';
+import SearchBar from '../shared/SearchBar';
 import FormControl from '../shared/FormControl';
 import queryString from 'query-string';
 
@@ -45,6 +46,9 @@ class Browse extends Component {
     const { sorted } = this.props;
     return (
       <section className="browse-page">
+        <div id="search">
+          <SearchBar/>
+        </div>
         <div id="browse-category">
           <FormControl label="select a category">
             <select name="category" onChange={this.handleCat}>
