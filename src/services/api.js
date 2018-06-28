@@ -2,7 +2,7 @@ import { get, post, put, del, exGet } from './request';
 const URL = '/api';
 const AUTH_URL = `${URL}/auth`;
 const REVIEW_URL = `${URL}/reviews`;
-const OMDB_KEY = process.env.API_KEY; //eslint-disable-line
+const OMDB_KEY = process.env.API_KEY; //eslint-disable-line 
 const OMDB_URL = `https://www.omdbapi.com/?apikey=${OMDB_KEY}`;
 
 export const fetchSignin = certification => post(`${AUTH_URL}/signin`, certification);
