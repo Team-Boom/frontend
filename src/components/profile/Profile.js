@@ -6,7 +6,7 @@ import { loadUserAvg } from './actions';
 import { loadReviewsByUser } from '../reviews/actions';
 import { getReviewsByUser } from '../reviews/reducers';
 import ReviewItem from '../reviews/ReviewItem';
-
+import Tickets from '../shared/Tickets';
 class Profile extends Component {
 
     static propTypes = {
@@ -24,16 +24,13 @@ class Profile extends Component {
 
     render() {
       const { user, avg, reviews } = this.props;
-      console.log('avg', avg);
-      console.log('user', user);
-
 
       return (
         <section className="profile-page">
           <h2>Hey, {user.name}!</h2>
 
           <h3> You joined DeepFocus on {user.date} </h3>
-          {avg ? (<h3>Your average review gives {avg.avgRating} stars </h3>) : null }
+          {avg ? (<h3>Your average review: <Tickets type="view" current={avg.avgRating} /></h3>) : null }
 
           <div id="profile-reviews">
 

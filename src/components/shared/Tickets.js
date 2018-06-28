@@ -10,6 +10,7 @@ class Tickets extends Component {
   static propTypes = {
     type: PropTypes.string.isRequired, //'view' or 'input'
     current: PropTypes.number,
+    onRate: PropTypes.func,
   };
   
   state = {
@@ -27,22 +28,33 @@ class Tickets extends Component {
 
   fillTickets() {
     const fill = (this.state.rating - 1);
-    const tickets = this.state.currentTickets;
+    const tickets = emptyTickets.slice();
     for(let i = 0; i <= fill; i++) { 
       tickets[i] = activeTic;
     }
     this.setState({ currentTickets: tickets });
+
   }
-  // componentWillUnmount() {
-  //   delete this.root;
-  //   delete this.ratingContainer;
-  // }
+  
+  handleClick = ({ target }) => {
+    const rating = Number.parseInt(target.id);
+    this.setState({ rating: rating }, () => {
+      this.props.onRate(this.state.rating);
+      this.fillTickets();
+    });
+  }
 
   render() {
     const { type } = this.props;
     const { currentTickets } = this.state;
 
-    return (
+    if(type === 'edit') return (
+      <div className="tickets-card">
+        {currentTickets.map((tic, i) => <img className="clickable" src={tic} key={i} id={i + 1} onClick={this.handleClick}/>)}
+      </div>
+    );
+
+    if(type === 'view') return (
       <div className="tickets-card">
         {currentTickets.map((tic, i) => <img src={tic} key={i} />)}
       </div>
