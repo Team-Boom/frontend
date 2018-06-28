@@ -8,6 +8,7 @@
          ), 
         url($property);
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
 
@@ -27,6 +28,7 @@
     body { @include bodyImage('./assets/images/film04.jpg') }
 }
 
+* { box-sizing: border-box};
 
 h1, h2, a {
     font-family: 'Roboto', sans-serif;
