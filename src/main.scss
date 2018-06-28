@@ -1,0 +1,41 @@
+@mixin bodyImage($property) {
+    min-height: 100vh;
+    min-width: 100vw;
+
+    background: linear-gradient(
+         rgba(216, 211, 203, 0.548), 
+         rgba(216, 211, 203, 0.548)
+         ), 
+        url($property);
+    background-size: cover;
+}
+
+
+@media only screen and (min-width: 350px) {
+    body { @include bodyImage('./assets/images/film01.jpg') }
+}
+
+@media only screen and (min-width: 750px) {
+    body { @include bodyImage('./assets/images/film02.jpg') }
+}
+
+@media only screen and (min-width: 950px) {
+    body { @include bodyImage('./assets/images/film03.jpg') }
+}
+
+@media only screen and (min-width: 1200px) {
+    body { @include bodyImage('./assets/images/film04.jpg') }
+}
+
+
+h1, h2, a {
+    font-family: 'Roboto', sans-serif;
+}
+
+h3, h4, p {
+    font-family: 'Quattrocentro', serif;
+}
+
+q {
+    font-family: 'Open Sans Condensed', sans-serif;
+}

@@ -17,4 +17,11 @@
         max-width: 20em;
         max-height: 20em;
     }
+
+    .headerDesktop{
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-rows: repeat(2 1fr);
+        height: 5%;
+    }
 }

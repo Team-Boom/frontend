@@ -38,8 +38,7 @@ class App extends PureComponent {
         <Router>
           <main>
             <Nav/>
-            <div>
-              { checkedAuth &&
+            { checkedAuth &&
             <Switch>
               <Route exact path="/" component={Landing}/>
               <Route path="/home" component={Home}/>
@@ -52,8 +51,7 @@ class App extends PureComponent {
               <PrivateRoute path="/watchlist" component={WatchList}/>
               <Redirect to="/home"/>
             </Switch>
-              }
-            </div>
+            }
           </main>
         </Router>
       </AppWrapper>
