@@ -24,7 +24,7 @@ class Browse extends Component {
     page: 1,
   }
 
-  componentDidMount() {
+  browseByQuery() {
     const query = this.props.location.search;
     if(!query) return null;
 
@@ -32,6 +32,15 @@ class Browse extends Component {
     this.setState({ category: cat, page: p }, () => {
       this.props.loadSort(cat, p);
     });
+  }
+
+  componentDidMount() {
+    this.browseByQuery();
+  }
+
+  componentDidUpdate(prevProps) {
+    if(prevProps.location.search === this.props.location.search) return;
+    this.browseByQuery();
   }
 
   handleCat = ({ target }) => {

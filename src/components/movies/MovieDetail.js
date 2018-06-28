@@ -67,27 +67,32 @@ class MovieDetail extends PureComponent {
           </div>) : null }
         </div>
         <Link to={reviewLink}> Write a review! </Link>
-        { reviews.length
-          ? (
-            <section id="movie-page-reviews">
+
+        <section id="movie-page-reviews">
+          { reviews.length
+            ? (
               <div id="movie-averages">
                 {focusAvgs && (<h3>DeepFocus averages:</h3>)}
                 {focusAvgs && categories.map((cat, i) =>{ 
                   return focusAvgs[cat] ? renderAvg(cat, i) : null; })}
-              </div>
-              <div id="movie-reviews">
-                <h2>View Reviews by Category: </h2>
-                <FormControl label="View by Category">
-                  <select name="category" onChange={this.handleCat}>
-                    {categoriesAll.map((cat, i) => <option key={i} value={cat}>{cat}</option>)}
-                  </select>
-                </FormControl>
+              </div>) 
+            : null }
+          <div id="movie-reviews">
+            <h2>View Reviews by Category: </h2>
+            <FormControl label="View by Category">
+              <select name="category" onChange={this.handleCat}>
+                {categoriesAll.map((cat, i) => <option key={i} value={cat}>{cat}</option>)}
+              </select>
+            </FormControl>
+            { reviews.length
+              ? (
                 <div id="movie-reviews-container">
                   {reviews.map((rev, i) => <ReviewItem key={i} review={rev} type='view' />)}
-                </div>
-              </div>
-            </section>) 
-          : null }
+                </div>) 
+              : null }
+          </div>
+        </section>
+        
       </section>
     );
   }

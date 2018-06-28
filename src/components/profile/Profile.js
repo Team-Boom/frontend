@@ -34,7 +34,7 @@ class Profile extends Component {
 
           <div id="profile-reviews">
 
-            {!reviews ? 'You haven\'t reviewed any movies yet!' : reviews.map((rev, i) => <ReviewItem key={i} review={rev} type='edit' />) }
+            {!reviews ? 'You haven\'t reviewed any movies yet!' : reviews.map((rev, i) => <ReviewItem key={i} review={rev} canEdit={true} />) }
 
           </div>
         </section>

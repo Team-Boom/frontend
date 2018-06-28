@@ -44,7 +44,8 @@ class App extends PureComponent {
               <Route path="/home" component={Home}/>
               <Route path="/auth" component={Auth}/>
               <Route path="/browse" component={Browse}/>
-              <PrivateRoute path="/movies/:id/write" component={ReviewForm}/>
+              <PrivateRoute path="/movies/:movieId/write" component={ReviewForm}/>
+              <PrivateRoute path="/reviews/:reviewId/edit" component={ReviewForm}/>
               <Route path="/movies" component={MovieDetail}/>
               <Route path="/reviews" component={Reviews}/>
               <Route path="/search" component={Search}/>
