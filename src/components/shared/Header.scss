@@ -1,0 +1,20 @@
+:local(.header) {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr 1fr;
+    height: 5%;
+
+    #logo {
+        width: 100%;
+    }
+
+    #search {
+        width: 100%;
+        justify-self: center;
+        align-self: center;
+    }
+
+    #box {
+        max-width: 20em;
+        max-height: 20em;
+    }
+}

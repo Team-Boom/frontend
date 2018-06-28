@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { breakpoints, setClass, breakpointIsGreaterThan, breakpointIsLesserThan } from '../../utils/responseHelpers';
 import styles from './Nav.scss';
 import home from '../../assets/icons/home-inactive.png';
 import browse from '../../assets/icons/browse-inactive.png';
@@ -11,8 +12,12 @@ export default class Nav extends Component {
   render() {
 
     return (
-      <footer>
-        <nav className={styles.nav}>
+      <article className={
+        setClass({
+          default: 'bottom',
+          mobileLg: 'top'
+        }, breakpoints)}>
+        <nav className={styles.nav} >
           <ul>
             <li>
               <img src={home} />
@@ -32,7 +37,7 @@ export default class Nav extends Component {
             </li>
           </ul>
         </nav>
-      </footer>
+      </article>
     );
   }
 }
