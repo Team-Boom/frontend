@@ -7,7 +7,7 @@ import { loadDetail } from '../movies/actions';
 import { getMovie } from '../movies/reducers';
 import { loadReviewsByMovie } from '../reviews/actions';
 import { getReviewsByMovie } from '../reviews/reducers';
-import { categories, categoriesAll } from '../shared/constants';
+import { categories, categoriesAll, exRatingsDic } from '../shared/constants';
 import FormControl from '../shared/FormControl';
 import queryString from 'query-string';
 import ReviewItem from '../reviews/ReviewItem';
@@ -48,8 +48,6 @@ class MovieDetail extends PureComponent {
     const { focusAvgs } = movie;
     const { id } = this.state;
     const reviewLink = `movies/${id}/write`;
-    let reviewsExist = reviews ? true : false;
-
     const renderAvg = (cat, i) => (<span key={i}>{cat} <Tickets type='view' current={focusAvgs[cat]}/></span>);
 
     if(!movie) return null;
@@ -64,32 +62,32 @@ class MovieDetail extends PureComponent {
           <h3>Director: {movie.Director}</h3>
           <h3>Cast: {movie.Actors}</h3>
           <p> {movie.Plot}</p>
-          {/* {movie.Ratings ? (<div className="ex-ratings">
-            <span className="ex-rating"> IMDB: {movie.Ratings[0].Value || 'N/A' }</span>
-            <span className="ex-rating"> Rotten: {movie.Ratings[1].Value || 'N/A' }</span>
-            <span className="ex-rating"> Meta: {movie.Ratings[2].Value || 'N/A' }</span>
-          </div>) : null } */}
+          {movie.Ratings ? (<div className="ex-ratings">
+            {movie.Ratings.map((ex, i) => <span className="ex-rating" key={i}> <img className="ex-icon" src={exRatingsDic[ex.Source]}/>{ex.Value}</span>)}
+          </div>) : null }
         </div>
-        <div id="movie-page-reviews">
-          <div id="movie-averages">
-            <h3>DeepFocus averages:</h3>
-            {focusAvgs && categories.map((cat, i) => renderAvg(cat, i))}
-          </div>
-          <h2>View Reviews by Category: </h2>
-          <Link to={reviewLink}> Write a review! </Link>
-          <div id="reviews-category">
-            <FormControl label="View by Category">
-              <select name="category" onChange={this.handleCat}>
-                {categoriesAll.map((cat, i) => <option key={i} value={cat}>{cat}</option>)}
-              </select>
-            </FormControl>
-          </div>
-          <div id="reviews-container">
-            {reviewsExist ? reviews.map((rev, i) => <ReviewItem key={i} review={rev} type='view' />) : <p> There aren't any reviews for this movie, yet!  Go ahead and add your own! </p>}
-          </div>
-
-        </div>
-
+        <Link to={reviewLink}> Write a review! </Link>
+        { reviews.length
+          ? (
+            <section id="movie-page-reviews">
+              <div id="movie-averages">
+                {focusAvgs && (<h3>DeepFocus averages:</h3>)}
+                {focusAvgs && categories.map((cat, i) =>{ 
+                  return focusAvgs[cat] ? renderAvg(cat, i) : null; })}
+              </div>
+              <div id="movie-reviews">
+                <h2>View Reviews by Category: </h2>
+                <FormControl label="View by Category">
+                  <select name="category" onChange={this.handleCat}>
+                    {categoriesAll.map((cat, i) => <option key={i} value={cat}>{cat}</option>)}
+                  </select>
+                </FormControl>
+                <div id="movie-reviews-container">
+                  {reviews.map((rev, i) => <ReviewItem key={i} review={rev} type='view' />)}
+                </div>
+              </div>
+            </section>) 
+          : null }
       </section>
     );
   }
@@ -102,4 +100,3 @@ export default withRouter(connect(
   }),
   { loadDetail, loadReviewsByMovie }
 )(MovieDetail));
-
