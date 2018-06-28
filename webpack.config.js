@@ -1,12 +1,13 @@
 /* eslint-env node */
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
-
 const buildDir = 'docs';
 const path = `${__dirname}/${buildDir}`;
+const Dotenv = require('dotenv-webpack');
 
-module.exports = {
+
+module.exports = env => ({
+
   entry: './src/index.js',
   output: {
     path,
@@ -25,9 +26,9 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   plugins: [
-    new Dotenv(),
     new CleanWebpackPlugin(`${path}/bundle.*.js`), 
-    new HtmlPlugin({ template: './src/index.html' })
+    new HtmlPlugin({ template: './src/index.html' }),
+    new Dotenv()
   ],
   module: {
     rules: [
@@ -72,4 +73,4 @@ module.exports = {
       }
     ]
   }
-};
+});
