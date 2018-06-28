@@ -1,5 +1,5 @@
 import { get, post, put, del, exGet } from './request';
-const URL = 'http://localhost:3000/api';
+const URL = 'https://localhost:3000/api';
 const AUTH_URL = `${URL}/auth`;
 const REVIEW_URL = `${URL}/reviews`;
 const OMDB_KEY = process.env.API_KEY; //eslint-disable-line

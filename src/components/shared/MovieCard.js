@@ -1,19 +1,44 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import Tickets from '../shared/Tickets';
+import watchlist from '../../assets/icons/watchlist-active.png';
+import remove from '../../assets/icons/x-out.png';
+import toReview from '../../assets/icons/write-review.png';
+import toDetail from '../../assets/icons/detail-link.png';
+import { connect } from 'react-redux';
+import { addToWatchList, removeFromWatchList } from '../profile/actions';
+import { getUser } from '../profile/reducers';
 
 class MovieCard extends PureComponent {
 
   static propTypes = {
+    addToWatchList: PropTypes.func.isRequired,
+    removeFromWatchList: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired,
     movie: PropTypes.object.isRequired,
-    rating: PropTypes.string, //'view' or 'input'
-    reviewed: PropTypes.bool,
-    toWatch: PropTypes.bool,
-    watched: PropTypes.bool
+    ticRating: PropTypes.number,
+    watchAdd: PropTypes.bool,
+    watchRemove: PropTypes.bool,
+    reviewType: PropTypes.string, //add or edit
+    review: PropTypes.object, //if editing
   };
 
+  handleWLAdd = () => {
+    this.props.addToWatchList(this.props.user, this.props.movie.imdbID); //send movie as well
+  };
+
+  handleWLRemove = () => {
+    this.props.removeFromWatchList(this.props.user, this.props.movie.imdbID); //send movie as well
+  };
+
+  handleReview = () =>{
+    this.props.review;
+    this.props.reviewType;
+  }
+
   render() {
-    const { movie } = this.props;
+    const { movie, ticRating, reviewType } = this.props;
     const detailLink = `/movies?id=${movie.imdbID}`;
 
     return (
@@ -21,18 +46,23 @@ class MovieCard extends PureComponent {
         <span> <img src={movie.Poster}/> </span>
         <span> 
           <h2> {movie.Title} </h2>
-          <p> {movie.Year} </p>
+          <p> {movie.Plot || movie.description || movie.Year} </p>
         </span>
-        {this.props.rating ? <span> rating true </span> : null}
-        {this.props.reviewed ? <span> reviewed true </span> : null}
-        {this.props.toWatch ? <span> toWatch true </span> : null}
-        {this.props.watched ? <span> watched true </span> : null}
+        {this.props.ticRating ? <Tickets type='view' current={ticRating}/> : null}
+        {this.props.watchAdd ? <img className="clickable" src={watchlist} onClick={this.handleWLAdd} alt="add to your watchlist"/> : null}
+        {this.props.watchRemove ? <img className="clickable" src={remove} onClick={this.handleWLRemove} alt="remove from watchlist"/> : null}
+        {this.props.reviewType ? <img className="clickable" src={toReview} onClick={this.handleReview} alt={`${reviewType} review`}/> : null}
         <Link to={detailLink}>
-          <span className="detail-next"> ⇨ </span> 
+          <img className="clickable" src={toDetail}/>
         </Link>
       </div>
     );
   }
 }
 
-export default MovieCard;
+export default connect(
+  state => ({
+    user: getUser(state),
+  }),
+  { addToWatchList, removeFromWatchList }
+)(MovieCard);

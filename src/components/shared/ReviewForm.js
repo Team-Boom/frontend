@@ -47,7 +47,6 @@ class ReviewForm extends Component {
 
   handleRating = rating => {
     this.setState({ rating: rating });
-    console.log(this.state.rating);
   }
 
   handleSubmit = (e) => {
@@ -63,7 +62,7 @@ class ReviewForm extends Component {
 
   render() {
     const { movie } = this.props;
-    const { category, rating, text } = this.state;
+    const { category, text } = this.state;
 
     return (
       <form className="review-form" onSubmit={this.handleSubmit}>

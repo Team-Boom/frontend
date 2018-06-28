@@ -34,12 +34,12 @@ export const tryLoadUser = () => dispatch => {
 
 export const addToWatchList = (user, movieId) => {
   user.watchlist.push(movieId);
-  return updateUser(user);
+  return updateUser(user, user._id);
 };
 
 export const removeFromWatchList = (user, movieId) => {
   user.watchlist.filter(m => m._id !== movieId);
-  return updateUser(user);
+  return updateUser(user, user._id);
 };
 
 export function updateUser(data, userId) {

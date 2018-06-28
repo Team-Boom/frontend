@@ -12,11 +12,9 @@ describe('Nav actions', () => {
     fetchSearch.mockReturnValueOnce(promise);
     
     const { type, payload } = newSearch('query');
-    const { query, results } = payload;
 
     expect(type).toBe(NEW_SEARCH);
     expect(fetchSearch.mock.calls.length).toBe(1);
-    expect(query).toBe('query');
-    expect(results).toBe(promise);
+    expect(payload).toBe(promise);
   });
 });

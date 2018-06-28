@@ -40,7 +40,6 @@ class Browse extends Component {
     });
   }
 
-
   render() {
     const { category } = this.state;
     const { sorted } = this.props;
@@ -57,7 +56,7 @@ class Browse extends Component {
           </FormControl>
           {category ? categoryBlurbs[category] : null }
         </div>
-        {sorted ? sorted.map((movie, i) => <MovieCard key={i} movie={movie} rating="view" />) : null}
+        {sorted ? sorted.map((movie, i) => <MovieCard key={i} movie={movie} ticRating={movie.rating} />) : null}
       </section>
 
     );
