@@ -34,8 +34,8 @@ class App extends PureComponent {
 
     return (
 
-      <Router>
-        <AppWrapper>
+      <AppWrapper>
+        <Router>
           <main>
             <Nav/>
             <div>
@@ -55,8 +55,8 @@ class App extends PureComponent {
               }
             </div>
           </main>
-        </AppWrapper>
-      </Router>
+        </Router>
+      </AppWrapper>
     );
   }
 }
