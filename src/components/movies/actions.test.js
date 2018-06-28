@@ -21,16 +21,14 @@ describe('Movie load actions', () => {
     expect(payload).toBe(promise);
   });
   
-  it('loads movie detail', () => {
-    const promise = Promise.resolve();
-    fetchMovie.mockReturnValueOnce(promise);
-    fetchMovieAvgs.mockReturnValueOnce(promise);
+  it.only('loads movie detail', () => {
+    const thunk = fetchMovie(123);
+    const dispatch = jest.fn();
+    
+    thunk(dispatch);
 
-    const outcome = loadDetail(123);
-
-    expect(fetchMovie.mock.calls.length).toBe(1);
-    expect(fetchMovieAvgs.mock.calls.length).toBe(1);
-    expect(outcome).toBe(promise);
+    const { calls } = dispatch.mock;
+    console.log('calls', calls);
   });
   
   it('reloads movieAvgs', () => {

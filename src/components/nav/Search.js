@@ -26,7 +26,7 @@ class Search extends PureComponent {
     if(!results.Search) return null;
     return (
       <section className="search-page">
-        {results.Search.map((movie, i) => <MovieCard key={i} movie={movie} reviewed={true}/>)}
+        {results.Search.map((movie, i) => <MovieCard key={i} movie={movie} watchAdd={true}/>)}
       </section>
     );
   }

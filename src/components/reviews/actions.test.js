@@ -19,13 +19,11 @@ describe('Movie review actions', () => {
     const promise = Promise.resolve();
     fetchMovieReviews.mockReturnValueOnce(promise);
     
-    const { type, payload } = loadReviewsByMovie(123);
-    const id = Object.keys(payload)[0];
+    const { type, payload } = loadReviewsByMovie(123);;
 
     expect(type).toBe(ID_REVIEWS_LOAD);
     expect(fetchMovieReviews.mock.calls.length).toBe(1);
-    expect(id).toBe('123');
-    expect(payload[id]).toBe(promise);
+    expect(payload).toBe(promise);
   });
 
 });

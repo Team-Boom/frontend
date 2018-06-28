@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
   results,
   movie,
   top10s,
-  sorted
+  sorted,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

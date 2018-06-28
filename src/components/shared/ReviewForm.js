@@ -8,7 +8,7 @@ import { newReview, updateReview } from '../reviews/actions';
 import { getMovie } from '../movies/reducers';
 import { getUser } from '../profile/reducers';
 import { loadDetail } from '../movies/actions';
-
+import Tickets from './Tickets';
 class ReviewForm extends Component {
 
   static propTypes = {
@@ -45,6 +45,10 @@ class ReviewForm extends Component {
     this.setState({ [target.name]: target.value });
   }
 
+  handleRating = rating => {
+    this.setState({ rating: rating });
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     const movie = {
@@ -58,7 +62,7 @@ class ReviewForm extends Component {
 
   render() {
     const { movie } = this.props;
-    const { category, rating, text } = this.state;
+    const { category, text } = this.state;
 
     return (
       <form className="review-form" onSubmit={this.handleSubmit}>
@@ -75,7 +79,7 @@ class ReviewForm extends Component {
               {categories.map((cat, i) => <option key={i} value={cat}>{cat}</option>)}
             </select>
           </FormControl>
-          {/* insert rating component */}
+          <Tickets type='edit' onRate={this.handleRating}/>
           <FormControl label="write a review">
             <input type="text" maxLength="1000" name="text" value={text} onChange={this.handleChange}/>
           </FormControl>
