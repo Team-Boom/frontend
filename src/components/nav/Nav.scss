@@ -1,37 +1,6 @@
-
-
 :local(.nav) {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 9999;
-    width: 100vw;
-    height: 7%;
-    background-color: #DEDEDE;
 
-    ul {
-    padding: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr; 
+    .bottom { position: fixed; bottom: 0; left: 0;}
+    .top { position: fixed; top: 50%; left: 0;}
 
-    }
-
-    li {
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    }
-
-    a {
-        text-decoration: none;
-        align-self: center;
-        color:#082127;
-        font-size: 1.2em;
-    }
-
-    img {
-        align-self: center;
-        max-width: 15px;
-        max-height: 15px;
-    }
 }

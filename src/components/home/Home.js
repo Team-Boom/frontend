@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import Carousel from '../shared/Carousel';
 import { connect } from 'react-redux';
 import { getUser } from '../profile/reducers';
 import PropTypes from 'prop-types';
