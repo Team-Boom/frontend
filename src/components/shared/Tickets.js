@@ -8,7 +8,7 @@ const emptyTickets = [inactiveTic, inactiveTic, inactiveTic, inactiveTic, inacti
 class Tickets extends Component {
 
   static propTypes = {
-    type: PropTypes.string.isRequired, //'view' or 'input'
+    type: PropTypes.string.isRequired, //'view' or 'edit'
     current: PropTypes.number,
     onRate: PropTypes.func,
   };
@@ -19,7 +19,11 @@ class Tickets extends Component {
   };
 
   componentDidMount() {
-    if(this.props.type === 'view'){
+    this.checkTickets();
+  }
+
+  checkTickets = () => {
+    if(this.props.current){
       this.setState({ rating: this.props.current }, () => {
         this.fillTickets();
       });

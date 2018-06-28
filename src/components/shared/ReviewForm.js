@@ -10,7 +10,7 @@ import { getMovie } from '../movies/reducers';
 import { getUser } from '../profile/reducers';
 import { loadDetail } from '../movies/actions';
 import checkmark from '../../assets/icons/checkmark.png';
-import trashcan from '../../assets/icons/trash.png';
+import trashcan from '../../assets/icons/trashcan.png';
 import Tickets from './Tickets';
 
 class ReviewForm extends Component {
@@ -23,7 +23,6 @@ class ReviewForm extends Component {
     updateReview: PropTypes.func.isRequired,
     removeReview: PropTypes.func.isRequired,
     loadDetail: PropTypes.func.isRequired,
-    location: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
     review: PropTypes.object,
   };
@@ -31,12 +30,12 @@ class ReviewForm extends Component {
   state = {
     userName: null,
     category: 'Cinematography',
-    rating: 5,
+    rating: null,
     text: '',
   }
 
   componentDidMount = () => {
-    const path = this.props.location.pathname.split('/');
+    const path = this.props.history.location.pathname.split('/');
     const type = path[1] === 'reviews' ? 'edit' : 'view';
     this.setState({ type: type });
 
@@ -49,8 +48,8 @@ class ReviewForm extends Component {
   }
 
   componentDidUpdate = prevProps  => {
-    if(!prevProps.review){
-      if(this.props.review == null) return;
+    if(this.props.review.text){
+      if(prevProps.review.text) return;
       const old = this.props.review;
       this.setState({ category: old.category, rating: old.rating, text: old.text });
     }
@@ -60,18 +59,21 @@ class ReviewForm extends Component {
     this.setState({ [target.name]: target.value });
   }
 
-  handleDelete = () => {
-    this.props.removeReview(this.props.review._id);
-    this.props.history.goBack();
-  }
-
   handleRating = rating => {
     this.setState({ rating: rating });
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = e => { 
     e.preventDefault();
+    this.state.rating === null ? alert('Please add a rating to your review!') : this.handleSave();
+  };
 
+  handleDelete = () => {
+    this.state.type === 'edit' ? this.props.removeReview(this.props.review._id) : null;
+    this.props.history.goBack();
+  }
+
+  handleSave = () => {
     const movie = {
       movieId: this.props.movie.imdbID,
       poster: this.props.movie.Poster,
@@ -85,14 +87,13 @@ class ReviewForm extends Component {
       rating: this.state.rating,
       text: this.state.text,
     };
-    this.state.type === 'edit' ? updateReview(review) : newReview(review, this.props.user._id, movie);
+    this.state.type === 'edit' ? updateReview(review) : newReview(review, this.props.user, movie);
     this.props.history.goBack();
   }
 
   render() {
-    console.log(this.props.history);
     const { movie } = this.props;
-    const { category, text } = this.state;
+    const { category, text, rating } = this.state;
 
     return (
       <form className="review-form" onSubmit={this.handleSubmit}>
@@ -105,16 +106,20 @@ class ReviewForm extends Component {
         </div>
         <fieldset>
           <FormControl label="select a category">
-            <select name="category" onChange={this.handleChange}>
+            <select name="category" value={category} onChange={this.handleChange}>
               {categories.map((cat, i) => <option key={i} value={cat}>{cat}</option>)}
             </select>
           </FormControl>
-          <Tickets type='edit' onRate={this.handleRating}/>
+          <Tickets type='edit' current={rating} onRate={this.handleRating}/>
           <FormControl label="write a review">
-            <input type="text" maxLength="1000" name="text" value={text} onChange={this.handleChange}/>
+            <input type="text" maxLength="1000" name="text" value={text} onChange={this.handleChange} required/>
           </FormControl>
-          <button type="submit"><img src={checkmark}/></button> 
-          <button type="delete" onClick={this.handleDelete}><img src={trashcan}/></button>
+          <FormControl label="save review" hide={true}>
+            <button type="save"><img className="icon clickable" src={checkmark}/></button> 
+          </FormControl>
+          <FormControl label="delete review" hide={true}>
+            <button type="button" onClick={this.handleDelete}><img className="icon clickable" src={trashcan}/></button>
+          </FormControl>
         </fieldset>
       </form>
     );

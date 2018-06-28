@@ -1,9 +1,11 @@
 export const ID_REVIEWS_LOAD = 'ID_REVIEWS_LOAD';
-export const REVIEWS_LOAD = 'REVIEW_LOAD';
+export const REVIEWS_LOAD = 'REVIEWS_LOAD';
+export const REVIEW_LOAD = 'REVIEW_LOAD';
 export const REVIEW_ADD = 'REVIEW_ADD';
 export const REVIEW_UPDATE = 'REVIEW_UPDATE';
 export const REVIEW_REMOVE = 'REVIEW_REMOVE';
 
+export const getReview = state => state.review;
 export const getReviewsByMovie = state => state.reviewsByMovie;
 export const getReviewsByUser = state => state.reviewsByUser;
 export const getCatReviewsByMovie = (category, state) => {
@@ -37,6 +39,18 @@ export function reviewsByUser(state = [], { type, payload }) {
       return state;
     case REVIEW_REMOVE:
       return state.filter(r => r._id !== payload); 
+    default:
+      return state;
+      
+  }
+}
+
+export function review(state = {}, { type, payload }) {
+  switch(type) {
+    case REVIEWS_LOAD: 
+      return { };
+    case REVIEW_LOAD:
+      return payload;
     default:
       return state;
       

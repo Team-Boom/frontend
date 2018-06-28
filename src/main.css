@@ -28,6 +28,14 @@ q {
     height: 50px;
 }
 
+.icon {
+    height: 50px;
+}
+
 .clickable {
     cursor: pointer;
+}
+
+.hide {
+    visibility: hidden;
 }

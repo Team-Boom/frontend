@@ -1,5 +1,5 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import { reviewsByMovie, reviewsByUser } from '../components/reviews/reducers';
+import { reviewsByMovie, reviewsByUser, review } from '../components/reviews/reducers';
 import { user, checkedAuth } from '../components/profile/reducers';
 import { results } from '../components/nav/reducers';
 import { error, loading } from '../components/app/reducers';
@@ -19,6 +19,7 @@ const rootReducer = combineReducers({
   movie,
   top10s,
   sorted,
+  review
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
