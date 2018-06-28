@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { breakpoints } from '../../utils/responseHelpers';
-import { setActiveBreakpoint } from 'store/actions';
+import { setActiveBreakpoint } from './actions';
 
 class AppWrapper extends Component {
 
@@ -11,7 +11,7 @@ class AppWrapper extends Component {
       dispatch: PropTypes.func
     }
 
-    mediaState = [];
+    mediaQueryState = [];
 
     componentDidMount() {
       Object.keys(breakpoints).forEach(key => {
@@ -24,10 +24,12 @@ class AppWrapper extends Component {
         };
 
         query.addListener(breakpointChange.bind(this));
-        this.mediaState.push(query);
+        this.mediaQueryState.push(query);
       });
+
       this.dispatchActiveQuery();
     }
+
     dispatchActiveQuery() {
       const { dispatch } = this.props;
       const activeQuery = this.mediaQueryState.reduce((prev, curr) => {
@@ -43,11 +45,7 @@ class AppWrapper extends Component {
     render() {
       const { children } = this.props;
 
-      return (
-        <div>
-          { children }
-        </div>
-      );
+      return children;
     }
 }
 

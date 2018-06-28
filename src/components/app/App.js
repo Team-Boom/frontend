@@ -16,6 +16,7 @@ import Profile from '../profile/Profile';
 import WatchList from '../profile/Watchlist';
 import Reviews from '../reviews/Reviews';
 import Search from '../nav/Search';
+import AppWrapper from './AppWrapper';
 
 class App extends PureComponent {
 
@@ -32,12 +33,13 @@ class App extends PureComponent {
     const { checkedAuth } = this.props;
 
     return (
+
       <Router>
-        <main>
-          {/* <SearchBar history={ history }/> */}
-          <Nav/>
-          <div>
-            { checkedAuth &&
+        <AppWrapper>
+          <main>
+            <Nav/>
+            <div>
+              { checkedAuth &&
             <Switch>
               <Route exact path="/" component={Landing}/>
               <Route path="/home" component={Home}/>
@@ -50,9 +52,10 @@ class App extends PureComponent {
               <PrivateRoute path="/watchlist" component={WatchList}/>
               <Redirect to="/home"/>
             </Switch>
-            }
-          </div>
-        </main>
+              }
+            </div>
+          </main>
+        </AppWrapper>
       </Router>
     );
   }

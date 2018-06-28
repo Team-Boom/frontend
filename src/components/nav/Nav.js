@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { breakpoints, setClass, breakpointIsGreaterThan, breakpointIsLesserThan } from '../../utils/responseHelpers';
+import { setClass } from '../../utils/responseHelpers';
 import styles from './Nav.scss';
 import home from '../../assets/icons/home-inactive.png';
 import browse from '../../assets/icons/browse-inactive.png';
 import profile from '../../assets/icons/profile-inactive.png';
 import watchlist from '../../assets/icons/watchlist-inactive.png';
+import { connect } from 'react-redux';
 
-export default class Nav extends Component {
+class Nav extends Component {
 
   render() {
 
     return (
-      <article className={
-        setClass({
-          default: 'bottom',
-          mobileLg: 'top'
-        }, breakpoints)}>
-        <nav className={styles.nav} >
+      <article className={styles.nav}>
+        <nav className={setClass({
+          default: 'top',
+          mobileLg: 'bottom'
+         }, this.props.breakpoint)}> {/*eslint-disable-line*/}
           <ul>
             <li>
               <img src={home} />
@@ -38,6 +38,11 @@ export default class Nav extends Component {
           </ul>
         </nav>
       </article>
-    );
+    ); 
   }
 }
+
+export default connect(
+  state => ({ breakpoint: state.breakpoint }),
+  null,
+)(Nav);

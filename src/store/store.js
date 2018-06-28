@@ -7,6 +7,7 @@ import { movie, top10s } from '../components/movies/reducers';
 import { breakpoint } from '../components/app/reducers';
 import thunk from 'redux-thunk';
 import promiseMiddleware from './promise-middleware';
+import responseHelpers from '../utils/responseHelpers';
 
 const rootReducer = combineReducers({
   error,
@@ -25,10 +26,11 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   rootReducer,
+  responseHelpers,
   composeEnhancers(
     applyMiddleware(
       thunk,
-      promiseMiddleware
+      promiseMiddleware,
     )
   )
 );
