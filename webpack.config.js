@@ -1,6 +1,7 @@
 /* eslint-env node */
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const buildDir = 'docs';
 const path = `${__dirname}/${buildDir}`;
@@ -19,8 +20,12 @@ module.exports = {
       '/api': 'http://localhost:3000' 
     },
   },
+  node: {
+    fs: 'empty'
+  },
   devtool: 'inline-source-map',
   plugins: [
+    new Dotenv(),
     new CleanWebpackPlugin(`${path}/bundle.*.js`), 
     new HtmlPlugin({ template: './src/index.html' })
   ],
@@ -33,6 +38,10 @@ module.exports = {
       },
       {
         test: /\.css$/,
+        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }]
+      },
+      {
+        test: /\.scss$/,
         use: [
           {
             loader: 'style-loader',
@@ -44,6 +53,9 @@ module.exports = {
               sourceMap: true,
               importLoaders: 1 
             }
+          },
+          {
+            loader: 'sass-loader'
           },
           {
             loader: 'postcss-loader',

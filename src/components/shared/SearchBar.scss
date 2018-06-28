@@ -1,0 +1,15 @@
+:local(.search) {
+    position: relative;
+
+    #searchBar {
+        width: 75%;
+        border: 4px solid #082127;
+        border-radius: 2%;
+    }
+
+
+    #searchButton {
+        position: absolute;
+        margin-left: 2%;
+    }
+}
