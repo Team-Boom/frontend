@@ -15,6 +15,7 @@ import Tickets from '../shared/Tickets';
 import { addToWatchList } from '../profile/actions';
 import watchlist from '../../assets/icons/watchlist-active.png';
 import { getUser } from '../profile/reducers';
+import styles from './MovieDetail.scss';
 
 class MovieDetail extends PureComponent {
 
@@ -61,7 +62,7 @@ class MovieDetail extends PureComponent {
 
     if(!movie) return null;
     return (
-      <section className="movie-page">
+      <section className={styles.movie}>
         <div id="movie-page-top">
           <img src={movie.Poster}/>
           <h2>{movie.Title}</h2>
@@ -78,7 +79,7 @@ class MovieDetail extends PureComponent {
         </div>
         <Link to={reviewLink}> Write a review! </Link>
 
-        <section id="movie-page-reviews">
+        <article id="movie-page-reviews">
           { reviews.length
             ? (
               <div id="movie-averages">
@@ -101,7 +102,7 @@ class MovieDetail extends PureComponent {
                 </div>) 
               : null }
           </div>
-        </section>
+        </article>
         
       </section>
     );

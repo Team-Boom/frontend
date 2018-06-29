@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getUser, getUserAvg } from './reducers';
 import { loadUserAvg } from './actions';
+import { Link } from 'react-router-dom';
 import { loadReviewsByUser } from '../reviews/actions';
 import { getReviewsByUser } from '../reviews/reducers';
 import { logout } from '../profile/actions';

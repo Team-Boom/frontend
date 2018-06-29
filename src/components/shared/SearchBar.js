@@ -30,7 +30,7 @@ class SearchBar extends PureComponent {
         <input 
           type="search"
           id="searchBar" 
-          placeholder="   Search movies here..." 
+          placeholder="Search movies here..." 
           value={search} 
           onChange={this.handleChange} 
           required
