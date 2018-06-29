@@ -6,9 +6,9 @@ import { getSorted } from './reducers';
 import { loadSort, clearSort } from './actions';
 import { categories, categoryBlurbs } from '../shared/constants';
 import MovieCard from '../shared/MovieCard';
-import SearchBar from '../shared/SearchBar';
 import FormControl from '../shared/FormControl';
 import queryString from 'query-string';
+import styles from './Browse.scss';
 
 class Browse extends Component {
 
@@ -55,7 +55,7 @@ class Browse extends Component {
    
     return (
       <section className="browse-page">
-        <div id="browse-category">
+        <div className={styles.browse}>
           <FormControl label="select a category">
             <select name="category" onChange={this.handleCat}>
               {categories.map((cat, i) => <option key={i} value={cat}>{cat}</option>)}
