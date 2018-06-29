@@ -1,6 +1,7 @@
 @mixin bodyImage($property) {
     min-height: 100vh;
     min-width: 100vw;
+    max-height: 900px;
 
     background: linear-gradient(
          rgba(216, 211, 203, 0.548), 
@@ -28,10 +29,9 @@
     body { @include bodyImage('./assets/images/film04.jpg') }
 }
 
-#site > section {
-    display: grid;
-    grid-template-columns:  1fr 2fr 1fr;
-    grid-template-rows: 1fr 2fr 1fr;
+#site {
+    max-height: 900px;
+    overflow: scroll;
 }
 
 * { box-sizing: border-box};

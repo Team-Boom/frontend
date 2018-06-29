@@ -9,7 +9,7 @@ import toDetail from '../../assets/icons/detail-link.png';
 import { connect } from 'react-redux';
 import { addToWatchList, removeFromWatchList } from '../profile/actions';
 import { getUser } from '../profile/reducers';
-import noImage from '../../assets/images/no-image-found.png'
+import noImage from '../../assets/images/no-image-found.png';
 import styles from './MovieCard.scss';
 
 class MovieCard extends PureComponent {
@@ -49,7 +49,7 @@ class MovieCard extends PureComponent {
     };
 
     return (
-        <div className={styles.card}>
+      <div className={styles.card}>
         <span> <img src={poster()}/> </span>
         <span> 
           <h2> {movie.Title || movie.title} </h2>
