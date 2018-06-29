@@ -6,6 +6,7 @@ import { withRouter } from 'react-router';
 import { getResults } from '../nav/reducers';
 import MovieCard from '../shared/MovieCard';
 import queryString from 'query-string';
+import styles from '../shared/cardGrid.scss';
 class Search extends PureComponent {
 
   static propTypes = {
@@ -25,7 +26,7 @@ class Search extends PureComponent {
     const { results } = this.props;
     if(!results.Search) return null;
     return (
-      <section className="search-page">
+      <section id="search-page" className={styles.cardGrid}>
         {results.Search.map((movie, i) => <MovieCard key={i} movie={movie} watchAdd={true}/>)}
       </section>
     );

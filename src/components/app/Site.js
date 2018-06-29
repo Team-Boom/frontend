@@ -36,7 +36,7 @@ class Site extends PureComponent {
 
     return (
       <AppWrapper>
-        <section id="site-wrapper" className={styles.site}>
+        <section id="site-wrapper" className={styles.siteWrapper}>
           <Header />
           <div id="site">
             { checkedAuth &&

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { setClass } from '../../utils/responseHelpers';
 import styles from './Nav.scss';
-import home from '../../assets/icons/home-inactive.png';
+import home from '../../assets/icons/home-active.png';
 import browse from '../../assets/icons/browse-inactive.png';
 import profile from '../../assets/icons/profile-inactive.png';
 import watchlist from '../../assets/icons/watchlist-inactive.png';
@@ -22,25 +22,25 @@ class Nav extends Component {
             <li>
               <Link to="/home" id="home">
                 <img src={home} />
-                Home
+                <span className="desktop">Home</span>
               </Link>
             </li>
             <li>
               <Link to="/profile" id="profile">
                 <img src={profile} />
-                Profile
+                <span className="desktop">Profile</span>
               </Link>
             </li>
             <li>
               <Link to="/browse" id="browse">
                 <img src={browse} />
-                Browse
+                <span className="desktop">Browse</span>
               </Link>
             </li>
             <li>
               <Link to="/watchlist">
                 <img src={watchlist} />
-                Watchlist
+                <span className="desktop">Watchlist</span>
               </Link>
             </li>
           </ul>

@@ -9,6 +9,7 @@
         url($property);
     background-size: cover;
     background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 * { box-sizing: border-box};
@@ -31,12 +32,12 @@ p { font-family: 'Quattrocentro', serif; }
 q { font-family: 'Open Sans Condensed', sans-serif; }
 
 h1 { font-size: 1.2em; }
-h2 { font-size: 1.5em; }
+h2 { font-size: 1em; text-align: left;}
 h3 { font-size: 1.17em; }
 p { font-size: .9em; } 
 
 .icon {
-    height: 50px;
+    height: 30px;
 }
 
 .clickable {
@@ -49,10 +50,14 @@ p { font-size: .9em; }
 
 @media only screen and (min-width: 350px) {
     body { @include bodyImage('./assets/images/film01.jpg') }
+    .desktop{ display: none };
+    .mobile{ display: inherit };
 }
 
 @media only screen and (min-width: 750px) {
     body { @include bodyImage('./assets/images/film02.jpg') }
+    .desktop{ display: none };
+    .mobile{ display: inherit };
 
     h1 { font-size: 1.5em; }
     h2 { font-size: 1.5em; }
@@ -62,6 +67,9 @@ p { font-size: .9em; }
 
 @media only screen and (min-width: 950px) {
     body { @include bodyImage('./assets/images/film03.jpg') }
+    .desktop{ display: inherit };
+    .mobile{ display: none };
+
     h1 { font-size: 1.8em; }
     h2 { font-size: 1.5em; }
     h3 { font-size: 1.17em; }
@@ -70,6 +78,9 @@ p { font-size: .9em; }
 
 @media only screen and (min-width: 1200px) {
     body { @include bodyImage('./assets/images/film04.jpg') }
+    .desktop{ display: inherit };
+    .mobile{ display: none };
+
     h1 { font-size: 2em; }
     h2 { font-size: 1.5em; }
     h3 { font-size: 1.17em; }

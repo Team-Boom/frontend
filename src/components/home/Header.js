@@ -8,7 +8,7 @@ export default class Header extends Component {
   render() {
     return (
       <div className={styles.header}>
-        <div id='box'>
+        <div id='logo-container'>
           <img id='logo' src={logo}/>
         </div>
         <div id='search'>

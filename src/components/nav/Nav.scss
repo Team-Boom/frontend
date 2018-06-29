@@ -3,7 +3,7 @@
     top: 0; 
     right: 0;
     z-index: 9999;
-    
+
     ul {
         padding: 5%;;
         display: grid;
@@ -34,28 +34,31 @@
         background-color: #DEDEDE;
     
         ul {
-        padding: 0;
+        margin: 0;
+        padding: 1%;
+        height: 100%;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr; 
     
         }
     
         li {
-        display: flex;
-        flex-direction: column;
-        list-style: none;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            list-style: none;
         }
     
         a {
             text-decoration: none;
             align-self: center;
             color:#082127;
-            font-size: 1.2em;
+            font-size: 1em;
         }
     
         img {
-            max-width: 15px;
-            max-height: 15px;
+            width: 100%;
+            padding: 2%;
             display: block;
             margin: auto;
         }

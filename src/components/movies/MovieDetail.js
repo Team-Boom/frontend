@@ -15,7 +15,8 @@ import Tickets from '../shared/Tickets';
 import { addToWatchList } from '../profile/actions';
 import watchlist from '../../assets/icons/watchlist-active.png';
 import { getUser } from '../profile/reducers';
-import styles from './MovieDetail.scss';
+import movieStyles from './MovieDetail.scss';
+import gridStyles from '../shared/cardGrid.scss';
 
 class MovieDetail extends PureComponent {
 
@@ -62,7 +63,7 @@ class MovieDetail extends PureComponent {
 
     if(!movie) return null;
     return (
-      <section className={styles.movie}>
+      <section id="movie-detail-page" className={movieStyles.movie}>
         <div id="id">
           <div id="movie-page-top">
             <img src={movie.Poster}/>
@@ -100,7 +101,7 @@ class MovieDetail extends PureComponent {
             </FormControl>
             { reviews.length
               ? (
-                <div id="movie-reviews-container">
+                <div id="movie-reviews-container" className={gridStyles.cardGrid}>
                   {reviews.map((rev, i) => <ReviewItem key={i} review={rev} type='view' />)}
                 </div>) 
               : null }

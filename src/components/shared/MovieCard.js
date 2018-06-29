@@ -9,8 +9,8 @@ import toDetail from '../../assets/icons/detail-link.png';
 import { connect } from 'react-redux';
 import { addToWatchList, removeFromWatchList } from '../profile/actions';
 import { getUser } from '../profile/reducers';
-import noImage from '../../assets/images/no-image-found.png'
-import styles from './MovieCard.scss';
+import noImage from '../../assets/images/no-image-found.png';
+import styles from './cardInner.scss';
 
 class MovieCard extends PureComponent {
 
@@ -49,9 +49,11 @@ class MovieCard extends PureComponent {
     };
 
     return (
-        <div className={styles.card}>
-        <span> <img src={poster()}/> </span>
-        <span> 
+      <div className={styles.cardInner}>
+        <span className="poster-container"> 
+          <img className="poster" src={poster()}/> 
+        </span>
+        <span className="text"> 
           <h2> {movie.Title || movie.title} </h2>
           <p> {movie.Plot || movie.description || movie.Year} </p>
         </span>
@@ -60,7 +62,7 @@ class MovieCard extends PureComponent {
         {this.props.watchRemove ? <img className="clickable icon" src={remove} onClick={this.handleWLRemove} alt="remove from watchlist"/> : null}
         {this.props.reviewType ? <img className="clickable icon" src={toReview} onClick={this.handleReview} alt={`${reviewType} review`}/> : null}
         <Link to={detailLink}>
-          <img className="clickable" src={toDetail}/>
+          <img className="clickable icon" src={toDetail}/>
         </Link>
       </div>
     );
