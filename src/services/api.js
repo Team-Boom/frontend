@@ -28,8 +28,8 @@ export const fetchUserAvg = userId => get(`${REVIEW_URL}/user/avg/${userId}`);
 export const fetchReview = reviewId => get(`${REVIEW_URL}/detail/${reviewId}`);
 
 export const sendNewReview = (data, userId) => post(`${REVIEW_URL}/user/${userId}`, data);
-export const sendUpdateReview = (data, reviewId) => put(`${REVIEW_URL}/user/${reviewId}`, data);
-export const sendRemoveReview = reviewId => del(`${REVIEW_URL}/user/${reviewId}`);
+export const sendUpdateReview = (review, userId) => put(`${REVIEW_URL}/user/${userId}/${review._id}`, review);
+export const sendRemoveReview = (reviewId, userId) => del(`${REVIEW_URL}/user/${userId}/${reviewId}`);
 
 export const sendToWatchlist = (data, userId) => post(`${USER_URL}/${userId}/watchlist`, data);
 export const fetchWatchlist = userId => get(`${USER_URL}/${userId}/watchlist`);

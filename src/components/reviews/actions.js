@@ -31,18 +31,17 @@ export function newReview(review, user, movie) {
   };
 }
 
-export function updateReview(data) {
-  const review = data._id;
+export function updateReview(review, userId) {
   return {
     type: REVIEW_UPDATE,
-    payload: sendUpdateReview(data, review)
+    payload: sendUpdateReview(review, userId)
   };
 }
 
-export function removeReview(id) {
+export function removeReview(reviewId, userId) {
   return {
     type: REVIEW_REMOVE,
-    payload: sendRemoveReview(id),
+    payload: sendRemoveReview(reviewId, userId),
   };
 }
 

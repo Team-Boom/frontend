@@ -9,6 +9,8 @@ import toDetail from '../../assets/icons/detail-link.png';
 import { connect } from 'react-redux';
 import { addToWatchList, removeFromWatchList } from '../profile/actions';
 import { getUser } from '../profile/reducers';
+import noImage from '../../assets/images/no-image-found.png'
+
 
 class MovieCard extends PureComponent {
 
@@ -40,10 +42,15 @@ class MovieCard extends PureComponent {
   render() {
     const { movie, ticRating, reviewType, user } = this.props;
     const detailLink = `/movies?id=${movie.imdbID || movie._id}`;
+    const poster = () => {
+      let image = movie.Poster || movie.poster;
+      if(!image || image === 'N/A') image = noImage;
+      return image;
+    };
 
     return (
       <div className="movie-card">
-        <span> <img src={movie.Poster || movie.poster }/> </span>
+        <span> <img src={poster()}/> </span>
         <span> 
           <h2> {movie.Title || movie.title} </h2>
           <p> {movie.Plot || movie.description || movie.Year} </p>

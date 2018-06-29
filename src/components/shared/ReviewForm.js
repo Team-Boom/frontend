@@ -69,7 +69,7 @@ class ReviewForm extends Component {
   };
 
   handleDelete = () => {
-    this.state.type === 'edit' ? this.props.removeReview(this.props.review._id) : null;
+    this.state.type === 'edit' ? this.props.removeReview(this.props.review._id, this.props.user._id) : null;
     this.props.history.goBack();
   }
 
@@ -87,7 +87,10 @@ class ReviewForm extends Component {
       rating: this.state.rating,
       text: this.state.text,
     };
-    this.state.type === 'edit' ? updateReview(review) : newReview(review, this.props.user, movie);
+
+    this.props.review._id ? review._id = this.props.review._id : null ;
+
+    this.state.type === 'edit' ? this.props.updateReview(review, this.props.user._id) : this.props.newReview(review, this.props.user, movie);
     this.props.history.goBack();
   }
 

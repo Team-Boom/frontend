@@ -22,6 +22,12 @@ class Tickets extends Component {
     this.checkTickets();
   }
 
+  componentDidUpdate(prevProps) {
+    if(prevProps.current !== this.props.current){
+      this.checkTickets();
+    }
+  }
+
   checkTickets = () => {
     if(this.props.current){
       this.setState({ rating: this.props.current }, () => {
