@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'; //eslint-disable-line
 import { tryLoadUser } from '../profile/actions';
 import { getCheckedAuth } from '../profile/reducers';
 import Auth from '../profile/Auth';
 import PrivateRoute from '../shared/PrivateRoutes';
-import Landing from '../home/Landing';
+import Landing from '../app/Landing';
 import Home from '../home/Home';
 import Browse from '../browse/Browse';
 import MovieDetail from '../movies/MovieDetail';
@@ -15,8 +15,9 @@ import WatchList from '../profile/Watchlist';
 import ReviewForm from '../shared/ReviewForm';
 import Reviews from '../reviews/Reviews';
 import Search from '../nav/Search';
-import AppWrapper from '../app/AppWrapper';
-import Header from '../shared/Header';
+import Header from '../home/Header';
+import Nav from '../nav/Nav';
+import styles from './Site.scss';
 
 class Site extends PureComponent {
 
@@ -33,11 +34,10 @@ class Site extends PureComponent {
     const { checkedAuth } = this.props;
 
     return (
-      <AppWrapper>
-        <main>
-          <Header />
-          <div id="site">
-            { checkedAuth &&
+      <section id="site-wrapper" className={styles.siteWrapper}>
+        <Header />
+        <div id="site">
+          { checkedAuth &&
             <Switch>
               <Route exact path="/" component={Landing}/>
               <Route path="/home" component={Home}/>
@@ -52,10 +52,10 @@ class Site extends PureComponent {
               <PrivateRoute path="/watchlist" component={WatchList}/>
               <Redirect to="/home"/>
             </Switch>
-            }
-          </div>
-        </main>
-      </AppWrapper>
+          }
+        </div>
+        <Nav/>
+      </section>
     );
   }
 }

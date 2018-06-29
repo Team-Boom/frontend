@@ -1,15 +1,21 @@
 :local(.search) {
-    position: relative;
-    grid-column-start: 2;
-    grid-column-end: 5;
+    display: block;
+    margin: auto;
+
+    #search-container {
+        width: 100%;
+        max-width: 500px;
+        position: relative;
+        display: block;
+        margin: auto;
+    }
 
     #searchBar {
-        width: 90%;
         padding-left: 1em;
         border-width: 4px 0px 4px 4px;
         border-color: #082127;
-        min-width: 200px;
         max-width: 500px;
+        width: calc(100% - 47px);
         height: 2.5em;
         background: #DEDEDE;
     }
@@ -19,6 +25,7 @@
         position: absolute;  
         border-width: 4px 4px 4px 0px;
         border-color: #082127;
+        width: 47px;
         height: 2.5em;
         background: #DEDEDE;
         img {

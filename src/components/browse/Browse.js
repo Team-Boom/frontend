@@ -54,9 +54,9 @@ class Browse extends Component {
     const { sorted } = this.props;
    
     return (
-      <section className="browse-page">
-        <div className={styles.browse}>
-          <FormControl label="select a category">
+      <section id="browse-page">
+        <div>
+          <FormControl label="Browse movies by category">
             <select name="category" onChange={this.handleCat}>
               {categories.map((cat, i) => <option key={i} value={cat}>{cat}</option>)}
             </select>

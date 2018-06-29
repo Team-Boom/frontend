@@ -1,19 +1,18 @@
 :local(.nav) {
-
     position: fixed; 
     top: 0; 
     right: 0;
     z-index: 9999;
+    background: linear-gradient(to left, #98B2A6, rgba(152, 178, 166, 0));
+
     ul {
         padding: 5%;;
         display: grid;
         grid-template-columns: repeat(4, 1fr); 
-    
         }
 
     li {
         list-style: none;
-
         }
 
     a {
@@ -36,31 +35,35 @@
         background-color: #DEDEDE;
     
         ul {
-        padding: 0;
+        padding: 1%;
+        margin: 0;
+        height: 100%;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr; 
-    
-        }
+        
+    }
     
         li {
-        display: flex;
-        flex-direction: column;
-        list-style: none;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            list-style: none;
         }
     
         a {
             text-decoration: none;
             align-self: center;
             color:#082127;
-            font-size: 1.2em;
+            font-size: 1em;
         }
-    
+
         img {
-            max-width: 15px;
-            max-height: 15px;
+            width: 50%;
+            padding: 2%;
             display: block;
             margin: auto;
         }
+
     }
 
 }

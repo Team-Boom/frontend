@@ -1,0 +1,42 @@
+:local(.review) {
+
+    #review-top {
+        width: fit-content;
+        display: block;
+        margin: auto;
+
+        h2 {
+            width: fit-content;
+            margin: auto;
+            display: block;
+        }
+    }
+
+    q {
+        display: block;
+        margin: auto;
+        width: 70vw;
+        text-align: center;
+        margin-bottom: 1em;
+    }
+
+    .form-span > *, .control {
+        display: inline;
+    }
+
+    .form-span {
+        display: block;
+    }
+
+    .tickets-card {
+        padding: 0em 1em;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .form-span button {
+        background-color: transparent !important; 
+    }
+}

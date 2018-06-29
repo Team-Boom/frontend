@@ -15,7 +15,8 @@ import Tickets from '../shared/Tickets';
 import { addToWatchList } from '../profile/actions';
 import watchlist from '../../assets/icons/watchlist-active.png';
 import { getUser } from '../profile/reducers';
-import styles from './MovieDetail.scss';
+import movieStyles from './MovieDetail.scss';
+import gridStyles from '../shared/cardGrid.scss';
 
 class MovieDetail extends PureComponent {
 
@@ -62,20 +63,19 @@ class MovieDetail extends PureComponent {
 
     if(!movie) return null;
     return (
-      <section className={styles.movie}>
+      <section id="movie-detail-page" className={movieStyles.movie}>
         <div id="id">
           <div id="movie-page-top">
             <img src={movie.Poster}/>
-            {user ? <img className="clickable" src={watchlist} onClick={this.handleWLAdd} alt="add to your watchlist"/> : null}
           </div>
           <div id="movie-page-content">
-            <h2>{movie.Title}</h2>
+            <h2>{movie.Title}{user ? <img className="clickable" src={watchlist} onClick={this.handleWLAdd} alt="add to your watchlist"/> : null}</h2>
             <h3>Released: {movie.Released}</h3>
             <h3>Director: {movie.Director}</h3>
             <h3>Cast: {movie.Actors}</h3>
             <p> {movie.Plot}</p>
             {movie.Ratings ? (<div className="ex-ratings">
-              {movie.Ratings.map((ex, i) => <span className="ex-rating" key={i}> <img className="ex-icon" src={exRatingsDic[ex.Source]}/>{ex.Value}</span>)}
+              {movie.Ratings.map((ex, i) => <span className="ex-rating" key={i}> <img className="icon" src={exRatingsDic[ex.Source]}/>{ex.Value}</span>)}
             </div>) : null }
           </div>
         </div>
@@ -100,8 +100,8 @@ class MovieDetail extends PureComponent {
             </FormControl>
             { reviews.length
               ? (
-                <div id="movie-reviews-container">
-                  {reviews.map((rev, i) => <ReviewItem key={i} review={rev} type='view' />)}
+                <div id="movie-reviews-container" className={gridStyles.cardGrid}>
+                  {reviews.map((rev, i) => <ReviewItem key={i} review={rev} canEdit={false} />)}
                 </div>) 
               : null }
           </div>

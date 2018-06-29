@@ -1,6 +1,7 @@
 @mixin bodyImage($property) {
     min-height: 100vh;
     min-width: 100vw;
+    max-height: 900px;
 
     background: linear-gradient(
          rgba(216, 211, 203, 0.548), 
@@ -12,7 +13,7 @@
 }
 
 
-@media only screen and (min-width: 350px) {
+@media only screen and (min-width: 0px) {
     body { @include bodyImage('./assets/images/film01.jpg') }
 }
 
@@ -28,15 +29,17 @@
     body { @include bodyImage('./assets/images/film04.jpg') }
 }
 
-#site > section {
-    display: grid;
-    grid-template-columns:  1fr 2fr 1fr;
-    grid-template-rows: 1fr 2fr 1fr;
+#site {
+    max-height: 900px;
+    overflow: scroll;
+    background-attachment: fixed;
+}
+
+#page-container {
+    margin: 0 auto !important;
 }
 
 * { box-sizing: border-box};
-
-
 
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 30px #DEDEDE inset;
@@ -49,24 +52,19 @@ input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
 
-h1, h2, h3, h4, a {
-    font-family: 'Roboto', sans-serif;
-}
+//default styling for 350-500px
 
-p {
-    font-family: 'Quattrocentro', serif;
-}
+h1, h2, h3, h4, a { font-family: 'Roboto', sans-serif; }
+p { font-family: 'Quattrocentro', serif; }
+q { font-family: 'Open Sans Condensed', sans-serif; }
 
-q {
-    font-family: 'Open Sans Condensed', sans-serif;
-}
-
-.ex-icon {
-    height: 50px;
-}
+h1 { font-size: 1.2em; }
+h2 { font-size: 1em; text-align: left;}
+h3 { font-size: 1.17em; }
+p { font-size: .9em; } 
 
 .icon {
-    height: 50px;
+    height: 30px;
 }
 
 .clickable {
@@ -76,3 +74,52 @@ q {
 .hide {
     visibility: hidden;
 }
+
+#watchlist-page, #browse-page{
+    text-align: center;
+    margin: auto;
+}
+
+select {
+    background-color: #dedede;
+    padding: .2em;
+}
+
+@media only screen and (min-width: 0px) {
+    body { @include bodyImage('./assets/images/film01.jpg') }
+    .desktop{ display: none };
+    .mobile{ display: inherit };
+}
+
+@media only screen and (min-width: 750px) {
+    body { @include bodyImage('./assets/images/film02.jpg') }
+    .desktop{ display: none };
+    .mobile{ display: inherit };
+
+    h1 { font-size: 1.5em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.17em; }
+    p { font-size: 1em; } 
+}
+
+@media only screen and (min-width: 950px) {
+    body { @include bodyImage('./assets/images/film03.jpg') }
+    .desktop{ display: inherit };
+    .mobile{ display: none };
+
+    h1 { font-size: 1.8em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.17em; }
+    p { font-size: 1.2em; } 
+}
+
+@media only screen and (min-width: 1200px) {
+    body { @include bodyImage('./assets/images/film04.jpg') }
+    .desktop{ display: inherit };
+    .mobile{ display: none };
+
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.17em; }
+}
+

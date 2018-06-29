@@ -53,7 +53,7 @@ export default class Certification extends PureComponent {
           { user && user.error &&
           (<div id="auth-errror">
             Error: {user.error}
-          </div> )}
+          </div>)}
         </form>
       );
     }

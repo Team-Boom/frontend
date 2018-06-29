@@ -26,8 +26,8 @@ class Watchlist extends Component {
       const { watchList } = this.props;
 
       return (
-        <section className="watchlist-page">
-          {watchList.length && watchList.map((movie, i)=> <MovieCard key={i} movie={movie} watchRemove={true} reviewType="add"/>)}
+        <section id="watchlist-page">
+          {!!watchList.length && watchList.map((movie, i)=> <MovieCard key={i} movie={movie} watchRemove={true} reviewType="add"/>)}
           {!watchList.length && <h3>Add some movies to your watchlist!</h3>}
         </section>
       );

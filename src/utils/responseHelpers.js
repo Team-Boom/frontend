@@ -4,7 +4,7 @@ export const breakpoints = {
   tabletLg: 950,
   tabletSm: 750,
   mobileLg: 550,
-  mobileSm: 350
+  mobileSm: 320
 };
 
 export const setClass = (classObj, breakpoint) => {

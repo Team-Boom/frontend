@@ -1,78 +1,63 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
+import styles from './Carousel.scss';
 
-export default class Carousel extends Component {
+export default class Carousel extends PureComponent {
 
   static propTypes = {
     movies: PropTypes.array.isRequired,
     category: PropTypes.string.isRequired,
   };
 
+  state = {
+    imageSpot: 0
+  };
+
+  handlePrev = () => {
+    this.setState({ imageSpot: this.state.imageSpot - 1 });
+  };
+
+  handleNext = () => {
+    this.setState({ imageSpot: this.state.imageSpot + 1 });
+  };
+
   render() {
     const { movies, category } = this.props;
 
-    const settings = {
-      dots: false,
-      infinite: true,
-      arrows: true,
-      speed: 500,
-      slidesPerRow: 10,
-      slidesToShow: 4,
-      slidesToScroll: 1,
-      focusOnSelect: true,
-      className: `${category}-slider`,
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            infinite: true,
-            dots: true
-          }
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2,
-            initialSlide: 2
-          }
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-          }
-        }
-      ]
+    const { imageSpot } = this.state;
+
+    const carouselCard = (movie, i, hidden) => {
+      const detailLink = `/movies?id=${movie.imdbID || movie._id}`;
+      const isHidden = hidden ? true : false;
+      return (<article key={i} className="carousel-card" hidden={isHidden}>
+        <Link to={detailLink}>
+          <div className="carousel-card-inner">
+            <h3 className="hover">{movie.title}</h3>
+          </div>
+          <img src={movie.poster}/>
+        </Link>
+      </article>);
     };
 
-    const carouselCard = (movie, i) => {
-      const detailLink = `/movies?id=${movie.imdbID || movie._id}`;
-      return (
-        <div key={i}>
-          <Link to={detailLink}>
-            <div className="carousel-card-inner">
-              <img className="carousel-image" src={movie.poster}/>
-              <h3>{movie.title}</h3>
-            </div>
-          </Link>
-        </div>
-      );
-    };
-    
+    if(!movies) return null;
+
     return (
-      <article className="cat-slider">
-        <h2>{category}</h2>
-        <Slider {...settings}>
-          {movies.map((movie, i) => carouselCard(movie, i))}
-        </Slider>
-      </article>
+      <div className={styles.carousel}>
+        <h2>Top {category.replace(/^\w/, c => c.toUpperCase())}</h2>
+        <div className="carousel-inner">
+          <span className="button left">
+            {(!!imageSpot) && <button onClick={this.handlePrev}>&lt;</button>}
+          </span>
+          {movies.map((movie, i) => {
+            if(i === imageSpot) return carouselCard(movie, i);
+            return carouselCard(movie, i, 'hidden');
+          })}
+          <span className="button right">
+            {(movies.length > 1) && (imageSpot !== movies.length - 1) && <button onClick={this.handleNext}>&gt;</button>}
+          </span>
+        </div>
+      </div>
     );
   }
 }
-

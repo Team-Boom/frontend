@@ -1,20 +1,34 @@
 :local(.movie) {
-    padding: 5em;
+    padding: 0em;
 
     #id {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
     }
+
     #movie-page-top{
-        margin: 1em;
-        padding: 2em;
-        background-color: #98B2A6;
+        margin: auto;
         align-items: center;
+
+        img {
+            display: block;
+            margin: auto;
+        }
     }
 
     #movie-page-reviews {
         grid-column-start: 2;
         grid-row-start: 3;
         
+    }
+
+    @media only screen and (min-width: 750px) {
+        padding: 1em;
+
+        #movie-page-top{
+            margin: 1em;
+            padding: 2em;
+            align-items: center;
+        }
     }
 }
