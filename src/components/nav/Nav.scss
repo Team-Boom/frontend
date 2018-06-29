@@ -3,6 +3,7 @@
     top: 0; 
     right: 0;
     z-index: 9999;
+    background: linear-gradient(to left, #98B2A6, rgba(152, 178, 166, 0));
 
     ul {
         padding: 5%;;
@@ -34,13 +35,13 @@
         background-color: #DEDEDE;
     
         ul {
-        margin: 0;
         padding: 1%;
+        margin: 0;
         height: 100%;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr; 
-    
-        }
+        
+    }
     
         li {
             height: 100%;
@@ -55,13 +56,14 @@
             color:#082127;
             font-size: 1em;
         }
-    
+
         img {
-            width: 100%;
+            width: 50%;
             padding: 2%;
             display: block;
             margin: auto;
         }
+
     }
 
 }

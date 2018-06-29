@@ -13,7 +13,7 @@
 }
 
 
-@media only screen and (min-width: 350px) {
+@media only screen and (min-width: 0px) {
     body { @include bodyImage('./assets/images/film01.jpg') }
 }
 
@@ -33,6 +33,15 @@
     max-height: 900px;
     overflow: scroll;
     background-attachment: fixed;
+}
+
+#section {
+    max-width: 1200px;
+}
+
+#page-container {
+    max-width: 1200px;
+    margin: 0 auto !important;
 }
 
 * { box-sizing: border-box};
@@ -71,7 +80,7 @@ p { font-size: .9em; }
     visibility: hidden;
 }
 
-@media only screen and (min-width: 350px) {
+@media only screen and (min-width: 0px) {
     body { @include bodyImage('./assets/images/film01.jpg') }
     .desktop{ display: none };
     .mobile{ display: inherit };

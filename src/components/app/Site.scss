@@ -1,6 +1,6 @@
 :local(.siteWrapper) {
     width: 100vw;
-    max-height: 100vh;
+    height: 100vh;
     display: grid;
     grid-template-rows: 130px auto 36px; //130 = header size, 36 = footer
     grid-template-columns: auto;

@@ -9,6 +9,7 @@
         padding-top: .3em;
         font-style: italic;
         font-weight: 500;
+        color: #082127;
     }
     
     #logo-container {
@@ -34,8 +35,8 @@
         grid-row-end: 5;
         text-align: center;
         background-color: #98B2A6;
-        padding: 10%;
-        border-radius: 2%;
+        padding: 5%;
+        border: .5em solid #98B2A6;
     }
 
     #search {
