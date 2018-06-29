@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'; //eslint-disable-line
 import { tryLoadUser } from '../profile/actions';
 import { getCheckedAuth } from '../profile/reducers';
 import Auth from '../profile/Auth';
 import PrivateRoute from '../shared/PrivateRoutes';
-import Landing from '../home/Landing';
+import Landing from '../app/Landing';
 import Home from '../home/Home';
 import Browse from '../browse/Browse';
 import MovieDetail from '../movies/MovieDetail';
@@ -16,7 +16,9 @@ import ReviewForm from '../shared/ReviewForm';
 import Reviews from '../reviews/Reviews';
 import Search from '../nav/Search';
 import AppWrapper from '../app/AppWrapper';
-import Header from '../shared/Header';
+import Header from '../home/Header';
+import Nav from '../nav/Nav';
+import styles from './Site.scss';
 
 class Site extends PureComponent {
 
@@ -34,7 +36,7 @@ class Site extends PureComponent {
 
     return (
       <AppWrapper>
-        <main>
+        <section id="site-wrapper" className={styles.site}>
           <Header />
           <div id="site">
             { checkedAuth &&
@@ -54,7 +56,8 @@ class Site extends PureComponent {
             </Switch>
             }
           </div>
-        </main>
+          <Nav/>
+        </section>
       </AppWrapper>
     );
   }

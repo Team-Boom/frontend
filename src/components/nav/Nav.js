@@ -13,7 +13,7 @@ class Nav extends Component {
   render() {
 
     return (
-      <article className={styles.nav}>
+      <article id="nav" className={styles.nav}>
         <nav className={setClass({
           default: 'nav',
           tabletSm: 'bottom'

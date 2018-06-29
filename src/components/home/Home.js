@@ -19,11 +19,6 @@ class Home extends PureComponent {
 
   componentDidMount() {
     this.props.loadTop10s();
-    // const testMovie = {
-    //   poster: 'https://ia.media-imdb.com/images/M/MV5BMTI5NTE2OTQtN2YyZi00OTI5LTljMmEtMDZlMTk0MzNmZmY5L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg',
-    //   title: 'Oliver',
-    // };
-    // this.setState({ test: [testMovie, testMovie, testMovie, testMovie, testMovie, testMovie, testMovie, testMovie, testMovie, testMovie] });
   }
   
   render() {
@@ -32,12 +27,11 @@ class Home extends PureComponent {
     const top10Loaded = categories.length ? true : false;
 
     return (
-      <section className={styles.home}>
-        <h1> Deep Focus </h1>
-
-        {top10Loaded && categories.map((cat, i) => <Carousel key={i} movies={top10s[cat]} category={cat}/> )}
-
-
+      <section id="home" className={styles.home}>
+        <div id="carousel-container">
+        bug
+          {/* {top10Loaded && categories.map((cat, i) => <Carousel key={i} movies={top10s[cat]} category={cat}/>)} */}
+        </div>
       </section>
     );
   }

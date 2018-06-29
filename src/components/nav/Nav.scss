@@ -1,19 +1,17 @@
 :local(.nav) {
-
     position: fixed; 
     top: 0; 
     right: 0;
     z-index: 9999;
+    
     ul {
         padding: 5%;;
         display: grid;
         grid-template-columns: repeat(4, 1fr); 
-    
         }
 
     li {
         list-style: none;
-
         }
 
     a {

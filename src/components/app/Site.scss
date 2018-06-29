@@ -1,0 +1,7 @@
+:local(.site) {
+    width: 100vw;
+    max-height: 100vh;
+    display: grid;
+    grid-template-rows: 127px auto 36px;
+    grid-template-columns: auto;
+ }

@@ -75,7 +75,7 @@ class MovieDetail extends PureComponent {
             <h3>Cast: {movie.Actors}</h3>
             <p> {movie.Plot}</p>
             {movie.Ratings ? (<div className="ex-ratings">
-              {movie.Ratings.map((ex, i) => <span className="ex-rating" key={i}> <img className="ex-icon" src={exRatingsDic[ex.Source]}/>{ex.Value}</span>)}
+              {movie.Ratings.map((ex, i) => <span className="ex-rating" key={i}> <img className="icon" src={exRatingsDic[ex.Source]}/>{ex.Value}</span>)}
             </div>) : null }
           </div>
         </div>

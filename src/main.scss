@@ -11,32 +11,7 @@
     background-repeat: no-repeat;
 }
 
-
-@media only screen and (min-width: 350px) {
-    body { @include bodyImage('./assets/images/film01.jpg') }
-}
-
-@media only screen and (min-width: 750px) {
-    body { @include bodyImage('./assets/images/film02.jpg') }
-}
-
-@media only screen and (min-width: 950px) {
-    body { @include bodyImage('./assets/images/film03.jpg') }
-}
-
-@media only screen and (min-width: 1200px) {
-    body { @include bodyImage('./assets/images/film04.jpg') }
-}
-
-#site > section {
-    display: grid;
-    grid-template-columns:  1fr 2fr 1fr;
-    grid-template-rows: 1fr 2fr 1fr;
-}
-
 * { box-sizing: border-box};
-
-
 
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 30px #DEDEDE inset;
@@ -49,21 +24,16 @@ input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
 
-h1, h2, h3, h4, a {
-    font-family: 'Roboto', sans-serif;
-}
+//default styling for 350-500px
 
-p {
-    font-family: 'Quattrocentro', serif;
-}
+h1, h2, h3, h4, a { font-family: 'Roboto', sans-serif; }
+p { font-family: 'Quattrocentro', serif; }
+q { font-family: 'Open Sans Condensed', sans-serif; }
 
-q {
-    font-family: 'Open Sans Condensed', sans-serif;
-}
-
-.ex-icon {
-    height: 50px;
-}
+h1 { font-size: 1.2em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.17em; }
+p { font-size: .9em; } 
 
 .icon {
     height: 50px;
@@ -76,3 +46,32 @@ q {
 .hide {
     visibility: hidden;
 }
+
+@media only screen and (min-width: 350px) {
+    body { @include bodyImage('./assets/images/film01.jpg') }
+}
+
+@media only screen and (min-width: 750px) {
+    body { @include bodyImage('./assets/images/film02.jpg') }
+
+    h1 { font-size: 1.5em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.17em; }
+    p { font-size: 1em; } 
+}
+
+@media only screen and (min-width: 950px) {
+    body { @include bodyImage('./assets/images/film03.jpg') }
+    h1 { font-size: 1.8em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.17em; }
+    p { font-size: 1.2em; } 
+}
+
+@media only screen and (min-width: 1200px) {
+    body { @include bodyImage('./assets/images/film04.jpg') }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.17em; }
+}
+

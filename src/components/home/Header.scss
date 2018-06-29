@@ -1,31 +1,26 @@
 :local(.header) {
     display: grid;
-    grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    height: 5%;
-
-    #logo {
-        width: 100%;
-
-    }
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    padding: 1%;
 
     #search {
         width: 100%;
         justify-self: center;
         align-self: center;
         grid-column-start: 2;
-        grid-column-end: 5;
-        grid-row-start: 2;
-        grid-row-end: 3;
+        grid-column-end: span 2;
+        padding: 1em;
+    }
+
+    #logo {
+        width: 100%;
     }
 
     #box {
         max-width: 20em;
         max-height: 20em;
-        grid-column-start: 3;
-        grid-column-end: 4;
-        grid-row-start: 1;
-        grid-row-end: 2;
+        grid-column-start: 1;
     }
 
 
