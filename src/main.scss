@@ -1,0 +1,78 @@
+@mixin bodyImage($property) {
+    min-height: 100vh;
+    min-width: 100vw;
+
+    background: linear-gradient(
+         rgba(216, 211, 203, 0.548), 
+         rgba(216, 211, 203, 0.548)
+         ), 
+        url($property);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+@media only screen and (min-width: 350px) {
+    body { @include bodyImage('./assets/images/film01.jpg') }
+}
+
+@media only screen and (min-width: 750px) {
+    body { @include bodyImage('./assets/images/film02.jpg') }
+}
+
+@media only screen and (min-width: 950px) {
+    body { @include bodyImage('./assets/images/film03.jpg') }
+}
+
+@media only screen and (min-width: 1200px) {
+    body { @include bodyImage('./assets/images/film04.jpg') }
+}
+
+#site > section {
+    display: grid;
+    grid-template-columns:  1fr 2fr 1fr;
+    grid-template-rows: 1fr 2fr 1fr;
+}
+
+* { box-sizing: border-box};
+
+
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #DEDEDE inset;
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+
+h1, h2, h3, h4, a {
+    font-family: 'Roboto', sans-serif;
+}
+
+p {
+    font-family: 'Quattrocentro', serif;
+}
+
+q {
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.ex-icon {
+    height: 50px;
+}
+
+.icon {
+    height: 50px;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.hide {
+    visibility: hidden;
+}

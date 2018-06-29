@@ -9,11 +9,17 @@ class Watchlist extends Component {
     static propTypes = {
       user: PropTypes.object.isRequired,
       loadWatchlist: PropTypes.func.isRequired,
-      watchlist: PropTypes.array
+      watchList: PropTypes.array
     };
 
     componentDidMount() {
       this.props.loadWatchlist(this.props.user._id);
+    }
+
+    componentDidUpdate(prevProps) {
+      if(prevProps.user !== this.props.user){
+        this.props.loadWatchlist(this.props.user._id);
+      }
     }
 
     render() {
@@ -21,7 +27,8 @@ class Watchlist extends Component {
 
       return (
         <section className="watchlist-page">
-          <MovieCard key={i} movie={movie} watchRemove={true} reviewType="add"/>
+          {watchList.length && watchList.map((movie, i)=> <MovieCard key={i} movie={movie} watchRemove={true} reviewType="add"/>)}
+          {!watchList.length && <h3>Add some movies to your watchlist!</h3>}
         </section>
       );
     }

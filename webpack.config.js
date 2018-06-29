@@ -6,7 +6,7 @@ const path = `${__dirname}/${buildDir}`;
 const Dotenv = require('dotenv-webpack');
 
 
-module.exports = env => ({
+module.exports = {
 
   entry: './src/index.js',
   output: {
@@ -73,4 +73,4 @@ module.exports = env => ({
       }
     ]
   }
-});
+};

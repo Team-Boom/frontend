@@ -9,13 +9,15 @@ import toDetail from '../../assets/icons/detail-link.png';
 import { connect } from 'react-redux';
 import { addToWatchList, removeFromWatchList } from '../profile/actions';
 import { getUser } from '../profile/reducers';
+import noImage from '../../assets/images/no-image-found.png'
+import styles from './MovieCard.scss';
 
 class MovieCard extends PureComponent {
 
   static propTypes = {
     addToWatchList: PropTypes.func.isRequired,
     removeFromWatchList: PropTypes.func.isRequired,
-    user: PropTypes.object.isRequired,
+    user: PropTypes.object,
     movie: PropTypes.object.isRequired,
     ticRating: PropTypes.number,
     watchAdd: PropTypes.bool,
@@ -25,11 +27,11 @@ class MovieCard extends PureComponent {
   };
 
   handleWLAdd = () => {
-    this.props.addToWatchList(this.props.user, this.props.movie.imdbID); //send movie as well
+    this.props.addToWatchList(this.props.movie, this.props.user._id); //send movie as well
   };
 
   handleWLRemove = () => {
-    this.props.removeFromWatchList(this.props.user, this.props.movie.imdbID); //send movie as well
+    this.props.removeFromWatchList(this.props.user, this.props.movie.imdbID || this.props.movie.movieId);
   };
 
   handleReview = () =>{
@@ -38,20 +40,25 @@ class MovieCard extends PureComponent {
   }
 
   render() {
-    const { movie, ticRating, reviewType } = this.props;
-    const detailLink = `/movies?id=${movie.imdbID}`;
+    const { movie, ticRating, reviewType, user } = this.props;
+    const detailLink = `/movies?id=${movie.imdbID || movie._id}`;
+    const poster = () => {
+      let image = movie.Poster || movie.poster;
+      if(!image || image === 'N/A') image = noImage;
+      return image;
+    };
 
     return (
-      <div className="movie-card">
-        <span> <img src={movie.Poster}/> </span>
+        <div className={styles.card}>
+        <span> <img src={poster()}/> </span>
         <span> 
-          <h2> {movie.Title} </h2>
+          <h2> {movie.Title || movie.title} </h2>
           <p> {movie.Plot || movie.description || movie.Year} </p>
         </span>
         {this.props.ticRating ? <Tickets type='view' current={ticRating}/> : null}
-        {this.props.watchAdd ? <img className="clickable" src={watchlist} onClick={this.handleWLAdd} alt="add to your watchlist"/> : null}
-        {this.props.watchRemove ? <img className="clickable" src={remove} onClick={this.handleWLRemove} alt="remove from watchlist"/> : null}
-        {this.props.reviewType ? <img className="clickable" src={toReview} onClick={this.handleReview} alt={`${reviewType} review`}/> : null}
+        {user && this.props.watchAdd ? <img className="clickable icon" src={watchlist} onClick={this.handleWLAdd} alt="add to your watchlist"/> : null}
+        {this.props.watchRemove ? <img className="clickable icon" src={remove} onClick={this.handleWLRemove} alt="remove from watchlist"/> : null}
+        {this.props.reviewType ? <img className="clickable icon" src={toReview} onClick={this.handleReview} alt={`${reviewType} review`}/> : null}
         <Link to={detailLink}>
           <img className="clickable" src={toDetail}/>
         </Link>

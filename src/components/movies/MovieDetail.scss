@@ -1,0 +1,20 @@
+:local(.movie) {
+    padding: 5em;
+
+    #id {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    }
+    #movie-page-top{
+        margin: 1em;
+        padding: 2em;
+        background-color: #98B2A6;
+        align-items: center;
+    }
+
+    #movie-page-reviews {
+        grid-column-start: 2;
+        grid-row-start: 3;
+        
+    }
+}

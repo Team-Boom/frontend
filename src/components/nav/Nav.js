@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { setClass } from '../../utils/responseHelpers';
 import styles from './Nav.scss';
 import home from '../../assets/icons/home-inactive.png';
 import browse from '../../assets/icons/browse-inactive.png';
 import profile from '../../assets/icons/profile-inactive.png';
 import watchlist from '../../assets/icons/watchlist-inactive.png';
+import { connect } from 'react-redux';
 
-export default class Nav extends Component {
+class Nav extends Component {
 
   render() {
 
     return (
-      <footer>
-        <nav className={styles.nav}>
+      <article className={styles.nav}>
+        <nav className={setClass({
+          default: 'nav',
+          tabletSm: 'bottom'
+         }, this.props.breakpoint)}> {/*eslint-disable-line*/}
           <ul>
             <li>
               <Link to="/home" id="home">
@@ -40,7 +45,12 @@ export default class Nav extends Component {
             </li>
           </ul>
         </nav>
-      </footer>
-    );
+      </article>
+    ); 
   }
 }
+
+export default connect(
+  state => ({ breakpoint: state.breakpoint }),
+  null,
+)(Nav);

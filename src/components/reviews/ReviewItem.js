@@ -2,25 +2,31 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Tickets from '../shared/Tickets';
+import editIcon from '../../assets/icons/write-review.png';
 class ReviewItem extends PureComponent {
 
   static propTypes = {
     review: PropTypes.object.isRequired,
-    type: PropTypes.string, //'view' or 'edit'
+    canEdit: PropTypes.bool,
   };
 
   render() {
-    const { review, type } = this.props;
-    const editLink = `/movies/${review.movieId}/write`;
+    const { review, canEdit } = this.props;
+    const editLink = `/reviews/${review._id}/edit`;
+    const detailLink = `/movies?id=${review.movieID}`;
 
     return (
       <div className="review-card">
-        {type === 'edit' ? (<h2> {review.title} </h2>) : null }
+        {canEdit ? (
+          <Link to={detailLink}>
+            <img src={review.poster}/>
+            <h2> {review.title} </h2>
+          </Link>
+        ) : null }
         <h3>{review.category}</h3>
         <Tickets type='view' current={review.rating}/>
         <p>{review.text}</p>
-        {type === 'edit' ? (<Link to={editLink} type='edit'> Edit </Link>) : null }
-        {type === 'edit' ? 'delete button here' : null }
+        {canEdit ? (<Link to={editLink} type='edit'> <img src={editIcon}/> </Link>) : null }
         <p className="review-signed">-{review.userName}</p>
       </div>
     );

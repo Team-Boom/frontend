@@ -5,15 +5,16 @@ class FormControl extends PureComponent {
 
   static propTypes = {
     label: PropTypes.string,
-    children: PropTypes.any
+    children: PropTypes.any,
+    hide: PropTypes.bool,
   };
 
   render() {
-    const { label, children } = this.props;
+    const { label, children, hide } = this.props;
 
     return (
       <div>
-        { label && <label>{label}:</label> }
+        { label && <label className={hide ? 'hide' : null}>{label}:</label> }
         <div className="control">
           {children}
         </div>

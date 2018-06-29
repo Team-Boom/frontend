@@ -6,9 +6,9 @@ import { getSorted } from './reducers';
 import { loadSort, clearSort } from './actions';
 import { categories, categoryBlurbs } from '../shared/constants';
 import MovieCard from '../shared/MovieCard';
-import SearchBar from '../shared/SearchBar';
 import FormControl from '../shared/FormControl';
 import queryString from 'query-string';
+import styles from './Browse.scss';
 
 class Browse extends Component {
 
@@ -24,7 +24,7 @@ class Browse extends Component {
     page: 1,
   }
 
-  componentDidMount() {
+  browseByQuery() {
     const query = this.props.location.search;
     if(!query) return null;
 
@@ -32,6 +32,15 @@ class Browse extends Component {
     this.setState({ category: cat, page: p }, () => {
       this.props.loadSort(cat, p);
     });
+  }
+
+  componentDidMount() {
+    this.browseByQuery();
+  }
+
+  componentDidUpdate(prevProps) {
+    if(prevProps.location.search === this.props.location.search) return;
+    this.browseByQuery();
   }
 
   handleCat = ({ target }) => {
@@ -43,12 +52,10 @@ class Browse extends Component {
   render() {
     const { category } = this.state;
     const { sorted } = this.props;
+   
     return (
       <section className="browse-page">
-        <div id="search">
-          <SearchBar/>
-        </div>
-        <div id="browse-category">
+        <div className={styles.browse}>
           <FormControl label="select a category">
             <select name="category" onChange={this.handleCat}>
               {categories.map((cat, i) => <option key={i} value={cat}>{cat}</option>)}
@@ -56,9 +63,8 @@ class Browse extends Component {
           </FormControl>
           {category ? categoryBlurbs[category] : null }
         </div>
-        {sorted ? sorted.map((movie, i) => <MovieCard key={i} movie={movie} ticRating={movie.rating} />) : null}
+        {sorted.length ? sorted.map((movie, i) => <MovieCard key={i} movie={movie} ticRating={movie.avgRating} poster={true} watchAdd={true}/>) : null}
       </section>
-
     );
   }
 }

@@ -3,11 +3,11 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    background: linear-gradient(
-        rgba(216, 211, 203, 0.548), 
-        rgba(216, 211, 203, 0.548)
-        ), 
-        url('../../assets/images/film1.jpg');
+    // background: linear-gradient(
+    //     rgba(216, 211, 203, 0.548), 
+    //     rgba(216, 211, 203, 0.548)
+    //     ), 
+    //     url('../../assets/images/film1.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 
@@ -40,7 +40,4 @@
         width: 100%;
         padding: 5%;
     }
-
-
-
 }
