@@ -67,10 +67,9 @@ class MovieDetail extends PureComponent {
         <div id="id">
           <div id="movie-page-top">
             <img src={movie.Poster}/>
-            {user ? <img className="clickable" src={watchlist} onClick={this.handleWLAdd} alt="add to your watchlist"/> : null}
           </div>
           <div id="movie-page-content">
-            <h2>{movie.Title}</h2>
+            <h2>{movie.Title}{user ? <img className="clickable" src={watchlist} onClick={this.handleWLAdd} alt="add to your watchlist"/> : null}</h2>
             <h3>Released: {movie.Released}</h3>
             <h3>Director: {movie.Director}</h3>
             <h3>Cast: {movie.Actors}</h3>

@@ -1,5 +1,7 @@
 :local(.cardInner) {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     > * {
         flex: 0 1;
@@ -22,5 +24,14 @@
     .tickets-card {
         flex: 0 0;
         min-width: 180px;
+    }
+
+    .poster {
+        width: 300px;
+        height: autol
+    }
+
+    h2{
+        font-size: 1.2em;
     }
 }

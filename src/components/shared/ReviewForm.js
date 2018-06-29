@@ -97,11 +97,16 @@ class ReviewForm extends Component {
   render() {
     const { movie } = this.props;
     const { category, text, rating } = this.state;
+    const poster = () => {
+      let image = movie.Poster || movie.poster;
+      if(!image || image === 'N/A') image = noImage;
+      return image;
+    };
 
     return (
       <form className="review-form" onSubmit={this.handleSubmit}>
         <div className="review-top">
-          <img src={movie.poster}/>
+          <img src={poster()}/>
           <h2>Review {movie.title}</h2>
         </div>
         <div className="review-blurb">

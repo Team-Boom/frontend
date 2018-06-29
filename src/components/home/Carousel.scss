@@ -3,7 +3,10 @@
     width: 5vw;
     display: block;
 
-    h2 { color: #dedede };
+    h2 { 
+        color: #dedede;
+        width: 90%;
+    };
     h3, h3 a {
         width: 100%;
         color: #98b2a6;
@@ -74,4 +77,7 @@
       visibility: visible;
   }
 
+  @media (max-width: 400px) {
+      min-width: 320px;
+  }
 }

@@ -18,9 +18,9 @@ class ReviewItem extends PureComponent {
 
     return (
       <div className={styles.cardInner}>
-        {!canEdit ? (
+        {canEdit ? (
           <Link to={detailLink}>
-            <img src={review.poster}/>
+            <img className="poster" src={review.poster}/>
             <h2> {review.title} </h2>
           </Link>
         ) : null }
