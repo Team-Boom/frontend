@@ -15,6 +15,8 @@ import WatchList from '../profile/Watchlist';
 import ReviewForm from '../shared/ReviewForm';
 import Reviews from '../reviews/Reviews';
 import Search from '../nav/Search';
+import AppWrapper from '../app/AppWrapper';
+import Header from '../shared/Header';
 
 class Site extends PureComponent {
 
@@ -31,9 +33,10 @@ class Site extends PureComponent {
     const { checkedAuth } = this.props;
 
     return (
-      <Router>
+      <AppWrapper>
         <main>
-          <div>
+          <Header />
+          <div id="site">
             { checkedAuth &&
             <Switch>
               <Route exact path="/" component={Landing}/>
@@ -52,7 +55,7 @@ class Site extends PureComponent {
             }
           </div>
         </main>
-      </Router>
+      </AppWrapper>
     );
   }
 }

@@ -10,9 +10,9 @@ export default class App extends PureComponent {
 
     return (
       <div id="page-container">
-        {/* <AppWrapper/> */}
         <Router>
           <main>
+            
             <Nav/>
             <Switch>
               <Route exact path="/" component={Landing}/>

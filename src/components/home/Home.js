@@ -14,8 +14,6 @@ class Home extends PureComponent {
 
     return (
       <div>
-        <h1> Deep Focus </h1>
-        {user && (<h3>Welcome {user.userName}</h3>)}
 
       </div>
     );

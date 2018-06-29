@@ -52,11 +52,9 @@ class Browse extends Component {
   render() {
     const { category } = this.state;
     const { sorted } = this.props;
+   
     return (
       <section className="browse-page">
-        <div id="search">
-          <SearchBar/>
-        </div>
         <div id="browse-category">
           <FormControl label="select a category">
             <select name="category" onChange={this.handleCat}>
