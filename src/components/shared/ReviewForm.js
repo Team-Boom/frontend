@@ -12,6 +12,7 @@ import { loadDetail } from '../movies/actions';
 import checkmark from '../../assets/icons/checkmark.png';
 import trashcan from '../../assets/icons/trashcan.png';
 import Tickets from './Tickets';
+import styles from './ReviewForm.scss';
 
 class ReviewForm extends Component {
 
@@ -99,30 +100,34 @@ class ReviewForm extends Component {
     const { category, text, rating } = this.state;
 
     return (
-      <form className="review-form" onSubmit={this.handleSubmit}>
+      <form className={styles.review} onSubmit={this.handleSubmit}>
         <div className="review-top">
-          <img src={movie.poster}/>
-          <h2>Review {movie.title}</h2>
+          <img src={movie.poster || movie.Poster}/>
+          <h2>Review {movie.title || movie.Title}</h2>
         </div>
         <div className="review-blurb">
           {category ? categoryBlurbs[category] : null}
         </div>
         <fieldset>
-          <FormControl label="select a category">
-            <select name="category" value={category} onChange={this.handleChange}>
-              {categories.map((cat, i) => <option key={i} value={cat}>{cat}</option>)}
-            </select>
-          </FormControl>
-          <Tickets type='edit' current={rating} onRate={this.handleRating}/>
+          <div id='top'>
+            <FormControl label="select a category">
+              <select name="category" value={category} onChange={this.handleChange}>
+                {categories.map((cat, i) => <option key={i} value={cat}>{cat}</option>)}
+              </select>
+            </FormControl>
+            <Tickets type='edit' current={rating} onRate={this.handleRating}/>
+          </div>
           <FormControl label="write a review">
-            <input type="text" maxLength="1000" name="text" value={text} onChange={this.handleChange} required/>
+            <textarea rows="10" cols="100" type="text" maxLength="1000" name="text" value={text} onChange={this.handleChange} required/>
           </FormControl>
-          <FormControl label="save review" hide={true}>
-            <button type="save"><img className="icon clickable" src={checkmark}/></button> 
-          </FormControl>
-          <FormControl label="delete review" hide={true}>
-            <button type="button" onClick={this.handleDelete}><img className="icon clickable" src={trashcan}/></button>
-          </FormControl>
+          <div id="bottom">
+            <FormControl label="save review" hide={true}>
+              <button type="save"><img className="icon clickable" src={checkmark}/></button> 
+            </FormControl>
+            <FormControl label="delete review" hide={true}>
+              <button type="button" onClick={this.handleDelete}><img className="icon clickable" src={trashcan}/></button>
+            </FormControl>
+          </div>
         </fieldset>
       </form>
     );
