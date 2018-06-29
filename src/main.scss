@@ -36,15 +36,17 @@
 
 * { box-sizing: border-box};
 
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-    outline: none;
+
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #DEDEDE inset;
 }
 
-input {
-    appearance: none;
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
 }
 
 h1, h2, h3, h4, a {

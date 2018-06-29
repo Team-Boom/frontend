@@ -63,21 +63,24 @@ class MovieDetail extends PureComponent {
     if(!movie) return null;
     return (
       <section className={styles.movie}>
-        <div id="movie-page-top">
-          <img src={movie.Poster}/>
-          <h2>{movie.Title}</h2>
-          {user ? <img className="clickable" src={watchlist} onClick={this.handleWLAdd} alt="add to your watchlist"/> : null}
+        <div id="id">
+          <div id="movie-page-top">
+            <img src={movie.Poster}/>
+            {user ? <img className="clickable" src={watchlist} onClick={this.handleWLAdd} alt="add to your watchlist"/> : null}
+          </div>
+          <div id="movie-page-content">
+            <h2>{movie.Title}</h2>
+            <h3>Released: {movie.Released}</h3>
+            <h3>Director: {movie.Director}</h3>
+            <h3>Cast: {movie.Actors}</h3>
+            <p> {movie.Plot}</p>
+            {movie.Ratings ? (<div className="ex-ratings">
+              {movie.Ratings.map((ex, i) => <span className="ex-rating" key={i}> <img className="ex-icon" src={exRatingsDic[ex.Source]}/>{ex.Value}</span>)}
+            </div>) : null }
+          </div>
         </div>
-        <div id="movie-page-content">
-          <h3>Released: {movie.Released}</h3>
-          <h3>Director: {movie.Director}</h3>
-          <h3>Cast: {movie.Actors}</h3>
-          <p> {movie.Plot}</p>
-          {movie.Ratings ? (<div className="ex-ratings">
-            {movie.Ratings.map((ex, i) => <span className="ex-rating" key={i}> <img className="ex-icon" src={exRatingsDic[ex.Source]}/>{ex.Value}</span>)}
-          </div>) : null }
-        </div>
-        <Link to={reviewLink}> Write a review! </Link>
+        { user ? <Link to={reviewLink}> Write a review! </Link> : null }
+
 
         <article id="movie-page-reviews">
           { reviews.length
