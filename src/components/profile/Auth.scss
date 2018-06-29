@@ -14,6 +14,29 @@ input {
 
 }
 
+.control > button {
+    margin: 1%;
+    border: 1.5em solid #082127;
+    background-color: #082127;
+    color: #DEDEDE;
+    border: none;
+}
+
+.control > button:hover {
+    background-color: #DEDEDE;
+    color: #082127;
+    cursor: pointer;
+}
+
+a {
+    color: #AF1338;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #082127;
+}
+
 #signin {
     grid-column-start: 2;
     grid-column-end: 3;

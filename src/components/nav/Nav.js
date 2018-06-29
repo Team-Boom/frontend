@@ -16,31 +16,31 @@ class Nav extends Component {
       <article id="nav" className={styles.nav}>
         <nav className={setClass({
           default: 'nav',
-          tabletSm: 'bottom'
+          tabletLg: 'bottom'
          }, this.props.breakpoint)}> {/*eslint-disable-line*/}
           <ul>
             <li>
               <Link to="/home" id="home">
                 <img src={home} />
-                <span className="desktop">Home</span>
+                <span>Home</span>
               </Link>
             </li>
             <li>
               <Link to="/profile" id="profile">
                 <img src={profile} />
-                <span className="desktop">Profile</span>
+                <span>Profile</span>
               </Link>
             </li>
             <li>
               <Link to="/browse" id="browse">
                 <img src={browse} />
-                <span className="desktop">Browse</span>
+                <span>Browse</span>
               </Link>
             </li>
             <li>
-              <Link to="/watchlist">
+              <Link to="/watchlist" id="watchlist">
                 <img src={watchlist} />
-                <span className="desktop">Watchlist</span>
+                <span>Watchlist</span>
               </Link>
             </li>
           </ul>
