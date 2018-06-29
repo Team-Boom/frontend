@@ -1,34 +1,20 @@
 :local(.movie) {
-    #movie-page-top {
-        grid-column-start: 2;
-        grid-column-end: 5;
-        grid-row-start: 1;
-        grid-row-end: 2;
-        h2 {
-            text-align: center;
-        }
+    padding: 5em;
 
+    #id {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
     }
-
-    img {
-        margin: 2em;
-    }
-
-    a {
-        
-    }
-    #movie-page-content {
-        text-align: center;
-        grid-column-start: 2;
-        grid-column-end: 5;
-        grid-row-start: 2;
-        grid-row-end: 3;
-
+    #movie-page-top{
+        margin: 1em;
+        padding: 2em;
+        background-color: #98B2A6;
+        align-items: center;
     }
 
     #movie-page-reviews {
-        grid-column-start: 3;
-        grid-column-end: 4;
+        grid-column-start: 2;
+        grid-row-start: 3;
+        
     }
-
 }

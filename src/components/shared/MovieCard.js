@@ -9,6 +9,7 @@ import toDetail from '../../assets/icons/detail-link.png';
 import { connect } from 'react-redux';
 import { addToWatchList, removeFromWatchList } from '../profile/actions';
 import { getUser } from '../profile/reducers';
+import styles from './MovieCard.scss';
 
 class MovieCard extends PureComponent {
 
@@ -42,7 +43,7 @@ class MovieCard extends PureComponent {
     const detailLink = `/movies?id=${movie.imdbID || movie._id}`;
 
     return (
-      <div className="movie-card">
+      <div className={styles.card}>
         <span> <img src={movie.Poster || movie.poster }/> </span>
         <span> 
           <h2> {movie.Title || movie.title} </h2>
