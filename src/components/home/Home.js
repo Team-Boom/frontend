@@ -29,8 +29,7 @@ class Home extends PureComponent {
     return (
       <section id="home" className={styles.home}>
         <div id="carousel-container">
-        bug
-          {/* {top10Loaded && categories.map((cat, i) => <Carousel key={i} movies={top10s[cat]} category={cat}/>)} */}
+          {top10Loaded && categories.map((cat, i) => <Carousel key={i} movies={top10s[cat]} category={cat}/>)}
         </div>
       </section>
     );

@@ -102,7 +102,7 @@ class MovieDetail extends PureComponent {
             { reviews.length
               ? (
                 <div id="movie-reviews-container" className={gridStyles.cardGrid}>
-                  {reviews.map((rev, i) => <ReviewItem key={i} review={rev} type='view' />)}
+                  {reviews.map((rev, i) => <ReviewItem key={i} review={rev} canEdit={false} />)}
                 </div>) 
               : null }
           </div>
