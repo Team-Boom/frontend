@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { getUser } from '../profile/reducers';
 import PropTypes from 'prop-types';
 import { loadTop10s } from '../movies/actions';
 import { getTop10s } from '../movies/reducers';
 import Carousel from './Carousel';
+import styles from './Home.scss';
+
 class Home extends PureComponent {
 
   static propTypes = {
@@ -27,13 +28,14 @@ class Home extends PureComponent {
   
   render() {
     const { top10s } = this.props;
-    const top10Loaded = Object.keys(top10s).length ? true : false;
-    
+    const categories = Object.keys(top10s);
+    const top10Loaded = categories.length ? true : false;
+
     return (
-      <section className="home-page">
+      <section className={styles.home}>
         <h1> Deep Focus </h1>
 
-        {top10Loaded && <Carousel movies={top10s.cinematography} />}
+        {top10Loaded && categories.map((cat, i) => <Carousel key={i} movies={top10s[cat]} category={cat}/> )}
 
 
       </section>
