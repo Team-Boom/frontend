@@ -6,8 +6,8 @@ import { tryLoadUser } from '../profile/actions';
 import { getCheckedAuth } from '../profile/reducers';
 import Auth from '../profile/Auth';
 import PrivateRoute from '../shared/PrivateRoutes';
-import Landing from './Landing';
-import Home from './Home';
+import Landing from '../home/Landing';
+import Home from '../home/Home';
 import Browse from '../browse/Browse';
 import MovieDetail from '../movies/MovieDetail';
 import Profile from '../profile/Profile';
@@ -31,10 +31,9 @@ class Site extends PureComponent {
     const { checkedAuth } = this.props;
 
     return (
-      <Router>
-        <main>
-          <div>
-            { checkedAuth &&
+      <main>
+        <div id="site">
+          { checkedAuth &&
             <Switch>
               <Route exact path="/" component={Landing}/>
               <Route path="/home" component={Home}/>
@@ -49,10 +48,9 @@ class Site extends PureComponent {
               <PrivateRoute path="/watchlist" component={WatchList}/>
               <Redirect to="/home"/>
             </Switch>
-            }
-          </div>
-        </main>
-      </Router>
+          }
+        </div>
+      </main>
     );
   }
 }

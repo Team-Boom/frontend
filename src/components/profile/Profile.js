@@ -8,6 +8,8 @@ import { getReviewsByUser } from '../reviews/reducers';
 import { logout } from '../profile/actions';
 import ReviewItem from '../reviews/ReviewItem';
 import Tickets from '../shared/Tickets';
+import { Link } from 'react-router-dom';
+
 class Profile extends Component {
 
     static propTypes = {

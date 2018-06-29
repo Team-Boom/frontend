@@ -4,7 +4,7 @@ export const MOVIEAVGS_LOAD = 'MOVIEAVGS_LOAD';
 
 export const getMovie = state => state.movie;
 export const getMovieAvgs = state => state.movie.focusAvgs;
-export const getTop10 = (category, state) => state.top10s[category];
+export const getTop10s = state => state.top10s;
 
 export function movie(state = {}, { type, payload }) {
   switch(type) {
@@ -23,10 +23,7 @@ export function movie(state = {}, { type, payload }) {
 export function top10s(state = {}, { type, payload }) {
   switch(type) {
     case TOP10_LOAD:
-      return {
-        ...state,
-        [payload.category]: payload.movies,
-      };
+      return payload;
     default: 
       return state;
   }

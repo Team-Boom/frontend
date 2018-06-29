@@ -23,7 +23,7 @@ export function newReview(review, user, movie) {
     ...movie
   };
 
-  removeFromWatchList(user, movie.imdbId);
+  if(user.watchlist.length) removeFromWatchList(user, movie.movieId);
 
   return {
     type: REVIEW_ADD,

@@ -54,9 +54,6 @@ class Browse extends Component {
     const { sorted } = this.props;
     return (
       <section className="browse-page">
-        <div id="search">
-          <SearchBar/>
-        </div>
         <div id="browse-category">
           <FormControl label="select a category">
             <select name="category" onChange={this.handleCat}>
@@ -65,9 +62,8 @@ class Browse extends Component {
           </FormControl>
           {category ? categoryBlurbs[category] : null }
         </div>
-        {sorted.length ? sorted.map((movie, i) => <MovieCard key={i} movie={movie} ticRating={movie.avgRating} poster={true} />) : null}
+        {sorted.length ? sorted.map((movie, i) => <MovieCard key={i} movie={movie} ticRating={movie.avgRating} poster={true} watchAdd={true}/>) : null}
       </section>
-
     );
   }
 }

@@ -13,10 +13,16 @@ class ReviewItem extends PureComponent {
   render() {
     const { review, canEdit } = this.props;
     const editLink = `/reviews/${review._id}/edit`;
+    const detailLink = `/movies?id=${review.movieID}`;
 
     return (
       <div className="review-card">
-        {canEdit ? (<h2> {review.title} </h2>) : null }
+        {canEdit ? (
+          <Link to={detailLink}>
+            <img src={review.poster}/>
+            <h2> {review.title} </h2>
+          </Link>
+        ) : null }
         <h3>{review.category}</h3>
         <Tickets type='view' current={review.rating}/>
         <p>{review.text}</p>

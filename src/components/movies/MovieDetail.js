@@ -12,6 +12,9 @@ import FormControl from '../shared/FormControl';
 import queryString from 'query-string';
 import ReviewItem from '../reviews/ReviewItem';
 import Tickets from '../shared/Tickets';
+import { addToWatchList } from '../profile/actions';
+import watchlist from '../../assets/icons/watchlist-active.png';
+import { getUser } from '../profile/reducers';
 
 class MovieDetail extends PureComponent {
 
@@ -20,7 +23,9 @@ class MovieDetail extends PureComponent {
     location: PropTypes.object.isRequired,
     loadDetail: PropTypes.func.isRequired,
     loadReviewsByMovie: PropTypes.func.isRequired,
+    addToWatchList: PropTypes.func.isRequired,
     reviews: PropTypes.array,
+    user: PropTypes.object,
   };
 
   state = {
@@ -43,8 +48,12 @@ class MovieDetail extends PureComponent {
     });
   }
 
+  handleWLAdd = () => {
+    this.props.addToWatchList(this.props.movie, this.props.user._id); //send movie as well
+  };
+
   render() {
-    const { movie, reviews } = this.props;
+    const { movie, reviews, user } = this.props;
     const { focusAvgs } = movie;
     const { id } = this.state;
     const reviewLink = `movies/${id}/write`;
@@ -56,6 +65,7 @@ class MovieDetail extends PureComponent {
         <div id="movie-page-top">
           <img src={movie.Poster}/>
           <h2>{movie.Title}</h2>
+          {user ? <img className="clickable" src={watchlist} onClick={this.handleWLAdd} alt="add to your watchlist"/> : null}
         </div>
         <div id="movie-page-content">
           <h3>Released: {movie.Released}</h3>
@@ -101,7 +111,8 @@ class MovieDetail extends PureComponent {
 export default withRouter(connect(
   state => ({ 
     movie: getMovie(state),
-    reviews: getReviewsByMovie(state)
+    reviews: getReviewsByMovie(state),
+    user: getUser(state),
   }),
-  { loadDetail, loadReviewsByMovie }
+  { loadDetail, loadReviewsByMovie, addToWatchList }
 )(MovieDetail));

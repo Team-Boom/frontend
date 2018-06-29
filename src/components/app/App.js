@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Landing from '../home/Landing';
-import Site from '../home/Site';
+import Site from '../app/Site';
 import Nav from '../nav/Nav';
 
 export default class App extends PureComponent {

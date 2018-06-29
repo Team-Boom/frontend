@@ -1,5 +1,6 @@
-import { USER_AUTH, LOGOUT, CHECKED_AUTH, USER_UPDATE, USER_LOAD_AVG } from './reducers';
-import { fetchVerifyUser, sendUpdateUser, fetchSignin, fetchSignup, fetchUserAvg } from '../../services/api';
+import { USER_AUTH, LOGOUT, CHECKED_AUTH, USER_UPDATE, USER_LOAD_AVG, WATCHLIST_LOAD } from './reducers';
+import { fetchVerifyUser, sendUpdateUser, fetchSignin, fetchSignup, 
+  fetchUserAvg, fetchWatchlist, sendToWatchlist } from '../../services/api';
 import { getStoredUser, clearStoredUser } from '../../services/request';
 
 const makeAuth = api => credentials => ({
@@ -32,13 +33,33 @@ export const tryLoadUser = () => dispatch => {
     });
 };
 
-export const addToWatchList = (user, movieId) => {
-  user.watchlist.push(movieId);
-  return updateUser(user, user._id);
+export const addToWatchList = (data, userId) => {
+  if(data.Title) {
+    let movie = {
+      title: data.Title,
+      poster: data.Poster,
+      movieId: data.imdbID,
+    };
+    data = movie;
+  }
+
+  if(!data.movieId) data.movieId = data._id || data.imdbID || data.imdbId;
+
+  return {
+    type: USER_UPDATE,
+    payload: sendToWatchlist(data, userId),
+  };
+};
+
+export const loadWatchlist = userId => {
+  return {
+    type: WATCHLIST_LOAD,
+    payload: fetchWatchlist(userId),
+  };
 };
 
 export const removeFromWatchList = (user, movieId) => {
-  user.watchlist.filter(m => m._id !== movieId);
+  if(user.watchlist[0]) user.watchlist = user.watchlist.filter(m => m !== movieId);
   return updateUser(user, user._id);
 };
 
