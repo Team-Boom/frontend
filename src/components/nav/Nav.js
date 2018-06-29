@@ -16,7 +16,7 @@ class Nav extends Component {
       <article className={styles.nav}>
         <nav className={setClass({
           default: 'nav',
-          mobileLg: 'bottom'
+          tabletSm: 'bottom'
          }, this.props.breakpoint)}> {/*eslint-disable-line*/}
           <ul>
             <li>

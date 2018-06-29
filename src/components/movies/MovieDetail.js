@@ -12,6 +12,7 @@ import FormControl from '../shared/FormControl';
 import queryString from 'query-string';
 import ReviewItem from '../reviews/ReviewItem';
 import Tickets from '../shared/Tickets';
+import styles from './MovieDetail.scss';
 
 class MovieDetail extends PureComponent {
 
@@ -52,7 +53,7 @@ class MovieDetail extends PureComponent {
 
     if(!movie) return null;
     return (
-      <section className="movie-page">
+      <section className={styles.movie}>
         <div id="movie-page-top">
           <img src={movie.Poster}/>
           <h2>{movie.Title}</h2>
@@ -68,7 +69,7 @@ class MovieDetail extends PureComponent {
         </div>
         <Link to={reviewLink}> Write a review! </Link>
 
-        <section id="movie-page-reviews">
+        <article id="movie-page-reviews">
           { reviews.length
             ? (
               <div id="movie-averages">
@@ -91,7 +92,7 @@ class MovieDetail extends PureComponent {
                 </div>) 
               : null }
           </div>
-        </section>
+        </article>
         
       </section>
     );
