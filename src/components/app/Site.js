@@ -15,7 +15,6 @@ import WatchList from '../profile/Watchlist';
 import ReviewForm from '../shared/ReviewForm';
 import Reviews from '../reviews/Reviews';
 import Search from '../nav/Search';
-import AppWrapper from '../app/AppWrapper';
 import Header from '../home/Header';
 import Nav from '../nav/Nav';
 import styles from './Site.scss';
@@ -35,11 +34,10 @@ class Site extends PureComponent {
     const { checkedAuth } = this.props;
 
     return (
-      <AppWrapper>
-        <section id="site-wrapper" className={styles.siteWrapper}>
-          <Header />
-          <div id="site">
-            { checkedAuth &&
+      <section id="site-wrapper" className={styles.siteWrapper}>
+        <Header />
+        <div id="site">
+          { checkedAuth &&
             <Switch>
               <Route exact path="/" component={Landing}/>
               <Route path="/home" component={Home}/>
@@ -54,11 +52,10 @@ class Site extends PureComponent {
               <PrivateRoute path="/watchlist" component={WatchList}/>
               <Redirect to="/home"/>
             </Switch>
-            }
-          </div>
-          <Nav/>
-        </section>
-      </AppWrapper>
+          }
+        </div>
+        <Nav/>
+      </section>
     );
   }
 }
