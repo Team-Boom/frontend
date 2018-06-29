@@ -1,9 +1,8 @@
 import React, { PureComponent } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Landing from '../home/Landing';
-import Site from '../app/Site';
+import Landing from './Landing';
+import Site from './Site';
 import Nav from '../nav/Nav';
-
 export default class App extends PureComponent {
 
   render() {
@@ -12,8 +11,6 @@ export default class App extends PureComponent {
       <div id="page-container">
         <Router>
           <main>
-            
-            <Nav/>
             <Switch>
               <Route exact path="/" component={Landing}/>
               <Route path="/" component={Site}/>

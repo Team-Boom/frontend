@@ -1,0 +1,22 @@
+:local(.home) {
+    display: grid;
+    grid-template-columns: auto 90% auto;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+
+    #carousel-container {
+        display: block;
+        grid-column-start: 2;
+        grid-row-start: 1;
+        grid-row-end: 5;
+    }
+
+    .slick-slide {
+        width: 200px;
+    }
+
+    .slick-slide img {
+        min-width: calc(100% - 100px);
+        margin: 0 50px;
+      }
+      
+}

@@ -1,0 +1,28 @@
+:local(.siteWrapper) {
+    width: 100vw;
+    max-height: 100vh;
+    display: grid;
+    grid-template-rows: 130px auto 36px; //130 = header size, 36 = footer
+    grid-template-columns: auto;
+
+    #site {
+        max-height: calc(100% - 127px - 36px);
+        min-height: 200px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+    
+    @media only screen and (min-width: 750px) {
+        grid-template-rows: 150px auto 36px;
+        #site { max-height: calc(100% - 150px - 36px );}
+    }
+    
+    @media only screen and (min-width: 950px) {
+        grid-template-rows: 250px auto;
+        #site { max-height: calc(100% - 250px);}
+    }
+    
+    @media only screen and (min-width: 1200px) {
+
+    }
+ }

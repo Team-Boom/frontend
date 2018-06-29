@@ -7,19 +7,21 @@ export default class Carousel extends Component {
 
   static propTypes = {
     movies: PropTypes.array.isRequired,
+    category: PropTypes.string.isRequired,
   };
 
   render() {
+    const { movies, category } = this.props;
+
     const settings = {
       dots: false,
       infinite: true,
       arrows: true,
       speed: 500,
-      slidesPerRow: 10,
-      slidesToShow: 4,
+      slidesToShow: 10,
       slidesToScroll: 1,
       focusOnSelect: true,
-      className: 'C',
+      className: `${category}-slider`,
       responsive: [
         {
           breakpoint: 1024,
@@ -48,15 +50,13 @@ export default class Carousel extends Component {
       ]
     };
 
-    const { movies } = this.props;
-
     const carouselCard = (movie, i) => {
       const detailLink = `/movies?id=${movie.imdbID || movie._id}`;
       return (
-        <div className="carousel-card" key={i}>
+        <div key={i}>
           <Link to={detailLink}>
             <div className="carousel-card-inner">
-              <img src={movie.poster}/>
+              <img className="carousel-image" src={movie.poster}/>
               <h3>{movie.title}</h3>
             </div>
           </Link>
@@ -66,9 +66,9 @@ export default class Carousel extends Component {
     
     return (
       <article className="cat-slider">
-        {/* category */}
+        <h2>{category}</h2>
         <Slider {...settings}>
-          {this.props.movies.map((movie, i) => carouselCard(movie, i))}
+          {movies.map((movie, i) => carouselCard(movie, i))}
         </Slider>
       </article>
     );

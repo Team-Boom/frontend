@@ -27,17 +27,19 @@ class SearchBar extends PureComponent {
 
     return (
       <form className={styles.search} onSubmit={e => this.handleSearch(e)}>
-        <input 
-          type="search"
-          id="searchBar" 
-          placeholder="Search movies here..." 
-          value={search} 
-          onChange={this.handleChange} 
-          required
-        />
-        <button type="submit" id="searchButton">
-          <img src={icon} />
-        </button>
+        <div id="search-container">
+          <input 
+            type="search"
+            id="searchBar" 
+            placeholder="Search movies here..." 
+            value={search} 
+            onChange={this.handleChange} 
+            required
+          />
+          <button type="submit" id="searchButton">
+            <img src={icon} />
+          </button>
+        </div>
       </form>
     );
   }
