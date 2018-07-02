@@ -75,6 +75,12 @@ p { font-size: .9em; }
     visibility: hidden;
 }
 
+.center {
+    width: fit-content;
+    display: block;
+    margin: auto;
+}
+
 #watchlist-page, #browse-page{
     text-align: center;
     margin: auto;

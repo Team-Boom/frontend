@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getQuery } from '../nav/reducers';
+import { getSQuery } from '../nav/reducers';
 import { withRouter } from 'react-router';
 import styles from './SearchBar.scss';
 import icon from '../../assets/icons/search.png';
@@ -9,21 +9,29 @@ import icon from '../../assets/icons/search.png';
 class SearchBar extends PureComponent {
 
   static propTypes = {
-    search: PropTypes.string,
+    query: PropTypes.string.isRequired,
     history: PropTypes.object.isRequired,
   };
 
+  state = {
+    query: '',
+  }
+
+  componentDidMount() {
+    this.setState({ query: this.props.query });
+  }
+
   handleChange = ({ target }) => {
-    this.setState({ search: target.value });
+    this.setState({ query: target.value });
   };
 
   handleSearch = e => {
     e.preventDefault();
-    this.props.history.push(`/search?q=${this.state.search}`);
+    this.props.history.push(`/search?q=${this.state.query}`);
   }
 
   render() {
-    const { search } = this.props;
+    const { query } = this.state;
 
     return (
       <form className={styles.search} onSubmit={e => this.handleSearch(e)}>
@@ -32,7 +40,7 @@ class SearchBar extends PureComponent {
             type="search"
             id="searchBar" 
             placeholder="Search movies here..." 
-            value={search} 
+            value={query} 
             onChange={this.handleChange} 
             required
           />
@@ -46,7 +54,7 @@ class SearchBar extends PureComponent {
 }
 
 export default withRouter(connect(
-  state => ({ search: getQuery(state) }),
+  state => ({ query: getSQuery(state) }),
   null
 )(SearchBar));
 

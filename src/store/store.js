@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { reviewsByMovie, reviewsByUser, review } from '../components/reviews/reducers';
 import { user, checkedAuth, watchlist } from '../components/profile/reducers';
-import { results } from '../components/nav/reducers';
+import { searchQuery, searchResults, searchState } from '../components/nav/reducers';
 import { error, loading } from '../components/app/reducers';
 import { movie, top10s } from '../components/movies/reducers';
 import { sorted } from '../components/browse/reducers';
@@ -17,7 +17,9 @@ const rootReducer = combineReducers({
   checkedAuth,
   reviewsByMovie,
   reviewsByUser,
-  results,
+  searchResults,
+  searchQuery,
+  searchState,
   movie,
   top10s,
   sorted,
