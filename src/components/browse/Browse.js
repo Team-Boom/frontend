@@ -8,7 +8,6 @@ import { categories, categoryBlurbs } from '../shared/constants';
 import MovieCard from '../shared/MovieCard';
 import FormControl from '../shared/FormControl';
 import queryString from 'query-string';
-import styles from './Browse.scss';
 
 class Browse extends Component {
 

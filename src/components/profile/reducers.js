@@ -20,7 +20,9 @@ export function user(state = null, { type, payload }) {
         reviewAvg: payload
       };
     case USER_UPDATE:
-      return payload;
+      return {
+        ...state,
+        ...payload };
     case LOGOUT:
       return null;
     default:

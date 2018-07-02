@@ -2,17 +2,17 @@ jest.mock('../../services/api', () => ({
   fetchSignin: jest.fn(),
   fetchSignup: jest.fn(),
   fetchVerify: jest.fn(),
-  sendUpdateUser: jest.fn()
+  sendUpdateUser: jest.fn(),
+  sendToWatchlist: jest.fn()
 }));
   
 import { signup, signin, logout, 
-  addToWatchList, removeFromWatchList, 
-  updateUser } from './actions';
+  addToWatchList, removeFromWatchList } from './actions';
 import { USER_AUTH, LOGOUT, USER_UPDATE } from './reducers';
 import { 
   fetchSignup as signupSvc, 
   fetchSignin as signinSvc, 
-  sendUpdateUser  } from '../../services/api'; 
+  sendUpdateUser, sendToWatchlist } from '../../services/api'; 
   
 describe('auth action creators', () => {
   
@@ -54,12 +54,12 @@ describe('user actions', () => {
 
   it('adds a movie to a watchlist and updates user', () => {
     const promise = Promise.resolve();
-    sendUpdateUser.mockReturnValueOnce(promise);
+    sendToWatchlist.mockReturnValueOnce(promise);
     
     const { type, payload } = addToWatchList(user, movie._id);
 
     expect(type).toBe(USER_UPDATE);
-    expect(sendUpdateUser.mock.calls.length).toBe(1);
+    expect(sendToWatchlist.mock.calls.length).toBe(1);
     expect(payload).toBe(promise);
   });
 
@@ -70,7 +70,7 @@ describe('user actions', () => {
     const { type, payload } = removeFromWatchList(user2, movie._id);
 
     expect(type).toBe(USER_UPDATE);
-    expect(sendUpdateUser.mock.calls.length).toBe(2);
-    expect(payload).toBe(promise);
+    expect(sendUpdateUser.mock.calls.length).toBe(1);
+    expect(payload).toEqual(promise);
   });
 });

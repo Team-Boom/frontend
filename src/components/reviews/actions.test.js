@@ -3,7 +3,8 @@ jest.mock('../../services/api', () => ({
   fetchUserReviews: jest.fn(),
   sendNewReview: jest.fn(),
   sendUpdateReview: jest.fn(),
-  sendRemoveReview: jest.fn()
+  sendRemoveReview: jest.fn(),
+  sendUpdateUser: jest.fn()
 }));
 
 import { loadReviewsByMovie, loadReviewsByUser, newReview, 
@@ -19,7 +20,7 @@ describe('Movie review actions', () => {
     const promise = Promise.resolve();
     fetchMovieReviews.mockReturnValueOnce(promise);
     
-    const { type, payload } = loadReviewsByMovie(123);;
+    const { type, payload } = loadReviewsByMovie(123);
 
     expect(type).toBe(ID_REVIEWS_LOAD);
     expect(fetchMovieReviews.mock.calls.length).toBe(1);
@@ -42,10 +43,14 @@ describe('User review actions', () => {
   });
 
   it('adds a new review', () => {
+    const user = {
+      watchlist: [123, 456]
+    };
+    const movie = { id: 123 };
     const promise = Promise.resolve();
     sendNewReview.mockReturnValueOnce(promise);
       
-    const { type, payload } = newReview({ key: 'value' });
+    const { type, payload } = newReview({ review: 'review' }, user, movie);
 
     expect(type).toBe(REVIEW_ADD);
     expect(sendNewReview.mock.calls.length).toBe(1);
@@ -67,7 +72,7 @@ describe('User review actions', () => {
     const promise = Promise.resolve();
     sendRemoveReview.mockReturnValueOnce(promise);
       
-    const { type, payload } = removeReview(123);
+    const { type, payload } = removeReview(123, 456);
 
     expect(type).toBe(REVIEW_REMOVE);
     expect(sendRemoveReview.mock.calls.length).toBe(1);

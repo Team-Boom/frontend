@@ -4,10 +4,10 @@ jest.mock('../../services/api', () => ({
   fetchMovieAvgs: jest.fn(),
 }));
   
-import { loadTop10s, loadDetail, reloadAvgs } from './actions';
-import { TOP10_LOAD, MOVIE_LOAD, MOVIEAVGS_LOAD } from './reducers';
-import { fetchTopTens, fetchMovie, fetchMovieAvgs } from '../../services/api';
-             
+import { loadTop10s, reloadAvgs } from './actions';
+import { TOP10_LOAD, MOVIEAVGS_LOAD } from './reducers';
+import { fetchTopTens, fetchMovieAvgs } from '../../services/api';
+
 describe('Movie load actions', () => {  
   
   it('loads all top 10s', () => {
@@ -20,17 +20,7 @@ describe('Movie load actions', () => {
     expect(fetchTopTens.mock.calls.length).toBe(1);
     expect(payload).toBe(promise);
   });
-  
-  it.only('loads movie detail', () => {
-    const thunk = fetchMovie(123);
-    const dispatch = jest.fn();
-    
-    thunk(dispatch);
 
-    const { calls } = dispatch.mock;
-    console.log('calls', calls);
-  });
-  
   it('reloads movieAvgs', () => {
     const promise = Promise.resolve();
     fetchMovieAvgs.mockReturnValueOnce(promise);
@@ -38,7 +28,7 @@ describe('Movie load actions', () => {
     const { type, payload } = reloadAvgs(123);
   
     expect(type).toBe(MOVIEAVGS_LOAD);
-    expect(fetchMovieAvgs.mock.calls.length).toBe(2);
+    expect(fetchMovieAvgs.mock.calls.length).toBe(1);
     expect(payload).toBe(promise);
   });
   

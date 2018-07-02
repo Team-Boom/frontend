@@ -16,6 +16,16 @@ class Search extends PureComponent {
   };
 
   componentDidMount() {
+    this.checkSearch();
+  }
+
+  componentDidUpdate(prevProps) {
+    if(prevProps.location !== this.props.location){
+      this.checkSearch();
+    }
+  }
+
+  checkSearch() {
     const string = this.props.location.search;
     const { q } = queryString.parse(string);
     this.props.newSearch(q);

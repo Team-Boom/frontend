@@ -26,9 +26,9 @@ class ReviewItem extends PureComponent {
         ) : null }
         <h3>{review.category}</h3>
         <Tickets type='view' current={review.rating}/>
-        <p>"{review.text}"</p>
+        <p>{`"${review.text}"`}</p>
         {canEdit ? (<Link to={editLink} type='edit'> <img src={editIcon}/> </Link>) : null }
-        {!canEdit ? (<q className="review-signed">-{review.userName}</q> ): null }
+        {!canEdit ? (<q className="review-signed">-{review.userName}</q>) : null }
       </div>
     );
   }

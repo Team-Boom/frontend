@@ -23,7 +23,6 @@ class MovieCard extends PureComponent {
     watchAdd: PropTypes.bool,
     watchRemove: PropTypes.bool,
     reviewType: PropTypes.string, //add or edit
-    review: PropTypes.object, //if editing
   };
 
   handleWLAdd = () => {
@@ -34,14 +33,12 @@ class MovieCard extends PureComponent {
     this.props.removeFromWatchList(this.props.user, this.props.movie.imdbID || this.props.movie.movieId);
   };
 
-  handleReview = () =>{
-    this.props.review;
-    this.props.reviewType;
-  }
+
 
   render() {
     const { movie, ticRating, reviewType, user } = this.props;
-    const detailLink = `/movies?id=${movie.imdbID || movie._id}`;
+    const detailLink = `/movies?id=${movie.imdbID ||  movie.movieId || movie._id}`; 
+    const reviewLink = `/movies/${movie.imdbID ||  movie.movieId || movie._id}/write`;
     const poster = () => {
       let image = movie.Poster || movie.poster;
       if(!image || image === 'N/A') image = noImage;
@@ -60,7 +57,7 @@ class MovieCard extends PureComponent {
         {this.props.ticRating ? <Tickets type='view' current={ticRating}/> : null}
         {user && this.props.watchAdd ? <img className="clickable icon" src={watchlist} onClick={this.handleWLAdd} alt="add to your watchlist"/> : null}
         {this.props.watchRemove ? <img className="clickable icon" src={remove} onClick={this.handleWLRemove} alt="remove from watchlist"/> : null}
-        {this.props.reviewType ? <img className="clickable icon" src={toReview} onClick={this.handleReview} alt={`${reviewType} review`}/> : null}
+        {this.props.reviewType ? <Link to={reviewLink}><img className="clickable icon" src={toReview} alt={`${reviewType} review`}/></Link> : null}
         <Link to={detailLink}>
           <img className="clickable icon" src={toDetail}/>
         </Link>

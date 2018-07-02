@@ -7,9 +7,9 @@
     "build:prod": "npm run build && npm run copy",
     "build": "webpack --mode production",
     "copy": "rm -rf ../backend/public && cp -R ./docs ../backend/public",
-    "start": "webpack-dev-server --hot --mode development",
+    "start": "webpack-dev-server --mode development",
     "lint": "eslint .",
-    "//pretest": "npm run lint",
+    "pretest": "npm run lint",
     "jest": "jest",
     "test": "npm run jest",
     "test:watch": "npm run jest -- --watch"
@@ -54,6 +54,7 @@
   },
   "dependencies": {
     "dotenv": "^6.0.0",
+    "fetch-mock": "^6.5.0",
     "prop-types": "^15.6.1",
     "query-string": "^6.1.0",
     "react": "^16.4.0",
