@@ -27,9 +27,9 @@ const review2 = {
 
 describe('reviewsByMovie reducer', () => {
         
-  it('has a default value of an empty object', () => {
+  it('has a default value of an empty array', () => {
     const state = reviewsByMovie(undefined, {});
-    expect(state).toEqual({});
+    expect(state).toEqual([]);
   });
         
   it('loads reviews', () => {

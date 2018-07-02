@@ -3,7 +3,7 @@ import {
   MOVIE_LOAD,
   MOVIEAVGS_LOAD,
   getMovie,
-  getTop10,
+  getTop10s,
   movie,
   top10s } from './reducers';
     
@@ -14,7 +14,7 @@ const testMovie = {
   poster: 'http://images.com/movie.png'
 };
     
-const ratings = {
+const focusAvgs = {
   lighting: 5,
   design: 3,
   editing: 4
@@ -36,7 +36,7 @@ const sound = {
       title: 'But better' }
   ]  };
 
-const top10State = obj =>({ [obj.category]: obj.movies });
+const top10State = obj =>({ category: obj.category, movies: obj.movies });
 
     
 describe('movie reducer', () => {
@@ -52,8 +52,8 @@ describe('movie reducer', () => {
   });
     
   it('adds the avgs', () => {
-    const state = movie(testMovie, { type: MOVIEAVGS_LOAD, payload: ratings });
-    expect(state).toEqual({ ...testMovie, ratings });
+    const state = movie(testMovie, { type: MOVIEAVGS_LOAD, payload: focusAvgs });
+    expect(state).toEqual({ ...testMovie, focusAvgs });
   });
 });
     
@@ -89,7 +89,7 @@ describe('movies selectors', () => {
     
   it('gets top 10 by category', () => {
     const top10s = { ...top10State(lighting), ...top10State(sound) };
-    const got = getTop10('lighting', { top10s: top10s });
-    expect(got).toEqual(lighting.movies);
+    const got = getTop10s({ top10s: top10s });
+    expect(got).toEqual(top10s);
   });
 });
