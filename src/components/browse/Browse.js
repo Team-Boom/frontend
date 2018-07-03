@@ -60,9 +60,9 @@ class Browse extends Component {
               {categories.map((cat, i) => <option key={i} value={cat}>{cat}</option>)}
             </select>
           </FormControl>
-          {category ? categoryBlurbs[category] : null }
+          {category && categoryBlurbs[category]}
         </div>
-        {sorted.length ? sorted.map((movie, i) => <MovieCard key={i} movie={movie} ticRating={movie.avgRating} poster={true} watchAdd={true}/>) : null}
+        {sorted.map((movie, i) => <MovieCard key={i} movie={movie} ticRating={movie.avgRating} poster={true} watchAdd={true}/>)}
       </section>
     );
   }

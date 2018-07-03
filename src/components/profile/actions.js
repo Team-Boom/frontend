@@ -59,6 +59,7 @@ export const loadWatchlist = userId => {
 };
 
 export const removeFromWatchList = (user, movieId) => {
+  // Changing data needs to happen in the reducer, not the action creator!
   if(user.watchlist[0]) user.watchlist = user.watchlist.filter(m => m !== movieId);
   return updateUser(user, user._id);
 };

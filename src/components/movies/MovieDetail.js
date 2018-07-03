@@ -62,6 +62,10 @@ class MovieDetail extends PureComponent {
     const renderAvg = (cat, i) => (<span key={i}>{cat} <Tickets type='view' current={focusAvgs[cat]}/></span>);
 
     if(!movie) return null;
+
+    // A lot going on in this one component!
+    // Pull out sub-components, even if just function components in same file...
+  
     return (
       <section id="movie-detail-page" className={movieStyles.movie}>
         <div id="id">
@@ -74,9 +78,9 @@ class MovieDetail extends PureComponent {
             <h3>Director: {movie.Director}</h3>
             <h3>Cast: {movie.Actors}</h3>
             <p> {movie.Plot}</p>
-            {movie.Ratings ? (<div className="ex-ratings">
+            {movie.Ratings && (<div className="ex-ratings">
               {movie.Ratings.map((ex, i) => <span className="ex-rating" key={i}> <img className="icon" src={exRatingsDic[ex.Source]}/>{ex.Value}</span>)}
-            </div>) : null }
+            </div>)}
           </div>
         </div>
         { user ? <Link to={reviewLink}> Write a review! </Link> : null }

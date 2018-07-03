@@ -24,12 +24,13 @@ class Home extends PureComponent {
   render() {
     const { top10s } = this.props;
     const categories = Object.keys(top10s);
-    const top10Loaded = categories.length ? true : false;
+    // empty arrays are safe to map...
+    // const top10Loaded = categories.length ? true : false;
 
     return (
       <section id="home" className={styles.home}>
         <div id="carousel-container">
-          {top10Loaded && categories.map((cat, i) => <Carousel key={i} movies={top10s[cat]} category={cat}/>)}
+          {categories.map((cat, i) => <Carousel key={i} movies={top10s[cat]} category={cat}/>)}
         </div>
       </section>
     );

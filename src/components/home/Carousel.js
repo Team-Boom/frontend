@@ -3,6 +3,21 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styles from './Carousel.scss';
 
+// Avoid recreating this function every time component re-renders.
+// Also, this is functional component, so TitleCase
+const CarouselCard = ({ movie, hidden }) => {
+  return (
+    <article className="carousel-card" hidden={hidden}>
+      <Link to={`/movies?id=${movie.imdbID || movie._id}`}>
+        <div className="carousel-card-inner">
+          <h3 className="hover">{movie.title}</h3>
+        </div>
+        <img src={movie.poster}/>
+      </Link>
+    </article>
+  );
+};
+
 export default class Carousel extends PureComponent {
 
   static propTypes = {
@@ -27,19 +42,6 @@ export default class Carousel extends PureComponent {
 
     const { imageSpot } = this.state;
 
-    const carouselCard = (movie, i, hidden) => {
-      const detailLink = `/movies?id=${movie.imdbID || movie._id}`;
-      const isHidden = hidden ? true : false;
-      return (<article key={i} className="carousel-card" hidden={isHidden}>
-        <Link to={detailLink}>
-          <div className="carousel-card-inner">
-            <h3 className="hover">{movie.title}</h3>
-          </div>
-          <img src={movie.poster}/>
-        </Link>
-      </article>);
-    };
-
     if(!movies) return null;
 
     return (
@@ -49,10 +51,9 @@ export default class Carousel extends PureComponent {
           <span className="button left">
             {(!!imageSpot) && <button onClick={this.handlePrev}>&lt;</button>}
           </span>
-          {movies.map((movie, i) => {
-            if(i === imageSpot) return carouselCard(movie, i);
-            return carouselCard(movie, i, 'hidden');
-          })}
+
+          {movies.map((movie, i) => <CarouselCard key={movie._id} movie={movie} hidden={i !== imageSpot}/>)}
+          
           <span className="button right">
             {(movies.length > 1) && (imageSpot !== movies.length - 1) && <button onClick={this.handleNext}>&gt;</button>}
           </span>
