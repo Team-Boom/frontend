@@ -18,6 +18,8 @@
         grid-column-end: 5;
         grid-row-start: 2;
         grid-row-end: 4;
+        width: 12rem;
+        justify-self: start;
         z-index: 1;
     }
 
@@ -45,8 +47,7 @@
         grid-row-start: 5;
         grid-row-end: 6;
         align-self: center;
-        justify-self: start;
-        width: 12rem;
+        width: 100%;
         padding: 5%;
     }
 
