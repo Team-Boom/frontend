@@ -17,6 +17,8 @@ class SearchBar extends PureComponent {
     query: '',
   }
 
+  // need to sync state.query when component mounts or when url search changes
+
   componentDidMount() {
     this.setState({ query: this.props.query });
   }

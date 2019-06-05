@@ -9,8 +9,10 @@ export const getTop10s = state => state.top10s;
 export function movie(state = {}, { type, payload }) {
   switch(type) {
     case MOVIE_LOAD:
+      // what if this happens _after_ MOVIEAVGS_LOAD?
       return payload;
     case MOVIEAVGS_LOAD:
+      // looks like averages could be in own reducer
       return { 
         ...state,
         focusAvgs: payload 

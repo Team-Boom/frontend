@@ -27,8 +27,10 @@ class Watchlist extends Component {
 
       return (
         <section id="watchlist-page">
-          {!!watchList.length && watchList.map((movie, i)=> <MovieCard key={i} movie={movie} watchRemove={true} reviewType="add"/>)}
-          {!watchList.length && <h3>Add some movies to your watchlist!</h3>}
+          {watchList.length
+              ? watchList.map((movie, i)=> <MovieCard key={i} movie={movie} watchRemove={true} reviewType="add"/>)
+              : <h3>Add some movies to your watchlist!</h3>
+          }
         </section>
       );
     }

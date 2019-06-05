@@ -13,7 +13,6 @@ export default class Header extends Component {
         </div>
         <div id='search'>
           <SearchBar />
-
         </div>
       </div>
     );

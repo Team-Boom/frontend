@@ -31,12 +31,16 @@ export function reviewsByUser(state = [], { type, payload }) {
     case REVIEWS_LOAD: 
       return payload;
     case REVIEW_ADD:
-      state.push(payload);
-      return state;
+      // you need to use immutability here
+      // state.push(payload);
+      // return state;
+      return [...state, payload];
     case REVIEW_UPDATE:
-      oldIndex = state.findIndex(r => (r.movieId === payload.movieId && r.category === payload.category));
-      state[oldIndex] = payload;
-      return state;
+      // same here!
+      // oldIndex = state.findIndex(r => (r.movieId === payload.movieId && r.category === payload.category));
+      // state[oldIndex] = payload;
+      // return state;
+      return state.map(r => r.movieId === payload.movieId && r.category === payload.category ? payload : r);
     case REVIEW_REMOVE:
       return state.filter(r => r._id !== payload); 
     default:
